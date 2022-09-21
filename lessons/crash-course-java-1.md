@@ -13,7 +13,6 @@ Java is used to develop apps for various Desktop Applications, such as media pla
 It has also be adopted as the language of choice for Google's **Android** OS, which we will be focus on in this course.
 
 # Hello World!
-# Second One
 {: .reading}
 
 The infamous first example when learning a new programming language is to create a minimal programm which outputs the text `Hello World!` on the screen.
