@@ -29,8 +29,6 @@ Hello World!
 ````
 [>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExHelloWorld#Main.java){:target="_blank"}
 
-[>Try it yourself<](https://replit.com/@SimWi/MCITest#Main.java){:target="_blank"}
-
 
 In Java, every line of code that can actually run needs to be inside a `class`.
 In our example, we named the class `MyClass`. We will explore the concept of classes in more detail later.
