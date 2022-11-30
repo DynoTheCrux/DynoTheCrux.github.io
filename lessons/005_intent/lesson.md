@@ -14,7 +14,7 @@ In this session we will have a look how **Intents** work and what they are used 
 
 ## Open the IbkActivityPlanner
 
-Download the .zip archive and save it to a location you prefer and unpack it. Then open Android Studio, choose File->open to open the project.
+Download the .zip archive and save it to a location you prefer and unpack it. Then open Android Studio, choose *File->open* to open the project.
 
 ## Explore the App
 
