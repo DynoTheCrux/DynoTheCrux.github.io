@@ -99,3 +99,8 @@ startActivity(sendIntent);
 
 respectively. As you can see, the extra information which is needed or optional for the intent varies by the action. You can have a look on the most common ones and examples [here](https://developer.android.com/guide/components/intents-common){:target="_blank"}.
 
+# Improve the UI
+
+
+# Add audio
+
