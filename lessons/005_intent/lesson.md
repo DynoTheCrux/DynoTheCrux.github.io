@@ -115,8 +115,7 @@ Let\'s start with the `activity_main.xml`. You can see that at the moment, every
 
 The result then looks something like this:
 
-![Scrollable app Main portrait](../../assets/img/005_intent/MainPortrait.png =500x100)
-![Scrollable app Main landscape](../../assets/img/005_intent/MainLandscape.png =100x500)
+![Scrollable app Main](../../assets/img/005_intent/MainLandscapePortrait.png)
 
 Here you can also find the .xml code as a reference. Beware that maybe it won\'t work out of the box as your elements may have different names/id\'s.
 
