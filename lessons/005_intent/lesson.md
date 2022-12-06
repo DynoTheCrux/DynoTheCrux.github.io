@@ -52,9 +52,9 @@ Finally, adapt the code to work with the new variable instead of the getter.
 
 Have a testrun of the app and see if the information is passed on successfully.
 
-## Explicit intents
+## Implicit intents
 
-The second type of intents are explicit, that means we ask the system to perform a certain action but we do not specify how and by whom it will be carried out. In this example you will implement two different ones:
+The second type of intents are implicit, that means we ask the system to perform a certain action but we do not specify how and by whom it will be carried out. In this example you will implement two different ones:
 - Conducting a websearch for our current weatherforecast in innsbruck and
 - Send a message to a friend to ask to join you in your activity.
 
@@ -77,7 +77,7 @@ You can see that for this activity the action `MAIN` is specified whereas the ca
 
 In the use context of the innsbruck activity planner this means that some other applications have to have one of these two actions specified in their intent filter to be able to perform receive the intent.
 
-### Implement explicit intents
+### Implement implicit intents
 
 In the listeners created before you can add the websearch intent by adding the lines:
 
