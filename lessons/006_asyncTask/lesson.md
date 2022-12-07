@@ -9,7 +9,7 @@
 
 ![Final app example Main](../../assets/img/006_AsyncTask/MainAfterLecture7.png)
 ![Final app example Loading](../../assets/img/006_AsyncTask/LoadingScreen.png)
-![Final app example Show](../../assets/img/006_AsyncTask/ShowActivityAfterLecture7)
+![Final app example Show](../../assets/img/006_AsyncTask/ShowActivityAfterLecture7.png)
 
 In this session, we will improve the already known IbkActivityPlanner application a little bit by implementing asynchronous execution of a background task and adapting the UI accordingly.
 
