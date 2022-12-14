@@ -35,6 +35,12 @@ Basically, it wraps the most important methods of the HiveMQ libraries classes i
 
 >Remember how actvity lifecycle methods are called and override, the principle is similar.
 
+First thing we have to do, is to create an object of the SimpleMQTTClient in our *onCreate()* method of the `MainActvity.java`. As parameters, the broker, port and a client id is specified.
+````Java
+client = new SimpleMqttClient("broker.hivemq.com", 1883, UUID.randomUUID().toString());
+````
+
+
 ## Implement the wrapper methods
 
 To use the wrapper class in our MainActivity, the class has been imported to the `MainActivity.java` and variables for the *client* created already. As we want to keep our lifecycles as clean as possible, we will create methods which handle the MQTT interaction seperately. First, we are going to connect to the MQTT service. We create the method *connect()* of the `MainActivity` class that returns nothing and has no parameters. Inside the method we call the clients *connect()* method that takes an *MqttConnection* as parameter.
