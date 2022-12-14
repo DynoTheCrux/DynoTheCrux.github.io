@@ -57,7 +57,6 @@ private void connect() {
 
 	    @Override
 	    public void onError(Throwable error) {
-		showError("Unable to connect");
 	    }
 	});
 }
