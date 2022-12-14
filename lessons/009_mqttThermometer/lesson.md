@@ -47,17 +47,18 @@ To use the wrapper class in our MainActivity, the class has been imported to the
 >If you use code completion you can choose which methods you want to override.
 
 ````Java
-private void subscribe(String topic) {
-// subscribe to chatTopic (asynchronous)
-	client.subscribe(new SimpleMqttClient.MqttSubscription(this, chatTopic) {
-		@Override
-		public void onMessage(String topic, String payload) {
-			// new message arrived
-		}
+private void connect() {
+// establish connection to server (asynchronous)
+	client.connect(new SimpleMqttClient.MqttConnection(this) {
+	    @Override
+	    public void onSuccess() {
+		Toast.makeText(MainActivity.this, "Connection successful", Toast.LENGTH_SHORT).show();
+	    }
 
-		@Override
-		public void onError(Throwable error) {
-		}
+	    @Override
+	    public void onError(Throwable error) {
+		showError("Unable to connect");
+	    }
 	});
 }
 ````
