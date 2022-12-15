@@ -4,7 +4,7 @@
 * This will become a table of contents (this text will be scrapped).
 {:toc}
 
-# Workshop: Using a external library to show graphs and plots
+# Workshop: Using an external library to show graphs and plots
 {: .reading}
 
 ![Final app example](../../assets/img/012_timingAndGraphs/GraphsMain.png)
