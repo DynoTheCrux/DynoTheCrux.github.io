@@ -241,6 +241,7 @@ public class MainActivity extends FixedRateLoopActivity { // change from AppComp
 }
 ```
 To visualize the behaviour, we simply create a layout file with a *Score* which is incremented with every loop iteration, a seek bar which controls the loop rate and a start / stop button. You can find the .xml code to be pasted into `activity_game_loop.xml` here:
+
 ![Final app example](../../assets/img/012_timingAndGraphs/GameLoop.png)
 
 [>Layout Code<](../../assets/source/012_timingAndGraphs/activity_game_loop.xml){:target="_blank"}
