@@ -292,5 +292,9 @@ setLoopFrequency(progress);
 You can build and run the application to try the third timing method using the rtLoop module.
 
 
+#### Bonus: Snake
+
+If you are curious on how this would be implemented in an actual game, download and unpack the *SnakesOnAPhone* project from sakai. It should run out of the box and is a basic implementation of the game snake which uses the `rtLoop` module.
+For all of you who are motivated, try to change the application so that the score is only incremented if the snake *eats* and not by every iteration.
 
 
