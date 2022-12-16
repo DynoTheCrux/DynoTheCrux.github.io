@@ -60,8 +60,8 @@ In the `MainActivity.java` connect the view element to an instance of class `Bar
 ````Java
 myArrayList.add(new BarEntry(x, y));
 ````
-To be able to show the dataset, the ArrayList has to be converted to a `BarDataSet` and finally to `BarData`. Create a **new** BarDataSet object. Besides the ArrayList it will take a String called *Label* which describes the dataset as a second argument. The constructor for `BarData` takes a the above instantiated BarDataSet as an argument. To show the data in the chart simply call the *setData(myBarData)* method from the BarChart object you created at the beginning.
->You can now try to make the chart more appealing by calling changing e.g. the colors with the *myBarDataSet.setColors()* method or animate the data using *myChart.animateY()*.
+To be able to show the dataset, the ArrayList has to be converted to a `BarDataSet` and finally to `BarData`. Create a **new** BarDataSet object. Besides the ArrayList it will take a String called *Label* which describes the dataset as a second argument. The constructor for `BarData` takes the above instantiated BarDataSet as an argument. To show the data in the chart simply call the *setData(myBarData)* method from the BarChart object you created at the beginning.
+>You can now try to make the chart more appealing by changing e.g. the colors with the *myBarDataSet.setColors()* method or animate the data using *myChart.animateY()*.
 
 
 # Workshop: Timing in Android
@@ -83,7 +83,7 @@ For the main screen, create a layout with at least three buttons, and program th
 
 ## The timing activities
 ### Handler
-The *Handler* in Android is able to post runnables to a *Looper*. A Looper are lower level classes which handles events. For example if you are using the *MainLooper* you are basically posting it to the main thread of the application. The functionality of the Handler that we want to explore here is to use it to process a certain task at a specific time or repeated period.
+The *Handler* in Android is able to post runnables to a *Looper*. A Looper is a lower level class which handles events. For example if you are using the *MainLooper* you are basically posting it to the main thread of the application. The functionality of the Handler that we want to explore here is to use it to process a certain task at a specific time or repeated period.
 > The Handler [documentation](https://developer.android.com/reference/android/os/Handler){:target="_blank"}.
 
 Using the Handlers *postDelayed()* method we are creating a basic stop watch which we can start, stop and reset. Therefore, create three buttons and a text view in the layout file of the post delayed activity you created before. It should look something like this:
@@ -235,8 +235,7 @@ public class MainActivity extends FixedRateLoopActivity { // change from AppComp
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+	...
     }
 }
 ```
@@ -265,7 +264,7 @@ In the onCreate() method of the `GameLoop.java` connect the view elements. But b
 
 and last but most importantly, we have to specify what happens when the loop is executed on each iteration by implementing the method:
 - loopIteration()
-	- It is called in the specifed rate of the loop on every iteration. Simple increment the `score` variable here and call the *setWidgetText()* method to change the number in the score text view.
+	- It is called in the specifed rate of the loop on every iteration. Simply increment the `score` variable here and call the *setWidgetText()* method to change the number in the score text view.
 
 
 Now we implement the methods to interact with our UI elements. For the starting button create an onClickListener. The button itself should start and pause the \"game\", therefore a basic state machine is implemented in the onClick() method which checks the current state of the loop:
