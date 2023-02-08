@@ -41,7 +41,7 @@ Die obigen Begriffe helfen um Sensoren strukturiert zu klassifizieren. Welche de
 
 # Aufgabe
 
-Deine Aufgabe besteht darin einen Sensor bzw. dessen Anwendung zu suchen welche deinem Interesse entspricht. Einzige Einschränkung hierbei ist das der Parameter der Anwednung einen Sportechnologischen oder Medizintechnischen hintergrund habe sollte. Fasse die Informationen zu Sensor und Anwendung Stichwortartig in einem Dokument (Reine Text Größe 12 *maximal* eine Seite) zusammen. 
+Deine Aufgabe besteht darin einen Sensor bzw. dessen Anwendung zu suchen welche deinem Interesse entspricht. Einzige Einschränkungen hierbei sind, dass der Parameter der Anwendung einen sportechnologischen oder medizintechnischen Hintergrund habe sollte und es nicht das Pulsoximeter oder Potentiometer ist (steht ja schon in den Slides ;)). Fasse die Informationen zu Sensor und Anwendung Stichwortartig in einem Dokument (Reine Text Größe 12 *maximal* eine Seite) zusammen. 
 
 >Die Anwendung kann aus bekanntem Gerät, Büchern, Papern, Websites usw. stammen. Ein Tipp wäre auf Pubmed zu checken ;)
 
