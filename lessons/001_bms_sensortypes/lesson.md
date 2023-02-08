@@ -6,9 +6,38 @@
 
 # Hintergrund
 
+Wir haben inzwischen einen guten Teil der Theorie hinter uns und verstehen den Terminus der Biomedizinischen Sensorik. Außerdem haben wir einige der Sensorprinzipien und beispielhafte Anwendungen. Folgen noch einmal kurz zusammengefasst die wichtigsten Begriffe um die folgende Aufgabe durchzuführen.
 
-# Beschreibung
+## Sensor Signal Parameter
+Die drei Begriffe sollten streng unterschieden werden.
+- Sensor: Bezeichnet den physischen Gegenstand bzw. die Hardware, welche ein Ausgangssignal bereitstellt. Das Ausgangsignal ist dabei abhängig von der Messgröße des Sensors.
+> Im Englischen wird Sensor auch oft zur größeren Grupper der *Transducer* zugeordnet.
+- Signal: Beschreibt das Ausgangsignal des Sensors an sich, wobei das Signal weiterverarbeitet werden kann.
+- Parameter: Ist die Größe die aus den Sensordaten gezogen werden möchte.
+> Vor allem Parameter und Signal werden oft vertauscht weil es in seltenen Fällen das gleiche sein kann, im biomedizinischen Kontext kenne ich dazu aber kein Beispiel. 
 
+## Biosensorisches Model
+
+Das biosensorische  Model versucht die Kombination aus Sensorik und Körper als Ersatzschaltbild darzustellen. Hierbei werden zwischen *induziertem* und *permanentem* Signal unterschieden. Wobei ersteres ein vom Körper selbst erzeugtes Signal, zweiteres ein Signal mit externer Quelle beschreibt.
+
+![Biosensorisches Model](../../assets/img/001_bms_sensortypes/bsmodel.png)
+![Modelle](../../assets/img/001_bms_sensortypes/BothModels.png)
+
+## Signalverarbeitungskette
+
+Grundsätzlich ist die Signalverarbeitungskette für jeden Sensor gleich: Das Sensorsignal wird über eine Schnittstelle erst analog angepasst und dann an einen Analog-Digital-Converter (ADC) gefüttert um dann als digitales Signal weiter verarbeitet werden zu können. Am Ende wird so aus dem Signal des Sensors der Parameter im Fokus.
+>*wobei* nicht für jeden Sensor per se eine analoge und/oder digitale Signalverarbeitung von nöten sein muss um zum gewünschten Parameter zu kommen.
+
+![Chain](../../assets/img/001_bms_sensortypes/SignalChain.png)
+
+## Stabilität, Wiederholbarkeit, Sensitivität und Spezifizität
+
+Die obigen Begriffe helfen um Sensoren strukturiert zu klassifizieren. Welche der gennanten *wichtig* ist kommt auf die entsprechende Anwendung an. Ebenso ist nicht jedes der Begriffskonzepte ohne weiteres auf jeden Sensor und dessen Verwendung anwendbar.
+
+- Stabilität: Bezieht sich darauf wie konstant der Sensor über die Zeit die gleichen Werte bei gleicher Messung liefert. Driftet der Sensor mit der Zeit? Hat der Sensor durch wiederholte Verwendung Verschleißerscheinungen?
+- Wiederholbarkeit: Kann entweder auf die einzelnen Messungen bezogen werden oder verschiedenen Sensoren gleicher Bauart. Ersteres beschreibt die Präzesion eines Sensors: Wie genau kann der Sensor die Messgröße erfassen, in anderen Worten, wie sehr weichen die Werte von einander ab obwohl sie zum annähernd selben Zeitpunkt mit dem selben Sensor eine ungeänderte Messgröße erfassen? Zweiteres beschreibt die Herstellqualität der Sensoren gleicher Bauart. Wie weit unterscheiden sich die Sensoren untereinander? 
+- Sensitivität: Ein Sensor mit hoher Sensitivität ist gut darin einen Stoff zu erkennen, kann aber sein dass ein anderer Stoff auch oft falsch erkannt wird.
+- Spezifizität: Ein Sensor mit hoher Spezifizität ist gut darin nur den richtigen Stoff zu erkennen, kann aber sein dass der Stoff oft nicht erkannt wird.
 
 # Aufgabe
 
