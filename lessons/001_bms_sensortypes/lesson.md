@@ -4,7 +4,18 @@
 * This will become a table of contents (this text will be scrapped).
 {:toc}
 
-# Terminologie
+# Hintergrund
+{: .discussion}
+
+
+# Beschreibung
+{: .connection}
+
+
+# Aufgabe
+{: .assessment}
+
+
 <!-- {: .reading}
 
 The User Interface (UI) or Graphical User Interface (GUI) is arguably the most important part of a program. True, functionality is crucial too, but all the functions of non-trivial programs are hidden behind the UI. If the UI is poorly designed, users tend to look for alternatives.
