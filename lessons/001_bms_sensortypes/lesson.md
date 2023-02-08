@@ -5,15 +5,12 @@
 {:toc}
 
 # Hintergrund
-{: .discussion}
 
 
 # Beschreibung
-{: .connection}
 
 
 # Aufgabe
-{: .assessment}
 
 
 <!-- {: .reading}
