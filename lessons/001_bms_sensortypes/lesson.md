@@ -41,6 +41,21 @@ Die obigen Begriffe helfen um Sensoren strukturiert zu klassifizieren. Welche de
 
 # Aufgabe
 
+Deine Aufgabe besteht darin einen Sensor bzw. dessen Anwendung zu suchen welche deinem Interesse entspricht. Einzige Einschränkung hierbei ist das der Parameter der Anwednung einen Sportechnologischen oder Medizintechnischen hintergrund habe sollte. Fasse die Informationen zu Sensor und Anwendung Stichwortartig in einem Dokument (Reine Text Größe 12 *maximal* eine Seite) zusammen. 
+
+>Die Anwendung kann aus bekanntem Gerät, Büchern, Papern, Websites usw. stammen. Ein Tipp wäre auf Pubmed zu checken ;)
+
+Folgende Informationen sollten enthalten sein:
+- Was ist der Sensor und die Anwendung?
+- Welches der Beiden biosensorischen Modelle ist anwendbar? Was ist Quelle, Weiterleitung und Interaktion, Koppelung, Umwandlung, Signal, Parameter?
+- Sind Stabilität, Wiederholbarkeit, Sensitivität und Spezifizität wichtig für die Anwendung? Wenn ja/nein, warum?
+
+
+>Falls etwas nicht direkt beantwortbar sein sollte diskutiert unter euch, fragt den Lektor oder argumentiert warum nicht.
+>Die Signalverarbeitungskette wird hier ausgespart, da hier noch einiges an Inhalt folgen wird.
+
+Bitte ladet das Dokument bis zum nächsten Vorlesungstermin beim zugehörigen Assignment hoch.
+
 
 <!-- {: .reading}
 
