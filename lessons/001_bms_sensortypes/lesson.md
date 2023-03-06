@@ -6,15 +6,15 @@
 
 # Hintergrund
 
-Wir haben inzwischen einen guten Teil der Theorie hinter uns und verstehen den Terminus der Biomedizinischen Sensorik. Außerdem haben wir einige der Sensorprinzipien und beispielhafte Anwendungen. Folgen noch einmal kurz zusammengefasst die wichtigsten Begriffe um die folgende Aufgabe durchzuführen.
+Wir haben inzwischen einen guten Teil der Theorie hinter uns und verstehen den Terminus der Biomedizinischen Sensorik. Außerdem haben wir einige der Sensorprinzipien und beispielhafte Anwendungen. Folgend noch einmal kurz zusammengefasst die wichtigsten Begriffe um die folgende Aufgabe durchzuführen.
 
 ## Sensor Signal Parameter
 Die drei Begriffe sollten streng unterschieden werden.
 - Sensor: Bezeichnet den physischen Gegenstand bzw. die Hardware, welche ein Ausgangssignal bereitstellt. Das Ausgangsignal ist dabei abhängig von der Messgröße des Sensors.
 > Im Englischen wird Sensor auch oft zur größeren Grupper der *Transducer* zugeordnet.
 - Signal: Beschreibt das Ausgangsignal des Sensors an sich, wobei das Signal weiterverarbeitet werden kann.
-- Parameter: Ist die Größe die aus den Sensordaten gezogen werden möchte.
-> Vor allem Parameter und Signal werden oft vertauscht weil es in seltenen Fällen das gleiche sein kann, im biomedizinischen Kontext kenne ich dazu aber kein Beispiel. 
+- Parameter: Ist die Größe die aus den Sensordaten extrahiert werden möchte.
+> Vor allem Parameter und Signal werden oft vertauscht weil es in seltenen Fällen das gleiche sein kann.
 
 ## Biosensorisches Model
 
@@ -26,7 +26,7 @@ Das biosensorische  Model versucht die Kombination aus Sensorik und Körper als 
 ## Signalverarbeitungskette
 
 Grundsätzlich ist die Signalverarbeitungskette für jeden Sensor gleich: Das Sensorsignal wird über eine Schnittstelle erst analog angepasst und dann an einen Analog-Digital-Converter (ADC) gefüttert um dann als digitales Signal weiter verarbeitet werden zu können. Am Ende wird so aus dem Signal des Sensors der Parameter im Fokus.
->*wobei* nicht für jeden Sensor per se eine analoge und/oder digitale Signalverarbeitung von nöten sein muss um zum gewünschten Parameter zu kommen.
+>*Wobei* nicht für jeden Sensor per se eine analoge und/oder digitale Signalverarbeitung von nöten sein muss um zum gewünschten Parameter zu kommen.
 
 ![Chain](../../assets/img/001_bms_sensortypes/SignalChain.png)
 
@@ -41,17 +41,17 @@ Die obigen Begriffe helfen um Sensoren strukturiert zu klassifizieren. Welche de
 
 # Aufgabe
 
-Deine Aufgabe besteht darin einen Sensor bzw. dessen Anwendung zu suchen welche deinem Interesse entspricht. Einzige Einschränkungen hierbei sind, dass der Parameter der Anwendung einen sportechnologischen oder medizintechnischen Hintergrund habe sollte und es nicht das Pulsoximeter oder Potentiometer ist (steht ja schon in den Slides ;)). Fasse die Informationen zu Sensor und Anwendung Stichwortartig in einem Dokument (Reine Text Größe 12 *maximal* eine Seite) zusammen. 
+Deine Aufgabe besteht darin einen Sensor bzw. dessen Anwendung zu suchen welche deinem Interesse entspricht. Einzige Einschränkungen hierbei sind, dass der Parameter der Anwendung einen sportechnologischen oder medizintechnischen Hintergrund habe sollte und es nicht das Pulsoximeter oder Potentiometer ist (steht ja schon in den Slides ;)). Fasse die Informationen zu Sensor und Anwendung Stichwortartig in einem Dokument (Reiner Text Größe 12 *maximal* eine Seite) zusammen. 
 
 >Die Anwendung kann aus bekanntem Gerät, Büchern, Papern, Websites usw. stammen. Ein Tipp wäre auf Pubmed zu checken ;)
 
 Folgende Informationen sollten enthalten sein:
 - Was ist der Sensor und die Anwendung?
-- Welches der Beiden biosensorischen Modelle ist anwendbar? Was ist Quelle, Weiterleitung und Interaktion, Koppelung, Umwandlung, Signal, Parameter?
+- Welches der beiden biosensorischen Modelle ist anwendbar? Was ist Quelle, Weiterleitung und Interaktion, Koppelung, Umwandlung, Signal, Parameter?
 - Sind Stabilität, Wiederholbarkeit, Sensitivität und Spezifizität wichtig für die Anwendung? Wenn ja/nein, warum?
 
 
->Falls etwas nicht direkt beantwortbar sein sollte diskutiert unter euch, fragt den Lektor oder argumentiert warum nicht.
+>Falls etwas nicht direkt beantwortbar sein sollte, diskutiert unter euch, fragt den Lektor oder argumentiert warum nicht.
 >Die Signalverarbeitungskette wird hier ausgespart, da hier noch einiges an Inhalt folgen wird.
 
 Bitte ladet das Dokument bis zum nächsten Vorlesungstermin beim zugehörigen Assignment hoch.
