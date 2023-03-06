@@ -75,11 +75,12 @@ Um die Daten nun wieder zu importieren kommen wir jetzt zu einem wichtigen Tool 
 
 Als letztes sollten noch die *Toolboxen* in Matlab erwähnt werden. Diese sind einer der Hauptgründe überhaupt für Matlab. Es gibt praktisch für Jedes Gebiet eine und macht einem das Leben meist sehr viel einfacher.
 > Wenn wir keine Edu Lizenzen hätten würde hier Matlab aber auch ordentlich verdienen, da jede Tollbox extra kostet soweit ich weiß.
+
 Ums mal gemacht zu haben, können wir hier noch die Signal Processing Toolbox installieren. Geht dazu in der Kommandozeile auf *Add-Ons*, sucht nach "Signal Processing Toolbox", wählt die von Mathworks aus und installiert sie. Die Toolbox brauchen wir wahrscheinlich später sowieso.
 
 # Abschluss
 
-Abschließend soll erwähnt sein, dass es sehr viele sehr gute resourcen gibt für Leute die sich hier weiter reinfuchsen wollen. Unter [**Learn Matlab**](https://matlabacademy.mathworks.com/?s_tid=pl_learn){:target="_blank"} findet ihr Kurse die auf einer Matlab online platform ausgeführt werden. Grundsätzlich, werden wir aber auch im Kurs weiterhin im Lernfreundlichen Tempo mit Matlab arbeiten. Abgabe für diese Lesson gibt es keine, an sich steht euch ja frei auch Python stattdessen zu verwenden.
+Abschließend soll erwähnt sein, dass es sehr viele sehr gute resourcen gibt für Leute die sich hier weiter reinfuchsen wollen. Unter [**Learn Matlab**](https://matlabacademy.mathworks.com/?s_tid=pl_learn){:target="_blank"} findet ihr Kurse die auf einer Matlab online-Platform ausgeführt werden. Grundsätzlich, werden wir aber auch im Kurs weiterhin im Lernfreundlichen Tempo mit Matlab arbeiten. Abgabe für diese Lesson gibt es keine, an sich steht euch ja frei auch Python stattdessen zu verwenden.
 
 <!-- {: .reading}
 
