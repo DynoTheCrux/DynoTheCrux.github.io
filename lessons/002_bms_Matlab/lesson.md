@@ -18,7 +18,7 @@ a = 5
 erstellen. Wird ein *;* am Ende gesetzt wird die Ausgabe unterdrückt, die Variable aber dennoch erstellt.
 - **Workspace**: Hier seht ihr jegliche Variablen im Speicher. *a* sollte hier bereits aufscheinen. Typ und Wert wird ebenso angezeigt bzw. nochmal mit mehr Details wenn die Variable im Workspace angeklickt wird. Datentyp muss keiner angegeben werden, da Matlab eine interpretierte Programmiersprache ist.
 - **Files / Current Folder**: Bezeichnet einfach den Arbeitsort im Speicher eures Rechners.
-> Falls eure aufteilung anders aussieht einfach auf *Layout->Default*. Es besteht natürlich auch die Möglichkeit es sich selbst nach belieben einzurichten.
+> Falls eure Aufteilung anders aussieht einfach auf *Layout->Default*. Es besteht natürlich auch die Möglichkeit es sich selbst nach belieben einzurichten.
 
 
 ![Matlab](../../assets/img/002_bms_Matlab/Oberfläche.png)
@@ -26,22 +26,22 @@ erstellen. Wird ein *;* am Ende gesetzt wird die Ausgabe unterdrückt, die Varia
 
 ## Arbeiten mit Script
 
-Links ersichtlich sind die Files die in der selben Location liegen in der wir Arbeiten. Grundsätzlich kennt Matlab nur diese Files und seine Root Files (Dort wo Matlab installiert wurde). Bevor wir ein Script erstellen, daher in einen Folder eurer Wahl wechseln. Ihr könnt dazu wie in eurem File Explorer zwischen den Locations hin und her wechseln. Um ein neues Script zu erstellen oben links entweder auf *New Script* oder *New->Script*. Es öffnet sich ein Fenster mit einem Leeren Script, dieses mit Strg+s erstmal speichern und einen Namen vergeben. Das File mit *.m* Endung sollte nun in euerer Location liegen.
+Links ersichtlich sind die Files die in der selben Location liegen in der wir Arbeiten. Grundsätzlich kennt Matlab nur diese Files und seine Root Files (dort wo Matlab installiert wurde). Bevor wir ein Script erstellen, daher in einen Folder eurer Wahl wechseln. Ihr könnt dazu wie in eurem File Explorer zwischen den Locations hin und her wechseln. Um ein neues Script zu erstellen oben links entweder auf *New Script* oder *New->Script*. Es öffnet sich ein Fenster mit einem leeren Script, dieses mit Strg+s erstmal speichern und einen Namen vergeben. Das File mit *.m* Endung sollte nun in eurer Location liegen.
 
-Eine Gute Idee ist meistens am Anfang des Scripts sicherzustellen, dass alles geschlossen ist und keine Variablen mehr im Workspace sind die nicht gebraucht werden. Dazu schreiben wir in die ersten Zeilen:
+Eine gute Idee ist meistens am Anfang des Scripts sicherzustellen, dass alles geschlossen ist und keine Variablen mehr im Workspace sind die nicht gebraucht werden. Dazu schreiben wir in die ersten Zeilen:
 ```` Matlab
 %% Clean up -> Zwei Prozentzeichen bezeichnen eine Sektion, eines ein Kommentar
-clear all % Cleared alle Variabled. Anstelle von all können auch bestimmte gewählt oder ausgespart werden.
+clear all % Löscht alle Variablen. Anstelle von all können auch bestimmte gewählt oder ausgespart werden.
 close all % Schließt alle Plots etc.
 clc % löscht alles Überschüssige aus der Konsole.
 ````
-Mit Strg+Enter führt ihr eine Sektion aus, mit F5 das komplette Script.
+Mit Strg+Enter führt ihr eine Sektion aus, mit F5 das komplette Script. Es kann natürlich auch einfach "Run" in der Kommandozeile verwendet werden.
 
 ### Erstelle einen Zeitvektor und Signal
 
 Um einen Zeitvektor bzw. Vektoren generell gibt es unzählige Methoden. Um auf Dokumentation zuzugreifen könnt ihr die Befehle `help` oder `doc` in der Konsole verwenden. Zwei Möglichkeiten wären:
 ````Matlab
->> doc linspace % bringt dich zur doku für die Funktion linspace. Oder:
+>> doc linspace % bringt dich zur Doku für die Funktion linspace. Oder:
 >> help : % zeigt dir direkt die Beschreibung für den : operator.
 ````
 Checkt die Beschreibung von beiden. Ihr könnt nun eine der Möglichkeiten verwenden um einen Zeitvektor mit einer Samplingrate von 100 Hz und einer Länge von 20 s erstellen.
@@ -51,7 +51,7 @@ Checkt die Beschreibung von beiden. Ihr könnt nun eine der Möglichkeiten verwe
 Ziel hier ist es einen Plot zu erstellen mit zwei Sinussignalen mit 0.5 Hz und 90° Phasenverschoben. Verwende dazu `plot`, `hold on`, `xlabel`, `ylabel` und `legend`. Die Grafik könnt ihr dann über das inzwischen völlig veraltete aber auch hier auffindbare Diskettenlogo speichern oder direkt mit:
 
 ````Matlab
-f = gcf; % Der Figure handle gcf bezieht sich immer auf den letzen plot bzw figure die aktiv ist.
+f = gcf; % Der Figure handle gcf bezieht sich immer auf den letzten plot bzw figure die aktiv ist.
 exportgraphics(f,'plot.png','Resolution',300) % Exportiert ein png mit 300 dpi
 ````
 
@@ -64,23 +64,23 @@ Ihr könnt euch gerne auch mit der Figure etwas herumspielen (im Figure Fenster 
 
 Inzwischen haben wir etwas Daten angesammelt und wollen sie für das nächste mal Speichern. Mit Save Workspace in der Kommandoleiste kann dieser als *.mat* File gespeichert werden. Um ihn wieder in ein Script zu laden kann die Funktion `load()` verwendet werden.
 
-Umgekehrt können wir daten auch als andere Formate exportieren. Eine Matrix kann z.B. mit `writematrix` als *.csv* gespiechert werden.
+Umgekehrt können wir daten auch als andere Formate exportieren. Eine Matrix kann z.B. mit `writematrix` als *.csv* gespeichert werden.
 ````Matlab
 writematrix(y'); % Ich verwende hier einen der output Vektoren der Schwingung vorhin. Das Apostroph transponiert eine Matrix. In diesem Fall wird aus Zeilen- ein Spaltenvektor zur besseren lesbarkeit.
 ````
 
-Um die Daten nun wieder zu importieren kommen wir jetzt zu einem wichtigen Tool welches ihr in der Kommandoleiste unter *Import Data* findet. Es öffnet sich ein neues Fenster sobald ein File mit den Daten ausgewählt wurde. Good Practice ist es die Einzelnen Variablen nun als Output Type *Collumn Vectors* zu importieren. Als Collumn Delimiter muss für das *.csv* Comma angegeben werden. Der Variablenname für jede Spalte wird direkt über den Daten spezifiziert. Mit dem Häckchen rechts könnt ihr die Daten direkt in den Workspace importieren ODER noch besser eine Funktion erstellen welche den ganzen ablauf direkt übernimmt und in eurer Location abgespeichert wird.
+Um die Daten nun wieder zu importieren kommen wir jetzt zu einem wichtigen Tool welches ihr in der Kommandoleiste unter *Import Data* findet. Es öffnet sich ein neues Fenster sobald ein File mit den Daten ausgewählt wurde. Good Practice ist es die Einzelnen Variablen nun als Output Type *Collumn Vectors* zu importieren. Als Collumn Delimiter muss für das *.csv* Comma angegeben werden. Der Variablenname für jede Spalte wird direkt über den Daten spezifiziert. Mit dem Häckchen rechts könnt ihr die Daten direkt in den Workspace importieren ODER noch besser eine Funktion erstellen welche den ganzen Ablauf direkt übernimmt und in eurer Location abgespeichert wird.
 
 ## Toolboxen
 
 Als letztes sollten noch die *Toolboxen* in Matlab erwähnt werden. Diese sind einer der Hauptgründe überhaupt für Matlab. Es gibt praktisch für Jedes Gebiet eine und macht einem das Leben meist sehr viel einfacher.
-> Wenn wir keine Edu Lizenzen hätten würde hier Matlab aber auch ordentlich verdienen, da jede Tollbox extra kostet soweit ich weiß.
+> Wenn wir keine Edu Lizenzen hätten würde hier Matlab aber auch ordentlich verdienen, da jede Toolbox extra kostet soweit ich weiß.
 
 Ums mal gemacht zu haben, können wir hier noch die Signal Processing Toolbox installieren. Geht dazu in der Kommandozeile auf *Add-Ons*, sucht nach "Signal Processing Toolbox", wählt die von Mathworks aus und installiert sie. Die Toolbox brauchen wir wahrscheinlich später sowieso.
 
 # Abschluss
 
-Abschließend soll erwähnt sein, dass es sehr viele sehr gute resourcen gibt für Leute die sich hier weiter reinfuchsen wollen. Unter [**Learn Matlab**](https://matlabacademy.mathworks.com/?s_tid=pl_learn){:target="_blank"} findet ihr Kurse die auf einer Matlab online-Platform ausgeführt werden. Grundsätzlich, werden wir aber auch im Kurs weiterhin im Lernfreundlichen Tempo mit Matlab arbeiten. Abgabe für diese Lesson gibt es keine, an sich steht euch ja frei auch Python stattdessen zu verwenden.
+Abschließend soll erwähnt sein, dass es sehr viele sehr gute Resourcen gibt für Leute die sich hier weiter reinfuchsen wollen. Unter [**Learn Matlab**](https://matlabacademy.mathworks.com/?s_tid=pl_learn){:target="_blank"} findet ihr Kurse die auf einer Matlab online-Platform ausgeführt werden. Grundsätzlich, werden wir aber auch im Kurs weiterhin im lernfreundlichen Tempo mit Matlab arbeiten. Abgabe für diese Lesson gibt es keine, an sich steht euch ja frei auch Python stattdessen zu verwenden.
 
 <!-- {: .reading}
 
