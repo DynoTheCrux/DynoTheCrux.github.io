@@ -41,7 +41,7 @@ Die Anfangswerte für *Rg* und *R2* können an sich frei gewählt werden, aber e
 
 Sind alle Widerstände gewählt, kannst du die Schaltung validieren indem du sie wieder in die Übertragungsfunktion einsetzt. 
 
-> Hinweis: Die Übertragungsfunktion ist Formel 37 im Dokument. Das Symbol "||" bedeutet hier so viel wie "parallel zu", daher *R1||R2* -> *R1R2/R1+R2*
+> Hinweis: Die Übertragungsfunktion ist Formel 37 im Dokument. Das Symbol "II" bedeutet hier so viel wie "parallel zu", daher *R1IIR2* -> *R1R2/R1+R2*
 
 Plotte den unterschied in die gleiche Figure indem du `hold on` vor dein nächstes `plot` setzt. Mit `plot(Uin, Uout, "--")` kannst du die Linie auf strichliert setzen und mit `legend("Ideal", "Real")` eine Legende hinzufügen.
 
