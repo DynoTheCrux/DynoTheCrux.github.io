@@ -5,56 +5,55 @@
 {:toc}
 
 # Hintergrund
+Für die Bewegungsanalyse werden oft sogenannte Kraftmessplatten verwendet. Im sportlichen Sektor werden diese oft in Kombination mit Videokameras oder anderen Motion-Capture Systemen angewendet. So können auch komplexe Bewegungen mit Kraftdaten vermessen werden. Aus medizinischer Sicht können diese interessant sein um etwa die Rehabilitation von Verletzungen zu überwachen oder den Verlauf von Pathologien die die Bewegungsleistung oder auch Balance der Patient:innen einschränken können. 
 
-Wir haben inzwischen einen guten Teil der Theorie hinter uns und verstehen den Terminus der Biomedizinischen Sensorik. Außerdem haben wir einige der Sensorprinzipien und beispielhafte Anwendungen. Folgend noch einmal kurz zusammengefasst die wichtigsten Begriffe um die folgende Aufgabe durchzuführen.
+# Szenario
+In einem kleinen Projekt für dein Studium willst du eine Kraftmessplatte entwickeln die mit 4 kraftabhängigen Widerständen (FSR) ausgestattet sind. An jeder Ecke angebracht, kann so das Gleichgewicht analysiert werden, je nachdem wie die Kraft auf die 4 verschiedenen Sensoren verteilt wird. 
 
-## Sensor Signal Parameter
-Die drei Begriffe sollten streng unterschieden werden.
-- Sensor: Bezeichnet den physischen Gegenstand bzw. die Hardware, welche ein Ausgangssignal bereitstellt. Das Ausgangsignal ist dabei abhängig von der Messgröße des Sensors.
-> Im Englischen wird Sensor auch oft zur größeren Grupper der *Transducer* zugeordnet.
-- Signal: Beschreibt das Ausgangsignal des Sensors an sich, wobei das Signal weiterverarbeitet werden kann.
-- Parameter: Ist die Größe die aus den Sensordaten extrahiert werden möchte.
-> Vor allem Parameter und Signal werden oft vertauscht weil es in seltenen Fällen das gleiche sein kann.
+Du hast bereits ein Konzept für das Design der Platte festgelegt.
 
-## Biosensorisches Model
+![Konzept Kraftmessplatte](../../assets/img/003_bms_AIA/kraftmessplatte.png)
 
-Das biosensorische  Model versucht die Kombination aus Sensorik und Körper als Ersatzschaltbild darzustellen. Hierbei werden zwischen *induziertem* und *permanentem* Signal unterschieden. Wobei ersteres ein vom Körper selbst erzeugtes Signal, zweiteres ein Signal mit externer Quelle beschreibt.
+Ebenso sind die Sensoren schon ausgewählt und deren Output bekannt. In Kombination mit einem Spannungsteiler und der Referenzspannung von 5V des Mikrocontrollers ergibt sich eine Spanne von **0.5V -> 4,5 V**. Der ADC des Mikrocontrollers ist allerdings auf **0 V -> 5 V** ausgelegt mit einer Auflösung von 10 bit. 
 
-![Biosensorisches Model](../../assets/img/001_bms_sensortypes/bsmodel.png)
-![Modelle](../../assets/img/001_bms_sensortypes/BothModels.png)
+## AIA - Analog Interface Amplifier
 
-## Signalverarbeitungskette
+Um das maximum aus deinen Sensoren und Controller herauszuholen, hattest du die Idee einen Analog Interface Amplifier (AIA) zu designen. Am besten wäre wenn du dazu ein Matlab Script schreibst in das du ganz einfach deine Anfangswerte eintippen kannst. Dann kannst du später Werte ganz einfach anpassen und es auch für spätere Projekte verwenden. Für die Berechnung ziehe das Dokument *sloa030a.pdf* auf Sakai zu rate. Dort findest du den passenden Fall für dein Design und die entsprechende Berechnung dazu. Finde heraus ob du Case 1,2,3 oder 4 benötigst.
 
-Grundsätzlich ist die Signalverarbeitungskette für jeden Sensor gleich: Das Sensorsignal wird über eine Schnittstelle erst analog angepasst und dann an einen Analog-Digital-Converter (ADC) gefüttert um dann als digitales Signal weiter verarbeitet werden zu können. Am Ende wird so aus dem Signal des Sensors der Parameter im Fokus.
->*Wobei* nicht für jeden Sensor per se eine analoge und/oder digitale Signalverarbeitung von nöten sein muss um zum gewünschten Parameter zu kommen.
+Die Übertragungsfunktion is linear mit dem Gain *m* und Offset *b*, erster Schritt ist diese zu ermitteln. Da wir jeweils zwei Werte (Maxima und Minima für Output und Input) zur Verfügung haben sollte sich diese werte durch zwei Gleichungen leicht lösen lassen.
 
-![Chain](../../assets/img/001_bms_sensortypes/SignalChain.png)
+> Falls du Matlab verwendest dann schau dir zum eintippen der Anfangswerte vielleicht die Funktion `input` an.
 
-## Stabilität, Wiederholbarkeit, Sensitivität und Spezifizität
+Am besten du plottest die Idealfunktion um das Ergebnis zu prüfen. Erstelle dazu einen Vektor für *Uin* vom minimum bis maximum. Richtig, eigentlich reichen 2 Werte für eine Gerade, aber nimm ruhig ein paar mehr. Verwende entweder `linspace` oder `:` für den Vektor. *Uout* erzeugst du indem du den *Uin* Vektor richtig in die lineare Formel einsetzt. Damit kannst du nun *Uin* zu *Uout* plotten und die Achsen labeln und passend limitieren.
 
-Die obigen Begriffe helfen um Sensoren strukturiert zu klassifizieren. Welche der gennanten *wichtig* ist kommt auf die entsprechende Anwendung an. Ebenso ist nicht jedes der Begriffskonzepte ohne weiteres auf jeden Sensor und dessen Verwendung anwendbar.
+> Siehe `xlim`, `ylim`, `xlabel` und `ylabel`.
 
-- Stabilität: Bezieht sich darauf wie konstant der Sensor über die Zeit die gleichen Werte bei gleicher Messung liefert. Driftet der Sensor mit der Zeit? Hat der Sensor durch wiederholte Verwendung Verschleißerscheinungen?
-- Wiederholbarkeit: Kann entweder auf die einzelnen Messungen bezogen werden oder verschiedenen Sensoren gleicher Bauart. Ersteres beschreibt die Präzesion eines Sensors: Wie genau kann der Sensor die Messgröße erfassen, in anderen Worten, wie sehr weichen die Werte von einander ab obwohl sie zum annähernd selben Zeitpunkt mit dem selben Sensor eine ungeänderte Messgröße erfassen? Zweiteres beschreibt die Herstellqualität der Sensoren gleicher Bauart. Wie weit unterscheiden sich die Sensoren untereinander? 
-- Sensitivität: Ein Sensor mit hoher Sensitivität ist gut darin einen Stoff zu erkennen, kann aber sein dass ein anderer Stoff auch oft falsch erkannt wird.
-- Spezifizität: Ein Sensor mit hoher Spezifizität ist gut darin nur den richtigen Stoff zu erkennen, kann aber sein dass der Stoff oft nicht erkannt wird.
+Wenn dir das Ergebnis plausibel vorkommt, kannst du nun die Widerstände auswählen. Da dies nicht so gut im Dokument aufbereitet ist hier die Formeln die du brauchst:
+```` Matlab
+Rf = k*Rg-Rg
+R1 = ((Uref*R2*Rf)/(abs(d)*Rg))- R2
+````
 
-# Aufgabe
+Berücksichtige, dass nicht alle Werte für Widerstände verfügbar sind, 1 % Genauigkeit sollte ein guter Anhaltspunkt für eine solche Schaltung sein.
+> Wers nicht kennt Widerstandsreihe E96 googlen.
 
-Deine Aufgabe besteht darin einen Sensor bzw. dessen Anwendung zu suchen welche deinem Interesse entspricht. Einzige Einschränkungen hierbei sind, dass der Parameter der Anwendung einen sportechnologischen oder medizintechnischen Hintergrund habe sollte und es nicht das Pulsoximeter oder Potentiometer ist (steht ja schon in den Slides ;)). Fasse die Informationen zu Sensor und Anwendung Stichwortartig in einem Dokument (Reiner Text Größe 12 *maximal* eine Seite) zusammen. 
+Die Anfangswerte für *Rg* und *R2* können an sich frei gewählt werden, aber es empfiehlt sich, sich die Größenordnung im Dokument zu verwenden.
 
->Die Anwendung kann aus bekanntem Gerät, Büchern, Papern, Websites usw. stammen. Ein Tipp wäre auf Pubmed zu checken ;)
+Sind alle Widerstände gewählt, kannst du die Schaltung validieren indem du sie wieder in die Übertragungsfunktion einsetzt. 
 
-Folgende Informationen sollten enthalten sein:
-- Was ist der Sensor und die Anwendung?
-- Welches der beiden biosensorischen Modelle ist anwendbar? Was ist Quelle, Weiterleitung und Interaktion, Koppelung, Umwandlung, Signal, Parameter?
-- Sind Stabilität, Wiederholbarkeit, Sensitivität und Spezifizität wichtig für die Anwendung? Wenn ja/nein, warum?
+> Hinweis: Die Übertragungsfunktion ist Formel 37 im Dokument. Das Symbol "||" bedeutet hier so viel wie "parallel zu", daher *R1||R2* -> *R1R2/R1+R2*
+
+Plotte den unterschied in die gleiche Figure indem du `hold on` vor dein nächstes `plot` setzt. Mit `plot(Uin, Uout, "--")` kannst du die Linie auf strichliert setzen und mit `legend("Ideal", "Real")` eine Legende hinzufügen.
+
+# Abgabe
+
+Das Endergebnis sollte dann etwa so aussehen:
+
+![Plot AIA](../../assets/img/003_bms_AIA/plot.png)
+
+Bitte gib zum passenden Assignment dein Matlab Script ab.
 
 
->Falls etwas nicht direkt beantwortbar sein sollte, diskutiert unter euch, fragt den Lektor oder argumentiert warum nicht.
->Die Signalverarbeitungskette wird hier ausgespart, da hier noch einiges an Inhalt folgen wird.
-
-Bitte ladet das Dokument bis zum nächsten Vorlesungstermin beim zugehörigen Assignment hoch.
 
 
 <!-- {: .reading}
