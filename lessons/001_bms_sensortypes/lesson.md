@@ -54,7 +54,7 @@ Folgende Informationen sollten enthalten sein:
 >Falls etwas nicht direkt beantwortbar sein sollte, diskutiert unter euch, fragt den Lektor oder argumentiert warum nicht.
 >Die Signalverarbeitungskette wird hier ausgespart, da hier noch einiges an Inhalt folgen wird.
 
-Bitte ladet das Dokument bis zum nächsten Vorlesungstermin beim zugehörigen Assignment hoch.
+Bitte ladet das Dokument beim zugehörigen Assignment hoch.
 
 
 <!-- {: .reading}
