@@ -6,7 +6,7 @@
 
 # Hintergrund
 
-Wir haben inzwischen einen guten Teil der Theorie hinter uns und verstehen den Terminus der Biomedizinischen Sensorik. Außerdem haben wir einige der Sensorprinzipien und beispielhafte Anwendungen. Folgend noch einmal kurz zusammengefasst die wichtigsten Begriffe um die folgende Aufgabe durchzuführen.
+Wir verstehen inzwischen einige Begriffe der Biomedizinischen Sensorik. Folgend noch einmal kurz zusammengefasst um die folgende Aufgabe durchzuführen.
 
 ## Sensor Signal Parameter
 Die drei Begriffe sollten streng unterschieden werden.
