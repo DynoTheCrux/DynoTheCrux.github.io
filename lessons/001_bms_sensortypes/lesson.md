@@ -18,7 +18,7 @@ Die drei Begriffe sollten streng unterschieden werden.
 
 ## Biosensorisches Model
 
-Das biosensorische  Model versucht die Kombination aus Sensorik und Körper als Ersatzschaltbild darzustellen. Hierbei werden zwischen *induziertem* und *permanentem* Signal unterschieden. Wobei ersteres ein vom Körper selbst erzeugtes Signal, zweiteres ein Signal mit externer Quelle beschreibt.
+Das biosensorische  Model versucht die Kombination aus Sensorik und Körper als Ersatzschaltbild darzustellen. Hierbei werden zwischen *permanentem* und *induziertem* Signal unterschieden. Wobei ersteres ein vom Körper selbst erzeugtes Signal, zweiteres ein Signal mit externer Quelle beschreibt.
 
 ![Biosensorisches Model](../../assets/img/001_bms_sensortypes/bsmodel.png)
 ![Modelle](../../assets/img/001_bms_sensortypes/BothModels.png)
