@@ -4,83 +4,57 @@
 * This will become a table of contents (this text will be scrapped).
 {:toc}
 
-# Matlab Basics
+# Hintergrund
+Für die Bewegungsanalyse werden oft sogenannte Kraftmessplatten verwendet. Im sportlichen Sektor werden diese oft in Kombination mit Videokameras oder anderen Motion-Capture Systemen angewendet. So können auch komplexe Bewegungen mit Kraftdaten vermessen werden. Aus medizinischer Sicht können diese interessant sein um etwa die Rehabilitation von Verletzungen zu überwachen oder den Verlauf von Pathologien die die Bewegungsleistung oder auch Balance der Patient:innen einschränken können. 
 
-In dieser Lesson werdet ihr den kurzen Crashkurs für Matlab im Unterricht selbst noch einmal wiederholen. Dazu werdet ihr euch erst mit der Benutzeroberfläche in Matlab vertraut machen. Danach werdet ihr ein Script erstellen, welches zwei Signale in einem Plot darstellt, diese exportiert und die Daten speichert. Diese Daten werden dann auf unterschiedliche Weise re-importiert.
+# Szenario
+In einem kleinen Projekt für dein Studium willst du eine Kraftmessplatte entwickeln die mit 4 kraftabhängigen Widerständen (FSR) ausgestattet sind. An jeder Ecke angebracht, kann so das Gleichgewicht analysiert werden, je nachdem wie die Kraft auf die 4 verschiedenen Sensoren verteilt wird. 
 
-## Die Benutzeroberfläche
+Du hast bereits ein Konzept für das Design der Platte festgelegt.
 
-Die Oberfläche von Matlab besteht, sofern das standard Layout eingestellt ist, aus drei Hauptteilen und der Kommandoleiste:
-- **Command Window**: Über das Command Window kann jeglicher Code in Matlab ausgeführt werden. Ihr könnt hier z.B. eine Variable *a* mit:
-````Matlab
-a = 5
-````
-erstellen. Wird ein *;* am Ende gesetzt wird die Ausgabe unterdrückt, die Variable aber dennoch erstellt.
-- **Workspace**: Hier seht ihr jegliche Variablen im Speicher. *a* sollte hier bereits aufscheinen. Typ und Wert wird ebenso angezeigt bzw. nochmal mit mehr Details wenn die Variable im Workspace angeklickt wird. Da Matlab eine interpretierte Programmiersprache ist, muss kein Datentyp angegeben werden.
-- **Files / Current Folder**: Bezeichnet einfach den Arbeitsort im Speicher eures Rechners.
-> Falls eure Aufteilung anders aussieht einfach auf *Layout->Default*. Es besteht natürlich auch die Möglichkeit es sich selbst nach belieben einzurichten.
+![Konzept Kraftmessplatte](../../assets/img/003_bms_AIA/kraftmessplatte.png)
 
+Ebenso sind die Sensoren schon ausgewählt und deren Output bekannt. In Kombination mit einem Spannungsteiler und der Referenzspannung von 5V des Mikrocontrollers ergibt sich eine Spanne von **0.5V -> 4,5 V**. Der ADC des Mikrocontrollers ist allerdings auf **0 V -> 5 V** ausgelegt mit einer Auflösung von 10 bit. 
 
-![Matlab](../../assets/img/002_bms_Matlab/Oberfläche.png)
+## AIA - Analog Interface Amplifier
 
+Um das maximum aus deinen Sensoren und Controller herauszuholen, hattest du die Idee einen Analog Interface Amplifier (AIA) zu designen. Am besten wäre wenn du dazu ein Matlab Script schreibst in das du ganz einfach deine Anfangswerte eintippen kannst. Dann kannst du später Werte ganz einfach anpassen und es auch für spätere Projekte verwenden. Für die Berechnung ziehe das Dokument *sloa030a.pdf* auf Sakai zu rate. Dort findest du den passenden Fall für dein Design und die entsprechende Berechnung dazu. Finde heraus ob du Case 1,2,3 oder 4 benötigst.
 
-## Arbeiten mit Script
+Die Übertragungsfunktion is linear mit dem Gain *m* und Offset *b*, erster Schritt ist diese zu ermitteln. Da wir jeweils zwei Werte (Maxima und Minima für Output und Input) zur Verfügung haben sollte sich diese werte durch zwei Gleichungen leicht lösen lassen.
 
-Links ersichtlich sind die Files die in der selben Location liegen in der wir Arbeiten. Grundsätzlich kennt Matlab nur diese Files und seine Root Files (dort wo Matlab installiert wurde). Bevor wir ein Script erstellen solltet ihr daher in einen Folder eurer Wahl wechseln. Ihr könnt dazu wie in eurem File Explorer zwischen den Locations hin und her wechseln. Um ein neues Script zu erstellen oben links entweder auf *New Script* oder *New->Script*. Es öffnet sich ein Fenster mit einem leeren Script, dieses mit Strg+s erstmal speichern und einen Namen vergeben. Das File mit *.m* Endung sollte nun in eurer Location liegen.
+> Falls du Matlab verwendest dann schau dir zum eintippen der Anfangswerte vielleicht die Funktion `input` an.
 
-Eine gute Idee ist meistens am Anfang des Scripts sicherzustellen, dass alles geschlossen ist und keine Variablen mehr im Workspace sind die nicht gebraucht werden. Dazu schreiben wir in die ersten Zeilen:
+Am besten du plottest die Idealfunktion um das Ergebnis zu prüfen. Erstelle dazu einen Vektor für *Uin* vom minimum bis maximum. Richtig, eigentlich reichen 2 Werte für eine Gerade, aber nimm ruhig ein paar mehr. Verwende entweder `linspace` oder `:` für den Vektor. *Uout* erzeugst du indem du den *Uin* Vektor richtig in die lineare Formel einsetzt. Damit kannst du nun *Uin* zu *Uout* plotten und die Achsen labeln und passend limitieren.
+
+> Siehe `xlim`, `ylim`, `xlabel` und `ylabel`.
+
+Wenn dir das Ergebnis plausibel vorkommt, kannst du nun die Widerstände auswählen. Da dies nicht so gut im Dokument aufbereitet ist hier die Formeln die du brauchst:
 ```` Matlab
-%% Clean up -> Zwei Prozentzeichen bezeichnen eine Sektion, eines ein Kommentar
-clear all % Löscht alle Variablen. Anstelle von all können auch bestimmte gewählt oder ausgespart werden.
-close all % Schließt alle Plots etc.
-clc % löscht alles Überschüssige aus der Konsole.
-````
-Mit Strg+Enter führt ihr eine Sektion aus, mit F5 das komplette Script. Es kann natürlich auch einfach "Run" in der Kommandozeile verwendet werden.
-
-### Erstelle einen Zeitvektor und Signal
-
-Um einen Zeitvektor bzw. Vektoren generell gibt es unzählige Methoden. Um auf Dokumentation zuzugreifen könnt ihr die Befehle `help` oder `doc` in der Konsole verwenden. Zwei Möglichkeiten um einen Vektor mit bestimmten werten zu erstellen wären:
-````Matlab
->> doc linspace % bringt dich zur Doku für die Funktion linspace. Oder:
->> help : % zeigt dir direkt die Beschreibung für den : operator.
-````
-Checkt die Beschreibung von beiden. Ihr könnt nun eine der Möglichkeiten verwenden um einen Zeitvektor mit einer Samplingrate von 100 Hz und einer Länge von 20 s erstellen.
-
-### Erzeuge einen Plot und Exportiere ihn als Grafik
-
-Ziel hier ist es einen Plot zu erstellen mit zwei Sinussignalen mit 0.5 Hz und 90° Phasenverschoben. Verwende dazu `plot`, `hold on`, `xlabel`, `ylabel` und `legend`. Die Grafik könnt ihr dann über das inzwischen völlig veraltete aber auch hier auffindbare Diskettenlogo speichern oder direkt mit:
-
-````Matlab
-f = gcf; % Der Figure handle gcf bezieht sich immer auf den letzten plot bzw figure die aktiv ist.
-exportgraphics(f,'plot.png','Resolution',300) % Exportiert ein png mit 300 dpi
+Rf = k*Rg-Rg
+R1 = ((Uref*R2*Rf)/(abs(d)*Rg))- R2
 ````
 
-Ihr könnt euch gerne auch mit der Figure etwas herumspielen (im Figure Fenster z.B. *Edit* oder *Tools*). Das Endprodukt sollte dann etwa so aussehen:
-![Plot](../../assets/img/002_bms_Matlab/plot.png)
+Berücksichtige, dass nicht alle Werte für Widerstände verfügbar sind, 1 % Genauigkeit sollte ein guter Anhaltspunkt für eine solche Schaltung sein.
+> Wers nicht kennt Widerstandsreihe E96 googlen.
 
-> Die Formel für eine Sinusschwingung sollte bekannt sein oder sich zumindest herausfinde lassen ;)
+Die Anfangswerte für *Rg* und *R2* können an sich frei gewählt werden, aber es empfiehlt sich, sich die Größenordnung im Dokument zu verwenden.
 
-## Speichern und Importieren von Daten
+Sind alle Widerstände gewählt, kannst du die Schaltung validieren indem du sie wieder in die Übertragungsfunktion einsetzt. 
 
-Inzwischen haben wir etwas Daten angesammelt und wollen sie für das nächste mal Speichern. Mit Save Workspace in der Kommandoleiste kann dieser als *.mat* File gespeichert werden. Um ihn wieder in ein Script zu laden kann die Funktion `load()` verwendet werden.
+> Hinweis: Die Übertragungsfunktion ist Formel 37 im Dokument. Das Symbol \\\\ bedeutet hier so viel wie "parallel zu", daher *R1\\\\R2* -> *R1R2/R1+R2*
 
-Umgekehrt können wir daten auch als andere Formate exportieren. Eine Matrix kann z.B. mit `writematrix` als *.csv* gespeichert werden.
-````Matlab
-writematrix(y'); % Ich verwende hier einen der output Vektoren der Schwingung vorhin. Das Apostroph transponiert eine Matrix. In diesem Fall wird aus Zeilen- ein Spaltenvektor zur besseren lesbarkeit.
-````
+Plotte den Unterschied in die gleiche Figure indem du `hold on` vor dein nächstes `plot` setzt. Mit `plot(Uin, Uout, "--")` kannst du die Linie auf strichliert setzen und mit `legend("Ideal", "Real")` eine Legende hinzufügen.
 
-Um die Daten nun wieder zu importieren kommen wir jetzt zu einem wichtigen Tool welches ihr in der Kommandoleiste unter *Import Data* findet. Es öffnet sich ein neues Fenster sobald ein File mit den Daten ausgewählt wurde. Good Practice ist es die Einzelnen Variablen nun als Output Type *Collumn Vectors* zu importieren. Als Collumn Delimiter muss für das *.csv* Comma angegeben werden. Der Variablenname für jede Spalte wird direkt über den Daten spezifiziert. Mit dem Häckchen rechts könnt ihr die Daten direkt in den Workspace importieren ODER noch besser eine Funktion erstellen welche den ganzen Ablauf direkt übernimmt und in eurer Location abgespeichert wird.
+# Abgabe
 
-## Toolboxen
+Das Endergebnis sollte dann etwa so aussehen:
 
-Als letztes sollten noch die *Toolboxen* in Matlab erwähnt werden. Diese sind einer der Hauptgründe überhaupt für Matlab. Es gibt praktisch für Jedes Gebiet eine und macht einem das Leben meist sehr viel einfacher.
-> Wenn wir keine Edu Lizenzen hätten würde hier Matlab aber auch ordentlich verdienen, da meines Wissens jede Toolbox extra kostet.
+![Plot AIA](../../assets/img/003_bms_AIA/plot.png)
 
-Ums mal gemacht zu haben, können wir hier noch die Signal Processing Toolbox installieren. Geht dazu in der Kommandozeile auf *Add-Ons*, sucht nach "Signal Processing Toolbox", wählt die von Mathworks aus und installiert sie. Die Toolbox brauchen wir wahrscheinlich später sowieso.
+Bitte gib zum passenden Assignment dein Matlab Script ab.
 
-# Abschluss
 
-Abschließend soll erwähnt sein, dass es sehr viele sehr gute Resourcen gibt für Leute die sich hier weiter reinfuchsen wollen. Unter [**Learn Matlab**](https://matlabacademy.mathworks.com/?s_tid=pl_learn){:target="_blank"} findet ihr Kurse die auf einer Matlab online-Platform ausgeführt werden. Grundsätzlich, werden wir aber auch im Kurs weiterhin im lernfreundlichen Tempo mit Matlab arbeiten. Abgabe für diese Lesson gibt es keine, an sich steht euch ja frei auch Python stattdessen zu verwenden.
+
 
 <!-- {: .reading}
 
