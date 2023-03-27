@@ -18,7 +18,7 @@ Ebenso sind die Sensoren schon ausgewählt und deren Output bekannt. In Kombinat
 
 ## AIA - Analog Interface Amplifier
 
-Um das maximum aus deinen Sensoren und Controller herauszuholen, hattest du die Idee einen Analog Interface Amplifier (AIA) zu designen. Am besten wäre wenn du dazu ein Matlab Script schreibst in das du ganz einfach deine Anfangswerte eintippen kannst. Dann kannst du später Werte ganz einfach anpassen und es auch für spätere Projekte verwenden. Für die Berechnung ziehe das Dokument *DesigningGainAndOffset.pdf* auf Sakai zu rate. Dort findest du den passenden Fall für dein Design und die entsprechende Berechnung dazu. Finde heraus ob du Case 1,2,3 oder 4 benötigst.
+Um das maximum aus deinen Sensoren und Controller herauszuholen, hattest du die Idee einen Analog Interface Amplifier (AIA) zu designen. Am besten wäre wenn du dazu ein Matlab Script schreibst in das du ganz einfach deine Anfangswerte eintippen kannst. Dann kannst du später Werte ganz einfach anpassen und es auch für spätere Projekte verwenden. Für die Berechnung ziehe das Dokument *opAmpDesignTechniques.pdf* auf Sakai zu rate. Dort findest du den passenden Fall für dein Design und die entsprechende Berechnung dazu. Finde heraus ob du Case 1,2,3 oder 4 benötigst.
 
 Die Übertragungsfunktion is linear mit dem Gain *m* und Offset *b*, erster Schritt ist diese zu ermitteln. Da wir jeweils zwei Werte (Maxima und Minima für Output und Input) zur Verfügung haben sollte sich diese werte durch zwei Gleichungen leicht lösen lassen.
 
@@ -41,7 +41,7 @@ Die Anfangswerte für *Rg* und *R2* können an sich frei gewählt werden, aber e
 
 Sind alle Widerstände gewählt, kannst du die Schaltung validieren indem du sie wieder in die Übertragungsfunktion einsetzt. 
 
-![Übertragungsfunktion](../../assets/img/003_bms_AIA/Übertragungsfunktion.png)
+> Hinweis: Die Übertragungsfunktion ist Formel 37 im Dokument. Das Symbol \\\\ bedeutet hier so viel wie "parallel zu", daher *R1\\\\R2* -> *R1R2/R1+R2*
 
 Plotte den Unterschied in die gleiche Figure indem du `hold on` vor dein nächstes `plot` setzt. Mit `plot(Uin, Uout, "--")` kannst du die Linie auf strichliert setzen und mit `legend("Ideal", "Real")` eine Legende hinzufügen.
 
