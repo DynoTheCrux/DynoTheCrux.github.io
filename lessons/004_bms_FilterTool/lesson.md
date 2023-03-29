@@ -5,54 +5,48 @@
 {:toc}
 
 # Hintergrund
-Für die Bewegungsanalyse werden oft sogenannte Kraftmessplatten verwendet. Im sportlichen Sektor werden diese oft in Kombination mit Videokameras oder anderen Motion-Capture Systemen angewendet. So können auch komplexe Bewegungen mit Kraftdaten vermessen werden. Aus medizinischer Sicht können diese interessant sein um etwa die Rehabilitation von Verletzungen zu überwachen oder den Verlauf von Pathologien die die Bewegungsleistung oder auch Balance der Patient:innen einschränken können. 
+Zur analogen verarbeitung von Sensorsignalen werden Filter verwendet. Je nachdem welcher Frequenzbereich des Signals für die weitere Verarbeitung relevant ist wird unterschiden zwischen:
+- Hochpass:
+    - Jene Anteile des Signals welche eine **höhere** Frequenz besitzen als die Grenzfrequenz des Filters werden weitergegeben. Alle anderen werden unterdrückt.
+- Tiefpass:
+    - Jene Anteile des Signals welche eine **niedriger** Frequenz besitzen als die Grenzfrequenz des Filters werden weitergegeben. Alle anderen werden unterdrückt.
+- Bandpass:
+    - Jene Anteile des Signals welche eine Frequenz **zwischen** den Grenzfrequenzen des Filters besitzen werden weitergegeben. Alle anderen werden unterdrückt.
+- Notchfilter:
+    - Jene Anteile des Signals welche eine Frequenz **außerhalb** der Grenzfrequenzen des Filters besitzen werden weitergegeben. Alle anderen werden unterdrückt.
+
+In in der folgenden Abbildung sind die vier Arten in einem Bode-Plot dargestellt.
+
+![Filter](../../assets/img/004_bms_FilterTool/filter.png)
+
+Alle vier Arten können analog mit passiven Boder aktive Bauteilen umgesetzt werden. Aktive bedeutet in diesem Kontext unter verwendung eines Operationsverstärkers. Gegenüber passiven Schaltungen bieten diese nur wenig Nachteile. Lediglich, das Tiefpassverhalten von Operationsverstärkern kann sich als Problem für Signale mit sehr hohen relevanten Frequenzanteilen herausstellen.
+> Operationsverstärker weisen meist etwa eine Grenzfrequenz von 1 MHz auf, es sind aber Typen mit bis zu 900 MHz und mehr verfügbar.
+
+
+
+Aktive Schaltungen bieten hier auch den Vorteil, dass der *Gain* also die Verstärkung des Signals festgelegt werden kann. Somit werden ungewünschte Signalanteile unterdrückt und relevante noch verstärkt. Unter anderen können bestimmte Grenzfrequenzen damit auch in einen Analog Interface Amplifier (AIA) integriert werden. Im Dokument *DesigningGainAndOffset.pdf* auf Sakai findest du Beispiele wie so eine Schaltung aussehen könnte. 
 
 # Szenario
-In einem kleinen Projekt für dein Studium willst du eine Kraftmessplatte entwickeln die mit 4 kraftabhängigen Widerständen (FSR) ausgestattet sind. An jeder Ecke angebracht, kann so das Gleichgewicht analysiert werden, je nachdem wie die Kraft auf die 4 verschiedenen Sensoren verteilt wird. 
+Du möchtest ein bestehendes Gerät evaluieren. Das Gerät an sich dient zu Rehabilitationszwecken des Unterarmes. Im speziellen ist es dazu gedacht, Spatizität zu verringern. Diese tritt in den oberen Extremitäten vor allem nach einem Schlaganfall auf. Falls diese nicht therapiert wird, kann dies langwierige Auswirkungen auf die Funktionalität der Muskulatur hervorrufen. Das Gerät ist in Folgender Abbildung zu sehen. Details können [**hier**](https://www.degruyter.com/document/doi/10.1515/cdbme-2022-1089/pdf){:target="_blank"} nachgelesen werden.
 
-Du hast bereits ein Konzept für das Design der Platte festgelegt.
+![Gerät](../../assets/img/004_bms_FilterTool/device.png)
 
-![Konzept Kraftmessplatte](../../assets/img/003_bms_AIA/kraftmessplatte.png)
+Um das Gerät und den Rehabilitationsverlauf zu evaluieren, soll das Gerät um eine Messung mittels surface Electromyography (sEMG) Sensoren erweitert werden. Dazu verwendest du Oberflächenelektroden. Für die Grundverstärkerstufe hast du ein Breakoutboard mit Intrumentenverstärker und Vorfilterung.
+> Das Breakoutboard könnte z.B. das [**SeeedStudio Grove EMG Board**](https://wiki.seeedstudio.com/Grove-EMG_Detector/){:target="_blank"} sein.
 
-Ebenso sind die Sensoren schon ausgewählt und deren Output bekannt. In Kombination mit einem Spannungsteiler und der Referenzspannung von 5V des Mikrocontrollers ergibt sich eine Spanne von **0.5V -> 4,5 V**. Der ADC des Mikrocontrollers ist allerdings auf **0 V -> 5 V** ausgelegt mit einer Auflösung von 10 bit. 
+Dein Problem ist aber, dass die Ansteuerung der Motoren des Gerätes ein Störsignal erzeugt, dass das sEMG Signal überlagert. 
 
-## AIA - Analog Interface Amplifier
+## Analoges Filter Design
 
-Um das maximum aus deinen Sensoren und Controller herauszuholen, hattest du die Idee einen Analog Interface Amplifier (AIA) zu designen. Am besten wäre wenn du dazu ein Matlab Script schreibst in das du ganz einfach deine Anfangswerte eintippen kannst. Dann kannst du später Werte ganz einfach anpassen und es auch für spätere Projekte verwenden. Für die Berechnung ziehe das Dokument *sloa030a.pdf* auf Sakai zu rate. Dort findest du den passenden Fall für dein Design und die entsprechende Berechnung dazu. Finde heraus ob du Case 1,2,3 oder 4 benötigst.
+Um das Störsignal loszuwerden willst du selbst eine weitere Filterstufe hinzufügen. Es geht dabei um eine bestimmte Frequenz von etwa **600 Hz** erzeugt durch das PWM Signal vom Controller zum Motortreiber. Der Frequenzbereich von sEMG Signalen liegt im Bereich von **0-500 Hz**. Am Breakoutboard wurde bereits ein Hochpass mit einer Grenzfrequenz von 20 Hz integriert um Bewegungsartefakte zu unterdrücken.
 
-Die Übertragungsfunktion is linear mit dem Gain *m* und Offset *b*, erster Schritt ist diese zu ermitteln. Da wir jeweils zwei Werte (Maxima und Minima für Output und Input) zur Verfügung haben sollte sich diese werte durch zwei Gleichungen leicht lösen lassen.
-
-> Falls du Matlab verwendest dann schau dir zum eintippen der Anfangswerte vielleicht die Funktion `input` an.
-
-Am besten du plottest die Idealfunktion um das Ergebnis zu prüfen. Erstelle dazu einen Vektor für *Uin* vom minimum bis maximum. Richtig, eigentlich reichen 2 Werte für eine Gerade, aber nimm ruhig ein paar mehr. Verwende entweder `linspace` oder `:` für den Vektor. *Uout* erzeugst du indem du den *Uin* Vektor richtig in die lineare Formel einsetzt. Damit kannst du nun *Uin* zu *Uout* plotten und die Achsen labeln und passend limitieren.
-
-> Siehe `xlim`, `ylim`, `xlabel` und `ylabel`.
-
-Wenn dir das Ergebnis plausibel vorkommt, kannst du nun die Widerstände auswählen. Da dies nicht so gut im Dokument aufbereitet ist hier die Formeln die du brauchst:
-```` Matlab
-Rf = k*Rg-Rg
-R1 = ((Uref*R2*Rf)/(abs(d)*Rg))- R2
-````
-
-Berücksichtige, dass nicht alle Werte für Widerstände verfügbar sind, 1 % Genauigkeit sollte ein guter Anhaltspunkt für eine solche Schaltung sein.
-> Wers nicht kennt Widerstandsreihe E96 googlen.
-
-Die Anfangswerte für *Rg* und *R2* können an sich frei gewählt werden, aber es empfiehlt sich, sich die Größenordnung im Dokument zu verwenden.
-
-Sind alle Widerstände gewählt, kannst du die Schaltung validieren indem du sie wieder in die Übertragungsfunktion einsetzt. 
-
-> Hinweis: Die Übertragungsfunktion ist Formel 37 im Dokument. Das Symbol \\\\ bedeutet hier so viel wie "parallel zu", daher *R1\\\\R2* -> *R1R2/R1+R2*
-
-Plotte den Unterschied in die gleiche Figure indem du `hold on` vor dein nächstes `plot` setzt. Mit `plot(Uin, Uout, "--")` kannst du die Linie auf strichliert setzen und mit `legend("Ideal", "Real")` eine Legende hinzufügen.
+Wähle und dimensioniere einen passenden Filter um das Störsignal mit Sicherheit (< -40 dB) zu unterdrücken. Die sEMG Signale sollten zumindest bis 300 Hz unangetastet bleiben (> -3 dB). Es steht dir frei per Hand zu Rechnen, Matlab, Python oder andere Tools zu verwenden. Empfohlen ist allerdings der [**Filter Wizard**](https://tools.analog.com/en/filterwizard/){:target="_blank"} von Analog Devices.
 
 # Abgabe
 
-Das Endergebnis sollte dann etwa so aussehen:
-
-![Plot AIA](../../assets/img/003_bms_AIA/plot.png)
-
-Bitte gib zum passenden Assignment dein Matlab Script ab.
-
+Ein Dokument mit mindestens folgendem Inhalt:
+- Bode Plot des Filters (alle Stufen)
+- Schaltplan (alle Stufen)
 
 
 
