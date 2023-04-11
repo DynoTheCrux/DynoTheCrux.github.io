@@ -4,85 +4,36 @@
 * This will become a table of contents (this text will be scrapped).
 {:toc}
 
-# Hintergrund
+# Aufgabenstellung
 
-In sehr vielen Problemstellungen in der Biomedizinischen Sensorik werden euch Sensorboards mit integrierter Signalverarbeitung und Aufbereitung unterkommen. Damit die Signale dann gelesen werden können, werden bestimmte Datenprotokolle verwendet. Gängige sind:
+Für diese Lehrveranstaltung werdet ihr eine Presentation vorbereiten und halten. Der Inhalt dreht sich dabei um ein spezifisches Wearable, welche dabei zur Option stehen wird von den Lehrenden angegeben. Teile der Presentation könnt ihr bereits in der Vorlesung vorbereiten. Die Benotung erfolgt dabei wie folgt:
+- 50 % sind der Gesamteindruck der Presentation
+    - Wie gut ist die Presentation Strukturiert?
+    - Sind die Inhalte gut aufeinander abgestimmt?
+- 50 % sind der Endruck der einzelnen Personen und Teilinhalte
+    - Wie gut sind die spezifischen Teile vorbereitet und vorgetragen?
 
-- UART
-- I2C
-- SPI
+So soll die Gruppe aber auch jeder einzelne in der Benotung berücksichtigt werden. Die Grundstruktur der Presentation ist vorgegeben. Jedes Teilthema wird von jeweils einer Person vorbereitet. Es gibt 4 Teilthemen -> es werden somit **Gruppen von 4** gebildet.
 
-Die Vor- und Nachteile und Eigenschaften der Protokolle wurden bereits in der Vorlesung hinreichend besprochen. 
+> Es bleibt eine Gruppe von 3 übrig. Diese wird den Inhalt etwas reduzieren können. Wie genau wird dann zwischen der Gruppe und den Lehrenden geklärt.
 
-# Szenario
+# Bildet Gruppen und wählt ein Thema
 
-
-Dein Ziel ist es ein Bewegungsanalysesystem zu bauen. Das System soll verwendet werden um die Bewegung der unteren Extremitäten zu erfassen und in einer VR-Umgebung abzubilden. Du möchtest dazu eine MPU6020 IMU verwenden und hast dir daher zwei Breakoutboards besorgt mit I2C schnittstelle.
-
-> I2C macht hier Sinn, da die Daten nicht allzu groß sind. Außerdem willst du die Verkabelung simpel halten auch wenn später weitere IMU's hinzukommen.
-
-Im ersten Schritt willst du aber erstmal eines der Breakoutboards verbinden und dein Setup testen.
+Im ersten Schritt ist ein Thema auszuwählen. Bildet Gruppen von 4 und wählt ein geeignetes Thema aus folgender Liste aus:
+- [Kraftmesssohle](https://ethz.ch/en/news-and-events/eth-news/news/2023/03/3d-printed-insoles-measure-sole-pressure-directly-in-the-shoe.html){:target="_blank"}
+- [Parkinson Schuhsohle](https://www.helpsole.com/){:target="_blank"}
+- [Messshirt](https://ethz.ch/en/news-and-events/eth-news/news/2023/03/detecting-exhaustion-with-smart-sportswear.html?utm_source=facebook&utm_medium=ETH+Z%C3%BCrich&utm_content=c69a0ce196964729a851b8cce89e1509-768635709814450&utm_campaign=HK_Grund_Forschung&fbclid=IwAR0gZSPZ6_jSP7h5UIdf1tzqGVPmU2vYh29cguyW7C68IVuP5fLspcPle8g){:target="_blank"}
+- [Bluddruckmanschette mit Radarsensor](https://www.blumio.com/){:target="_blank"}
+- [Temperaturmessung mit Pflaster](https://www.steadysense.at/){:target="_blank"}
 
 
-# Programmierung
+# Strukturiert eure Presentation
 
-Öffne die Arduino IDE und versuche Code zu schreiben welcher:
-- Eine serielle Kommunikation zwischen Arduino UNO und PC startet
-- Checkt ob das Sensorboard via I2C verbunden ist und ausgibt ob es tatsächlich passiert ist.
-- Mittels timer die IMU ausliest und die Beschleunigung in X/Y/Z ausgibt. Wähle die Sampling-Rate selbst.
 
-Folgende Dinge könnten hierbei hilfreich sein:
-- [**Adafruit MPU6050 Demo**](https://learn.adafruit.com/mpu6050-6-dof-accelerometer-and-gyro/arduino){:target="_blank"}
-- [**Arduino Timer Doku**](https://github.com/contrem/arduino-timer){:target="_blank"}
-    - Folgender Code ist hier mindestens nötig:
-    
-````C
-#include <arduino-timer.h>
+# Bereitet die Presentation inhaltlich vor
 
-Timer<> timer = timer_create_default(); // create a timer with default settings
 
-bool readFunction() // no input params allowed, has to return bool
-{
-    // ... Have the code you want to have happened every timer call here ... // 
-    return true; // as long as true is returned timer keeps running
-}
-
-void setup() {
-    // ... may some other code above ... //
-    timer.every(1000, readFunction); // tell the timer to call the specific function every 1000 ms
-    // ... may some other code below ... //
-
-}
-
-void loop() {
-    // ... may some other code above ... //
-    timer.tick(); // tick the timer  --> has to be called to have the timer working
-    // ... may some other code below ... //
-
-}
-
-````
-- Die `Wire.h` muss für I2C included werden.
-
-Schreibt das Programm in der Arduino IDE und kompiliert sie für einen Arduino UNO. Checkt, dass alle Libraries installiert sind und das richtige Board ausgewählt ist. Sobald der Code fehlerfrei kompiliert wird, gehe weiter zum nächsten Schritt.
-
-# Verkabeln und Testen
-
-Um den Code zu testen, nehmen wir einen Arduino Emulator zur hilfe. Den Emulator findest du [**hier**](https://wokwi.com/){:target="_blank"}. Öffne ein Projekt mit Arduino UNO als basis (Start from Scratch -> Arduino UNO). Du siehst dann ein Projekt mit dem üblichen Arduino Code mit `setup()` und `loop()` in einem Editor auf der linken Seite und auf rechten einen Arduino UNO auf der *Simulation* Fläche.
-
-Auf der rechten Seite kannst du nun den MPU6050 über das Plus hinzufügen und entsprechend verkabeln. Der Emulator hilft dir dabei mit dem finden der richtigen Pins bzw. findest du *SCL* und *SDA* im Pinout des Arduino UNO. *Vcc* wird entweder mit 5V oder 3.3V verbunden.
-
-![Arduino UNO Pinout](../../assets/img/005_bms_ArduinoIntro/pinout.avif)
-
-ist alles verkabelt kannst du deinen Code in den Editor kopieren. Im letzten Schritt müssen hier ebenso die Libraries installiert werden. Gehe dazu in den Library Manager auf der linken Seite und füge sie mit dem Plus-Button hinzu. Achte darauf, dass die Schreibweise exakt gleich sein muss wie der Name der Library. Ist sie installiert scheint sie unter Installed Libraries nun auf.
-
-Nun kannst du den Code Simulieren indem du auf den grünen Play-Button klickst.
-
-> Klickst du während der Simulation auf den MPU6050 kannst du alle Sensorwerte anpassen. Ändert sich die Ausgabe?
-
-# Abgabe
-
-Läuft der Code erfolgreich packe gehe auf den Pfeil neben *Save*, downloade das Ganze als .zip. Lade das .zip File dann beim Assignment auf Sakai hoch.
+# Abgabe und Ablauf
 
 
 
