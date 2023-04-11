@@ -33,32 +33,33 @@ Folgende Dinge könnten hierbei hilfreich sein:
 - [**Adafruit MPU6050 Demo**](https://learn.adafruit.com/mpu6050-6-dof-accelerometer-and-gyro/arduino){:target="_blank"}
 - [**Arduino Timer Doku**](https://github.com/contrem/arduino-timer){:target="_blank"}
     - Folgender Code ist hier mindestens nötig:
-    ````C++
-        #include <arduino-timer.h>
+    
+````C++
+#include <arduino-timer.h>
 
-        Timer<> timer = timer_create_default(); // create a timer with default settings
+Timer<> timer = timer_create_default(); // create a timer with default settings
 
-        bool readFunction() // no input params allowed, has to return bool
-        {
-            // ... Have the code you want to have happened every timer call here ... // 
-            return true; // as long as true is returned timer keeps running
-        }
+bool readFunction() // no input params allowed, has to return bool
+{
+    // ... Have the code you want to have happened every timer call here ... // 
+    return true; // as long as true is returned timer keeps running
+}
 
-        void setup() {
-            // ... may some other code above ... //
-            timer.every(1000, readFunction); // tell the timer to call the specific function every 1000 ms
-            // ... may some other code below ... //
+void setup() {
+    // ... may some other code above ... //
+    timer.every(1000, readFunction); // tell the timer to call the specific function every 1000 ms
+    // ... may some other code below ... //
 
-        }
+}
 
-        void loop() {
-            // ... may some other code above ... //
-            timer.tick(); // tick the timer  --> has to be called to have the timer working
-            // ... may some other code below ... //
+void loop() {
+    // ... may some other code above ... //
+    timer.tick(); // tick the timer  --> has to be called to have the timer working
+    // ... may some other code below ... //
 
-        }
+}
 
-    ````
+````
 - Die `Wire.h` muss für I2C included werden.
 
 Schreibt das Programm in der Arduino IDE und kompiliert sie für einen Arduino UNO. Checkt, dass alle Libraries installiert sind und das richtige Board ausgewählt ist. Sobald der Code fehlerfrei kompiliert wird, gehe weiter zum nächsten Schritt.
