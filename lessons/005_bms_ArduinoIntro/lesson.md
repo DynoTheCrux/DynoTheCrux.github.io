@@ -34,7 +34,7 @@ Folgende Dinge könnten hierbei hilfreich sein:
 - [**Arduino Timer Doku**](https://github.com/contrem/arduino-timer){:target="_blank"}
     - Folgender Code ist hier mindestens nötig:
     
-````C++
+````C
 #include <arduino-timer.h>
 
 Timer<> timer = timer_create_default(); // create a timer with default settings
