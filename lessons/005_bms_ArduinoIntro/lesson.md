@@ -33,10 +33,12 @@ Im ersten Schritt willst du aber erstmal eines der Breakoutboards verbinden und 
 
 Folgende Dinge könnten hierbei hilfreich sein:
 - [**Adafruit MPU6050 Demo**](https://learn.adafruit.com/mpu6050-6-dof-accelerometer-and-gyro/arduino){:target="_blank"}
+    - Geht den Example Code durch und verwendet die Bruchstücke die ihr für notwendig haltet. 
+    - Die `Wire.h` muss included werden um I2C verwenden zu können. Allerdings, ist dieser Schritt bereits in the Library für die MPU6050 von Adafruit erledigt. 
 - [**Arduino Timer Doku**](https://github.com/contrem/arduino-timer){:target="_blank"}
     - Folgender Code ist hier mindestens nötig:
     
-````C
+````C++
 #include <arduino-timer.h>
 
 Timer<> timer = timer_create_default(); // create a timer with default settings
@@ -62,7 +64,7 @@ void loop() {
 }
 
 ````
-- Die `Wire.h` muss für I2C included werden.
+
 
 Schreibt das Programm in der Arduino IDE und kompiliert sie für einen Arduino UNO. Checkt, dass alle Libraries installiert sind und das richtige Board ausgewählt ist. Sobald der Code fehlerfrei kompiliert wird, gehe weiter zum nächsten Schritt.
 
@@ -74,7 +76,7 @@ Auf der rechten Seite kannst du nun den MPU6050 über das Plus hinzufügen und e
 
 ![Arduino UNO Pinout](../../assets/img/005_bms_ArduinoIntro/pinout.avif)
 
-ist alles verkabelt kannst du deinen Code in den Editor kopieren. Im letzten Schritt müssen hier ebenso die Libraries installiert werden. Gehe dazu in den Library Manager auf der linken Seite und füge sie mit dem Plus-Button hinzu. Achte darauf, dass die Schreibweise exakt gleich sein muss wie der Name der Library. Ist sie installiert scheint sie unter Installed Libraries nun auf.
+ist alles verkabelt kannst du deinen Code in den Editor kopieren. Im letzten Schritt müssen hier ebenso die Libraries installiert werden. Gehe dazu in den Library Manager auf der linken Seite und füge sie mit dem Plus-Button hinzu. Achte darauf, dass die Schreibweise exakt gleich sein muss wie der Name der Library. Ist sie installiert scheint sie unter *Installed Libraries* nun auf.
 
 Nun kannst du den Code Simulieren indem du auf den grünen Play-Button klickst.
 
