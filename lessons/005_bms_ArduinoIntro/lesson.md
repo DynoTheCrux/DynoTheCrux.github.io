@@ -29,14 +29,14 @@ Im ersten Schritt willst du aber erstmal eines der Breakoutboards verbinden und 
 Öffne die Arduino IDE und versuche Code zu schreiben welcher:
 - Eine serielle Kommunikation zwischen Arduino UNO und PC startet
 - Checkt ob das Sensorboard via I2C verbunden ist und ausgibt ob es tatsächlich passiert ist.
-- Mittels timer die IMU ausliest und die Beschleunigung in X/Y/Z ausgibt. Wähle die Sampling-Rate selbst.
+- Mittels Timer die IMU ausliest und die Beschleunigung in X/Y/Z ausgibt. Wähle die Sampling-Rate selbst.
 
 Folgende Dinge könnten hierbei hilfreich sein:
 - [**Adafruit MPU6050 Demo**](https://learn.adafruit.com/mpu6050-6-dof-accelerometer-and-gyro/arduino){:target="_blank"}
     - Geht den Example Code durch und verwendet die Bruchstücke die ihr für notwendig haltet. 
-    - Die `Wire.h` muss included werden um I2C verwenden zu können. Allerdings, ist dieser Schritt bereits in the Library für die MPU6050 von Adafruit erledigt. 
+    - Die `Wire.h` muss included werden um I2C verwenden zu können. Allerdings, ist dieser Schritt bereits in der Library für die MPU6050 von Adafruit erledigt. 
 - [**Arduino Timer Doku**](https://github.com/contrem/arduino-timer){:target="_blank"}
-    - Folgender Code ist hier mindestens nötig:
+    - Folgender Code ist hier zur verwendung des Timers mindestens nötig:
     
 ````C++
 #include <arduino-timer.h>
@@ -72,11 +72,11 @@ Schreibt das Programm in der Arduino IDE und kompiliert sie für einen Arduino U
 
 Um den Code zu testen, nehmen wir einen Arduino Emulator zur hilfe. Den Emulator findest du [**hier**](https://wokwi.com/){:target="_blank"}. Öffne ein Projekt mit Arduino UNO als basis (Start from Scratch -> Arduino UNO). Du siehst dann ein Projekt mit dem üblichen Arduino Code mit `setup()` und `loop()` in einem Editor auf der linken Seite und auf rechten einen Arduino UNO auf der *Simulation* Fläche.
 
-Auf der rechten Seite kannst du nun den MPU6050 über das Plus hinzufügen und entsprechend verkabeln. Der Emulator hilft dir dabei mit dem finden der richtigen Pins bzw. findest du *SCL* und *SDA* im Pinout des Arduino UNO. *Vcc* wird entweder mit 5V oder 3.3V verbunden.
+Auf der rechten Seite kannst du nun den MPU6050 über das Plus hinzufügen und entsprechend verkabeln. Der Emulator hilft dir dabei mit dem finden der richtigen Pins. GGf. findest du *SCL* und *SDA* im Pinout des Arduino UNO. *Vcc* wird entweder mit 5V oder 3.3V verbunden.
 
 ![Arduino UNO Pinout](../../assets/img/005_bms_ArduinoIntro/pinout.avif)
 
-ist alles verkabelt kannst du deinen Code in den Editor kopieren. Im letzten Schritt müssen hier ebenso die Libraries installiert werden. Gehe dazu in den Library Manager auf der linken Seite und füge sie mit dem Plus-Button hinzu. Achte darauf, dass die Schreibweise exakt gleich sein muss wie der Name der Library. Ist sie installiert scheint sie unter *Installed Libraries* nun auf.
+Ist alles verkabelt kannst du deinen Code in den Editor kopieren. Im letzten Schritt müssen hier ebenso die Libraries installiert werden. Gehe dazu in den Library Manager auf der linken Seite und füge sie mit dem Plus-Button hinzu. Achte darauf, dass die Schreibweise exakt gleich sein muss wie der Name der Library. Ist sie installiert scheint sie unter *Installed Libraries* nun auf.
 
 Nun kannst du den Code Simulieren indem du auf den grünen Play-Button klickst.
 
