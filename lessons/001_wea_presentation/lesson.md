@@ -23,8 +23,10 @@ Im ersten Schritt ist ein Thema auszuwählen. Bildet Gruppen von 4, lest euch di
 - [Kraftmesssohle](https://ethz.ch/en/news-and-events/eth-news/news/2023/03/3d-printed-insoles-measure-sole-pressure-directly-in-the-shoe.html){:target="_blank"}
 - [Parkinson Schuhsohle](https://www.helpsole.com/){:target="_blank"}
 - [Messshirt](https://ethz.ch/en/news-and-events/eth-news/news/2023/03/detecting-exhaustion-with-smart-sportswear.html?utm_source=facebook&utm_medium=ETH+Z%C3%BCrich&utm_content=c69a0ce196964729a851b8cce89e1509-768635709814450&utm_campaign=HK_Grund_Forschung&fbclid=IwAR0gZSPZ6_jSP7h5UIdf1tzqGVPmU2vYh29cguyW7C68IVuP5fLspcPle8g){:target="_blank"}
-- [Bluddruckmanschette mit Radarsensor](https://www.blumio.com/){:target="_blank"}
+<!-- - [Bluddruckmanschette mit Radarsensor](https://www.blumio.com/){:target="_blank"} -->
 - [Temperaturmessung mit Pflaster](https://www.steadysense.at/){:target="_blank"}
+- [Blutdruckmessung am Armgelenk](https://www.omron-healthcare.de/de/blutdruckmessgeraete/heartguide.html#prefn1=device_type&prefv1=Tragbares%20Blutdruckmessger%C3%A4t&start=1){:target="_blank"}
+- [Wearable EKG](https://www.zephyranywhere.com/system){:target="_blank"}
 
 Wenn ihr euer Thema gefunden habt, schreibt eine Mail an die Lektoren mit dem Thema und allen Gruppenmitgliedern. Gebt außerdem ein Backup-Thema an welches zum Zug kommt, falls zwei Gruppen das gleiche Thema auswählen.
 > Würden alle 4 Gruppen die selben Themen angeben werden die Lektoren die Themen zufällig verteilen.
