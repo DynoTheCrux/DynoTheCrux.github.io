@@ -19,21 +19,49 @@ So soll die Gruppe aber auch jeder einzelne in der Benotung berücksichtigt werd
 
 # Bildet Gruppen und wählt ein Thema
 
-Im ersten Schritt ist ein Thema auszuwählen. Bildet Gruppen von 4 und wählt ein geeignetes Thema aus folgender Liste aus:
+Im ersten Schritt ist ein Thema auszuwählen. Bildet Gruppen von 4, lest euch die Themen durch und wählt ein geeignetes aus folgender Liste aus:
 - [Kraftmesssohle](https://ethz.ch/en/news-and-events/eth-news/news/2023/03/3d-printed-insoles-measure-sole-pressure-directly-in-the-shoe.html){:target="_blank"}
 - [Parkinson Schuhsohle](https://www.helpsole.com/){:target="_blank"}
 - [Messshirt](https://ethz.ch/en/news-and-events/eth-news/news/2023/03/detecting-exhaustion-with-smart-sportswear.html?utm_source=facebook&utm_medium=ETH+Z%C3%BCrich&utm_content=c69a0ce196964729a851b8cce89e1509-768635709814450&utm_campaign=HK_Grund_Forschung&fbclid=IwAR0gZSPZ6_jSP7h5UIdf1tzqGVPmU2vYh29cguyW7C68IVuP5fLspcPle8g){:target="_blank"}
 - [Bluddruckmanschette mit Radarsensor](https://www.blumio.com/){:target="_blank"}
 - [Temperaturmessung mit Pflaster](https://www.steadysense.at/){:target="_blank"}
 
+Wenn ihr euer Thema gefunden habt, schreibt eine Mail an die Lektoren mit dem Thema und allen Gruppenmitgliedern. Gebt außerdem ein Backup-Thema an welches zum Zug kommt, falls zwei Gruppen das gleiche Thema auswählen.
+> Würden alle 4 Gruppen die selben Themen angeben werden die Lektoren die Themen zufällig verteilen.
+
+Manche der Themen sind kein "vollständiges" Wearable bzw. fertiges Produkt. In der Presentation kann hier z.B. hypothetisch Diskutiert werden wie denn ein Produkt aussehen könnte und welche Teile zum derzeitigen Zeitpunkt noch fehlen.
 
 # Strukturiert eure Presentation
+
+Im nächsten Schritt werdet ihr die Teilthemen eurer Präsentation zuteilen. Die Teilthemen sind:
+
+- **Intro**: Das Gerät wird vorgestellt. Welches Problem löst es? Warum Qualifiert es sich als Wearable bzw. was ist noch nötig damit es sich als Wearable qualifiziert?
+- **Funktionsweise**: Beschreibe die technischen Hintergründe des Wearable. Such dir dabei ein bestimmtes Feature heraus auf das technisch im Detail eingegangen werden soll. 
+- **Anwendung**: Beschreibe die Anwendung bzw. mögliche Anwendungen für das Wearable. Gehe dabei auf die User-Gruppe und Stakeholder ein.
+- **Ethische Aspekte und Diskussion**: Diskutiere ethische Aspekte die mit dem Wearable einher gehen. Dies wird das Ende der Presentation sein und der Starpunkt für eine Diskussion. Bereite ggf. Fragen vor die eine Diskussion anstoßen.
+
+Jeder in der Gruppe übernimmt eines der Teilthemen und wird dieses auch vorstellen. Versucht es nach euren eigenen Interessen zu verteilen. In der Präsentation muss ersichtlich sein wer welches Thema vorgetragen hat, damit eine Einzelnote vergeben werden kann. Die Reihenfolge der Themen wird wie angegeben empfohlen, kann aber angepasst werden.
 
 
 # Bereitet die Presentation inhaltlich vor
 
+Die Teilthemen sollten von der jeweiligen Einzelperson vorbereitet werden, es sollte sich jedoch die Gruppe natürlich gegenseitig dabei unterstützen. Bevor dazu jeder in sein eigenes Thema eintaucht, wird empfohlen einen ersteimal den Inhalt der Gesamten Präsentation gegenseitig abzustimmen.
+
+Der Inhalt der Teilthemen ist bereits oben kurz umrissen. Er sollte so gut es geht mit den Inhalten aus der Vorlesung verknüpft werden. So ist es natürlich kein Zufall, dass die Struktur der Präsentation ähnlich zu denen der Vorlesung sein wird.
+
+
+<!-- Bilder und kurze Zusammenfassung von Inhalten? An einem Beispiel aus der VO? -->
 
 # Abgabe und Ablauf
+
+Der erste Teil der Abgabe beginnt damit, dass ihr die fertige Powerpoint-Presentation einen Tag vor dem letzten Termin beim zugehörigen Sakai-Assignment hochladet. Die Präsentation werden wie kurz in der Vorlesung erwähnt am letzten Termin in einer art Mini-Konferenz vorgetragen und werden sich bereits vorbereitet am PC befinden.
+
+> Es darf auch davor jederzeit die Presentation geschickt werden, falls jemand Feedback möchte.
+
+Die Presentation sollte 20 min betragen, jede Person sollte ca. 5 min. sprechen. Anschließen sind 10 min für die Diskussion und den Gruppenwechsel eingeplant. Wird die Zeit stark über- bzw. unterschritten gibt es Punkeabzug. Es wird eine Pause von 15 min. als Puffer geben. Die Noten werden gesondert über das Office in den darauffolgenden Tagen bekannt gegeben.
+
+
+
 
 
 
