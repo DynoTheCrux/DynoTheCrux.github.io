@@ -17,7 +17,7 @@ Die Vor- und Nachteile und Eigenschaften der Protokolle wurden bereits in der Vo
 # Szenario
 
 
-Dein Ziel ist es ein Bewegungsanalysesystem zu bauen. Das System soll verwendet werden um die Bewegung der unteren Extremitäten zu erfassen und in einer VR-Umgebung abzubilden. Du möchtest dazu eine MPU6020 IMU verwenden und hast dir daher zwei Breakoutboards besorgt mit I2C schnittstelle.
+Dein Ziel ist es ein Bewegungsanalysesystem zu bauen. Das System soll verwendet werden um die Bewegung der unteren Extremitäten zu erfassen und in einer VR-Umgebung abzubilden. Du möchtest dazu eine MPU6050 IMU verwenden und hast dir daher zwei Breakoutboards besorgt mit I2C schnittstelle.
 
 > I2C macht hier Sinn, da die Daten nicht allzu groß sind. Außerdem willst du die Verkabelung simpel halten auch wenn später weitere IMU's hinzukommen.
 
