@@ -15,16 +15,16 @@ Du kennst das Pulsoximeter nun ausreichend aus der Vorlesung und weißt:
 Das Ziel dieser Lesson ist nun, den Code für das poMCI und den Arduino UNO eigenständig zu implementieren. Ihr werdet, dann den Code im Labor verwenden und mit dem von euch gelöteten Pulsoximeter Messungen durchführen. Den Matlab Code um die Messungen zu verarbeiten werdet ihr in einer separaten Lesson schreiben.
 
 Der Sketch an sich besteht wie immer aus `setup()` und `loop()`. Am Ende soll dieser eine Sequenz aufnehmen mit folgenden Eckdaten:
-- 400 Hz Sampling Rate. Damit geht sich nach dem Sampling Theorem locker aus, den Puls zu erfassen. Für SpO2 sowieso irrelevant.
+- 400 Hz Sampling Rate. Damit geht sich nach dem Sampling Theorem locker aus den Puls zu erfassen und für SpO2 ist die Samplingrate praktisch irrelevant.
 - 8000 Samples bzw. 20 Sekunden Aufzeichnung.
 
-Ein Sample besteht dabei aus den Refelektionswerten der Roten und Infraroten LED. Diese sollen währen der Aufzeichnung über die Serielle Schnittstelle vom Arduino UNO ausgegeben werden. Die Aufzeichnung soll starten, sobald der User einen Startbefehl gegeben hat.
+Ein Sample besteht dabei aus den Reflexionswerten der Roten und infraroten LED. Diese sollen während der Aufzeichnung über die serielle Schnittstelle vom Arduino UNO ausgegeben werden. Die Aufzeichnung soll starten, sobald der User einen Startbefehl gegeben hat.
 
 # Vorbereitung
 
-Es kommt der MAX30101 zum Einsatz. Um die Werte des Sensors auszulesen benötigt es die passende Library. Diese ist auf Sakai hinterlegt und kann in den Arduino Sketch auf zwei Arten eingebunden werden:
+Es kommt der MAX30101 zum Einsatz. Um die Werte des Sensors auszulesen, benötigt es die passende Library. Diese ist auf Sakai hinterlegt und kann in den Arduino Sketch auf zwei Arten eingebunden werden:
 - Die Library wird in den *Libraries* Ordner in einem eigenen Ordner mit gleichen Namen der Library (daher *MAX30105*) kopiert oder 
-- Die Library wird in den selben Ordner kopiert wie euer `.ino` File, auch bekannt als der *Sketch Folder*.
+- Die Library wird in denselben Ordner kopiert wie euer `.ino` File, auch bekannt als der *Sketch Folder*.
 
 > Kleiner C++ Fact am Rande. Werden Libraries mit `"XY.h"` eingebunden, sucht die IDE als erstes im selben Folder wie der Code. Wird die Library mit `<XY.h>` eingebunde, sucht sie erst im Libraries Ordner im Installtionsverzeichnis, bzw. genauer gesagt in den Ordnern der *include path list*.
 
@@ -32,16 +32,16 @@ Denkt daran, dass Libraries in C++ immer aus `.h` und `.cpp` File bestehen. Leid
 
 > Den *Libraries* Ordner findet ihr im Installationsverzeichnis, je nachdem welche Version ihr verwendet und wo ihr sie installiert habt. Bei Version 2.0.4 z.B. hier: *C:\Users\YOURNAME\AppData\Local\Arduino15\libraries\MAX30105*. Der *AppData* Ordner muss manchmal erst eingeblendet werden.
 
-Des weiteren brauchen wir die `Wire.h`, da die Kommunikation mit dem Board via I2C läuft. Diese sollte euch ja bereits bekannt sein. Falls ihr sie nicht schon installiert habt, installiert sie über den manuellen Weg oder den eingebauten Library Manager in der Arduino IDE. Bindet beide Libraries in den Sketch via `#include` ein.
+Des weiteren, brauchen wir die `Wire.h`, da die Kommunikation mit dem Board via I2C läuft. Diese sollte euch ja bereits bekannt sein. Falls ihr sie nicht schon installiert habt, installiert sie über den manuellen Weg oder den eingebauten Library Manager in der Arduino IDE. Bindet beide Libraries in den Sketch via `#include` ein.
 
 Timer Library brauchen wir ausnahmsweise keinen, da die Samplerate direkt für die Sensor IC konfiguriert wird.
 
 
 # Implementierung
 
-## Kommunikation und Sensor Konfiguration
+## Kommunikation und Sensorkonfiguration
 
-Nachdem die Libraries eingebunden sind, sollte der Sketch nun startklar sein, um den Sensorcode zu implementieren. Im `setup()` des Arduino Sketches kümmern wir uns dazu ersteinmal um die Konfiguration der Kommunikation und des Sensors. Schreibe dazu erst den Code um die serielle Kommunikation zwischen Arduino und Rechner/Arduino IDE zu starten. Checke ob die Kommunikation wirklich vorhanden ist. Diese könnte auch dazu genutzt werden um einen Startbefehl für die Aufzeichnung vom Serial Monitor / Plotter an den Arduino UNO zu senden. Baudrate sollte etwas höher gewählt werden (z.B. 115200), da wir einiges an Daten mit etwa 400 Hz senden wollen.
+Nachdem die Libraries eingebunden sind, sollte der Sketch nun startklar sein, um den Sensorcode zu implementieren. Im `setup()` des Arduino Sketches kümmern wir uns dazu erst einmal um die Konfiguration der Kommunikation und des Sensors. Schreibe dazu erst den Code, um die serielle Kommunikation zwischen Arduino und Rechner/Arduino IDE zu starten. Checke, ob die Kommunikation wirklich vorhanden ist. Diese könnte auch dazu genutzt werden, um einen Startbefehl für die Aufzeichnung vom Serial Monitor / Plotter an den Arduino UNO zu senden. Baudrate sollte etwas höher gewählt werden (z.B. 115200), da wir einiges an Daten mit etwa 400 Hz senden wollen.
 
 Im nächsten Schritt wollen wir, ähnlich zum MPU6050 Beispiel, checken, ob der Sensor wirklich vorhanden ist. Die Bedingung dazu ist:
 
@@ -49,15 +49,15 @@ Im nächsten Schritt wollen wir, ähnlich zum MPU6050 Beispiel, checken, ob der 
 pulseSensor.begin(Wire, I2C_SPEED_FAST) == false
 ````
 
-Ist diese Erfüllt, ist am standard I2C port (der andere wäre `_SLOW`) der Sensor nicht auffindbar sollte die Verkabelung etc. gecheckt werden und das Program nicht weiter forlaufen.
+Ist diese Erfüllt, ist am Standard I2C Port (der andere wäre `_SLOW`) der Sensor nicht auffindbar sollte die Verkabelung etc. gecheckt werden und das Programm nicht weiter fortlaufen.
 
-Wird der Sensor am I2C port erkannt, können wir ihn für die Aufnahme der Sensordaten konfigurieren. Erstelle dazu ein Objekt für den Sensor von Typ `MAX30105`. Zur Konfiguration wird die Methode `setup()` (des Sensors nicht des Arduino Sketches!) mit den folgenden Übergabeparametern aufgerufen:
-- `byte powerLevel`: Bestimmt wie hell die LEDs leuchten. Mögliche Werte gehen von 0-255 (ein Byte eben), wobei 0 ausgeschalten und 255 am Hellsten wäre. Eine passende Wahl um zu starten wäre etwa die hälfe mit 125 oder 0x7D als Hex-Nummer.
-- `byte sampleAverage`: Bestimmt ob der Sensor die samples Mitteln soll. Wir wollen die Werte im Nachhinein verarbeiten. Wählen wir den Wert von 1 gibt er die Werte 1 zu 1 wie gelesen weiter.
-- `byte ledMode`: Damit können die einzelnen LED's an- bzw. ausgeschalten werden. So könnte die Grüne LED alleine gewählt werden um nur den Puls zu erfassen. Wir wollen die Rote und Infrarote LED lesen und daher den Modus 2.
-- `int sampleRate`: Wie oben angegeben, in Hz. Nebenbei sei erwähnt, dass nur bestimmte Werte zur verfügung stehen (50, 100, 200, **400**, 800, 1000, 1600, 3200).
-- `int pulseWidth`: Da der Sensor nur über einen Phototransistor verfügt, aber drei Wellenlängen erkannt werden müssen, wird jeder LED ein Time slot zugeteilt. Dazu kann die Pulsweite, also die *On-Time* für die LEDs gewählt werden. Das mittlere Setting wäre mit 215 passend, verfügbar sind 69, 118, **215** und 411.
-- `int adcRange`: Der ADC welcher das Signal des Phototransistors digitalisier kann in dessen auflösung konfiguriert werden. Das mittlere Setting wäre mit 13 bit passend, verfügbar sind 2048, 4096, **8192** und 16384.
+Wird der Sensor am I2C Port erkannt, können wir ihn für die Aufnahme der Sensordaten konfigurieren. Erstelle dazu ein Objekt für den Sensor von Typ `MAX30105`. Zur Konfiguration wird die Methode `setup()` (des Sensors, nicht des Arduino Sketches!) mit den folgenden Übergabeparametern aufgerufen:
+- `byte powerLevel`: Bestimmt, wie hell die LEDs leuchten. Mögliche Werte gehen von 0 bis 255 (ein Byte eben), wobei 0 ausgeschalten und 255 am hellsten wäre. Eine passende Wahl um zu starten wäre etwa die Hälfe mit 125 oder 0x7D als Hex-Nummer.
+- `byte sampleAverage`: Bestimmt, ob der Sensor die samples Mitteln soll. Wir wollen die Werte im Nachhinein verarbeiten. Wählen wir den Wert von 1 gibt er die Werte 1 zu 1 wie gelesen weiter. Andere Werte wären im Prinzip ein *moving Average* Filter. Zur verfügung stehen die Werte **1**, 2, 4, 8, 16 und 32.
+- `byte ledMode`: Damit können die einzelnen LEDs an- bzw. ausgeschalten werden. So könnte die grüne LED alleine gewählt werden, um nur den Puls zu erfassen. Wir wollen die Rote und infrarote LED lesen und daher den Modus 2.
+- `int sampleRate`: Wie oben angegeben, in Hz. Nebenbei sei erwähnt, dass nur bestimmte Werte zur Verfügung stehen (50, 100, 200, **400**, 800, 1000, 1600, 3200).
+- `int pulseWidth`: Da der Sensor nur über einen Fototransistor verfügt, aber drei Wellenlängen erkannt werden müssen, wird jeder LED ein Time Slot zugeteilt. Dazu kann die Pulsweite, also die *On-Time* für die LEDs gewählt werden. Das mittlere Setting wäre mit 215 passend, verfügbar sind 69, 118, **215** und 411.
+- `int adcRange`: Der ADC welcher das Signal des Fototransistors digitalisiert, kann in dessen Auflösung konfiguriert werden. Das mittlere Setting wäre mit 13 Bit passend, verfügbar sind 2048, 4096, **8192** und 16384.
 
 > Ein Objekt in C++ wird normalerweise in der Sektion unter den Präprozessoranweisungen (`#`) bei den Variablen erstellt. Die Syntax ist folgendermaßen: `Typ nameDesObjektes;`. Der Typ ist dabei von der Library vorgegeben. Mit `nameDesObjektes.methode();` kann dann auf Methoden des Objektes zugegriffen werden.
 
@@ -65,7 +65,7 @@ Damit kannst du die Methode mit den gewählten Parametern aufrufen und den Senso
 
 ## Timing
 
-Um die Sequenz mit einer bestimmten Länge aufzunehmen können zwei Wege begangen werden. Entweder wir checken, ob die 8000 Samples aufgenommen wurden, oder ob die 20 Sekunden abgelaufen sind. Zweiteres ist etwas vielseitiger einsetzbar und wird daher hier kurz besprochen. Ein Standardmuster in der Controller welt ist die Zeit mit `millis()` zu Messen. Diese Funktion gibt den Wert der Controller Clock in Millisekunden aus. Da der Wert vom Zeitpunkt des Einschaltens abhängig ist muss daher immer in Differenzen gedacht werden So wird eine Zeit gemessen indem:
+Um die Sequenz mit einer bestimmten Länge aufzunehmen, können zwei Wege begangen werden. Entweder wir checken, ob die 8000 Samples aufgenommen wurden, oder ob die 20 Sekunden abgelaufen sind. Zweiteres ist etwas vielseitiger einsetzbar und wird daher hier kurz besprochen. Ein Standardmuster in der Controller Welt ist die Zeit mit `millis()` zu Messen. Diese Funktion gibt den Wert der Controller Clock in Millisekunden aus. Da der Wert vom Zeitpunkt des Einschaltens abhängig ist, muss daher immer in Differenzen gedacht werden So wird eine Zeit gemessen indem:
 
 ````C++
 startTime = millis();
@@ -73,11 +73,11 @@ startTime = millis();
 endTime = millis() - startTime;
 ````
 
-Wenn nun eine Sequenz von 20 Sekunden aufgenommen werden soll, wollen wir die Startzeit im letzten Schritt vor dem `loop()` nehmen und innerhalb des `loop()` mit den 20 Sekunden vergleichen. Ist die Zeit abgelaufen stoppen wir den Sensor mit `mySensorName.shutDown();`.
+Wenn nun eine Sequenz von 20 Sekunden aufgenommen werden soll, wollen wir die Startzeit im letzten Schritt vor dem `loop()` nehmen und innerhalb des `loop()` mit den 20 Sekunden vergleichen. Ist die Zeit abgelaufen, stoppen wir den Sensor mit `mySensorName.shutDown();`.
 
 ## Sensor Samples Auslesen
 
-Im `loop()` wollen wir nun die Samples auslesen die der Sensor aufgenommen hat. Hier ist ein entscheidender unterschied zur Lesson mit der MPU6050. Da der Sensor einen FIFO-Buffer integriert hat, müssen wir eigentlich keinen dezidierten Timer verwenden. Die Werte werden vom Sensor in der konfigurierten Samplerate aufgenommen und können wann es uns passt vom Buffer ausgelesen werden. Dies läuft in drei Schritten ab:
+Im `loop()` wollen wir nun die Samples auslesen, die der Sensor aufgenommen hat. Hier ist ein entscheidender Unterschied zur Lesson mit der MPU6050. Da der Sensor einen FIFO-Buffer integriert hat, müssen wir eigentlich keinen dezidierten Timer verwenden. Die Werte werden vom Sensor in der konfigurierten Samplerate aufgenommen und können, wann es uns passt vom Buffer ausgelesen werden. Dies läuft in drei Schritten ab:
 ````C++
  mySensorName.check(); // Reads the Buffer, up to 3 samples
  mySensorName.getFIFORed(); // Gets the Red Values from the Buffer
@@ -85,13 +85,13 @@ Im `loop()` wollen wir nun die Samples auslesen die der Sensor aufgenommen hat. 
  mySensorName.nextSample(); // When finished reading, move to the next Sample
 ````
 
-Außerdem kann `mySensorName.available()` verwendet werden, um zu Checken ob sich nach dem Lesen des Buffers tatsächlich **neue** Daten darin befinden. Im Prinzip sollte der nachdem der Buffer gelesen wurde eine Schleife gestartet werde die überprüft ob (noch) neue Daten verfügbar sind. Solang dies der Fall ist werden die Roten und Infraroten Werte über die Serielle Kommunikation ausgegeben und Sample für Sample abgearbeitet.
+Außerdem kann `mySensorName.available()` verwendet werden, um zu checken, ob sich nach dem Lesen des Buffers tatsächlich **neue** Daten darin befinden. Im Prinzip sollte der, nachdem der Buffer gelesen wurde, eine Schleife gestartet werde, die überprüft, ob (noch) neue Daten verfügbar sind. Solang dies der Fall ist, werden die Roten und infraroten Werte über die serielle Kommunikation ausgegeben und Sample für Sample abgearbeitet.
 
 Damit sollte der Code für das Labor soweit fertig sein.
 
 # Abgabe
 
-Da der Code erst im Labor getestet wird könnt ihr nur die Syntax überprüfen indem ihr den Code für einen Arduino UNO kompiliert (*Verify*). Checkt bitte trotzdem so gut es geht ob der Code denn richtig laufen würde. Ladet dann euren Sketch i.e. das `.ino` File beim Assignment hoch.
+Da der Code erst im Labor getestet wird, könnt ihr nur die Syntax überprüfen, indem ihr den Code für einen Arduino UNO kompiliert (*Verify*). Checkt bitte trotzdem so gut es geht, ob der Code denn richtig laufen würde. Ladet dann euren Sketch i.e. das `.ino` File beim Assignment hoch.
 
 
 
