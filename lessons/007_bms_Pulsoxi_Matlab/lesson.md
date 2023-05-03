@@ -88,11 +88,11 @@ Signal(index_disc) = Signal(index_disc-1);
 
 Wir wissen, dass wir SpO2 aus dem Verhältnis von oxygeniertem zu nicht oxigeniertem Haemoglobin.
 
-![Eq1](../../assets/img/007_Pulsoxi_Matlab/Eq1.png)
+![Eq1](../../assets/img/007_bms_Pulsoxi_Matlab/Eq1.png)
 
 Da die Absorption der beiden Wellenlängen unterschiedlich davon abhängig ist kann man aus dem Verhätlnis von Rot zu Infrarot auf SpO2 schließen. Für den hier verwendeten Sensor gibt es bereits eine Annäherung mit einem Polynom, basierend auf einer Kalibrierung. Mit:
 
-![Eq2](../../assets/img/007_Pulsoxi_Matlab/Eq2.png)
+![Eq2](../../assets/img/007_bms_Pulsoxi_Matlab/Eq2.png)
 
 <!-- $$ R = \frac{\frac{AC_{Rot}}{DC_{Rot}}}{\frac{AC_{IR}}{DC_{IR}}} $$
 
@@ -118,7 +118,7 @@ bpm(end+1) = bpm(end);
 
 Um die Daten zu plotten, wird euch die Funktion `plotPoMCI` auf Sakai zur Verfügung gestellt. Übergebt die Signale um euch die Ergebnisse Plotten zu lassen. Das Ergebnis des letzten Plots sollte dann so aussehen:
 
-![Plot Pulsoximeter](../../assets/img/007_Pulsoxi_Matlab/PulsOxi_plot.png)
+![Plot Pulsoximeter](../../assets/img/007_bms_Pulsoxi_Matlab/PulsOxi_plot.png)
 
 # Abgabe
 Ladet euer Matlab Skript beim passenden Assignment auf Sakai hoch.
