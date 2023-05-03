@@ -89,7 +89,24 @@ Signal(index_disc) = Signal(index_disc-1);
 
 Wir wissen, dass wir SpO2 aus dem Verhältnis von oxygeniertem zu nicht oxigeniertem Haemoglobin.
 
-$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
+$$ SpO2 = 100 \frac{HbO2}{Hb02 + Hb}$$
+
+Da die Absorption der beiden Wellenlängen unterschiedlich davon abhängig ist kann man aus dem Verhätlnis von Rot zu Infrarot auf SpO2 schließen. Für den hier verwendeten Sensor gibt es bereits eine Annäherung mit einem Polynom, basierend auf einer Kalibrierung. Mit:
+
+$$ R = \frac{\frac{AC_{Rot}}{DC_{Rot}}}{\frac{AC_{IR}}{DC_{IR}}} $$
+
+und 
+
+$$SpO2 = aR^{2} + bR + c$$
+
+wird dann SpO2 berechnet. Die Werte für die Koeffizienten sind a = 1.59, b = -34.66 und c = 112.69. Hiermit könnt ihr erst R und SpO2 berechnen.
+
+> Bei Interesse könnt ihr weitere Details [hier](https://www.analog.com/en/technical-articles/guidelines-for-spo2-measurement--maxim-integrated.html){:target="_blank"} entnehmen.
+
+## Berechnung Puls
+
+
+
 
 # Abgabe
 
