@@ -15,7 +15,7 @@ Du kennst das Pulsoximeter nun ausreichend aus der Vorlesung und weißt:
 Das Ziel dieser Lesson ist nun, den Code für das poMCI und den Arduino UNO eigenständig zu implementieren. Ihr werdet, dann den Code im Labor verwenden und mit dem von euch gelöteten Pulsoximeter Messungen durchführen. Den Matlab Code um die Messungen zu verarbeiten werdet ihr in einer separaten Lesson schreiben.
 
 Der Sketch an sich besteht wie immer aus `setup()` und `loop()`. Am Ende soll dieser eine Sequenz aufnehmen mit folgenden Eckdaten:
-- 400 Hz Sampling Rate. Damit geht sich nach dem Sampling Theorem locker aus den Puls zu erfassen und für SpO2 ist die Samplingrate praktisch irrelevant.
+- 100 Hz Sampling Rate. Damit geht sich nach dem Sampling Theorem locker aus den Puls zu erfassen und für SpO2 ist die Samplingrate praktisch irrelevant.
 - 8000 Samples bzw. 20 Sekunden Aufzeichnung.
 
 Ein Sample besteht dabei aus den Reflexionswerten der Roten und infraroten LED. Diese sollen während der Aufzeichnung über die serielle Schnittstelle vom Arduino UNO ausgegeben werden. Die Aufzeichnung soll starten, sobald der User einen Startbefehl gegeben hat.
@@ -41,7 +41,7 @@ Timer Library brauchen wir ausnahmsweise keinen, da die Samplerate direkt für d
 
 ## Kommunikation und Sensorkonfiguration
 
-Nachdem die Libraries eingebunden sind, sollte der Sketch nun startklar sein, um den Sensorcode zu implementieren. Im `setup()` des Arduino Sketches kümmern wir uns dazu erst einmal um die Konfiguration der Kommunikation und des Sensors. Schreibe dazu erst den Code, um die serielle Kommunikation zwischen Arduino und Rechner/Arduino IDE zu starten. Checke, ob die Kommunikation wirklich vorhanden ist. Diese könnte auch dazu genutzt werden, um einen Startbefehl für die Aufzeichnung vom Serial Monitor / Plotter an den Arduino UNO zu senden. Baudrate sollte etwas höher gewählt werden (z.B. 115200), da wir einiges an Daten mit etwa 400 Hz senden wollen.
+Nachdem die Libraries eingebunden sind, sollte der Sketch nun startklar sein, um den Sensorcode zu implementieren. Im `setup()` des Arduino Sketches kümmern wir uns dazu erst einmal um die Konfiguration der Kommunikation und des Sensors. Schreibe dazu erst den Code, um die serielle Kommunikation zwischen Arduino und Rechner/Arduino IDE zu starten. Checke, ob die Kommunikation wirklich vorhanden ist. Diese könnte auch dazu genutzt werden, um einen Startbefehl für die Aufzeichnung vom Serial Monitor / Plotter an den Arduino UNO zu senden. Baudrate sollte etwas höher gewählt werden (z.B. 115200), da wir einiges an Daten senden wollen.
 
 Im nächsten Schritt wollen wir, ähnlich zum MPU6050 Beispiel, checken, ob der Sensor wirklich vorhanden ist. Die Bedingung dazu ist:
 
@@ -55,7 +55,7 @@ Wird der Sensor am I2C Port erkannt, können wir ihn für die Aufnahme der Senso
 - `byte powerLevel`: Bestimmt, wie hell die LEDs leuchten. Mögliche Werte gehen von 0 bis 255 (ein Byte eben), wobei 0 ausgeschalten und 255 am hellsten wäre. Eine passende Wahl um zu starten wäre etwa die Hälfe mit 125 oder 0x7D als Hex-Nummer.
 - `byte sampleAverage`: Bestimmt, ob der Sensor die samples Mitteln soll. Wir wollen die Werte im Nachhinein verarbeiten. Wählen wir den Wert von 1 gibt er die Werte 1 zu 1 wie gelesen weiter. Andere Werte wären im Prinzip ein *moving Average* Filter. Zur verfügung stehen die Werte **1**, 2, 4, 8, 16 und 32.
 - `byte ledMode`: Damit können die einzelnen LEDs an- bzw. ausgeschalten werden. So könnte die grüne LED alleine gewählt werden, um nur den Puls zu erfassen. Wir wollen die Rote und infrarote LED lesen und daher den Modus 2.
-- `int sampleRate`: Wie oben angegeben, in Hz. Nebenbei sei erwähnt, dass nur bestimmte Werte zur Verfügung stehen (50, 100, 200, **400**, 800, 1000, 1600, 3200).
+- `int sampleRate`: Wie oben angegeben, wollen wir 100 Hz Samplerate. Allerdings müssen wir hier 400 Hz übergeben, da der Sensor sequenziell **4** Werte sampled (Rot, IR, Grün und Termperatur) -> Daher 400/4 = 100. Nebenbei sei erwähnt, dass nur bestimmte Werte zur Verfügung stehen (50, 100, 200, **400**, 800, 1000, 1600, 3200).
 - `int pulseWidth`: Da der Sensor nur über einen Fototransistor verfügt, aber drei Wellenlängen erkannt werden müssen, wird jeder LED ein Time Slot zugeteilt. Dazu kann die Pulsweite, also die *On-Time* für die LEDs gewählt werden. Das mittlere Setting wäre mit 215 passend, verfügbar sind 69, 118, **215** und 411.
 - `int adcRange`: Der ADC welcher das Signal des Fototransistors digitalisiert, kann in dessen Auflösung konfiguriert werden. Das mittlere Setting wäre mit 13 Bit passend, verfügbar sind 2048, 4096, **8192** und 16384.
 
