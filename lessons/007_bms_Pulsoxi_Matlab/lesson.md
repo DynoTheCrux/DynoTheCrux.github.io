@@ -34,7 +34,6 @@ In der Matlab Einführung habt ihr bereits kennengelernt wie man Daten in Matlab
 Wir erstellen dann ein neues Skript und speichern es erstmal ab. In der ersten Section stellen wir sicher, dass nichts mehr geöffnet ist und keine Variablen mehr im Workspace sind.
 
 ````Matlab
-%%
 clear all
 close all
 clc
@@ -89,15 +88,17 @@ Signal(index_disc) = Signal(index_disc-1);
 
 Wir wissen, dass wir SpO2 aus dem Verhältnis von oxygeniertem zu nicht oxigeniertem Haemoglobin.
 
-$$ SpO2 = 100 \frac{HbO2}{Hb02 + Hb}$$
+![Eq1](../../assets/img/007_Pulsoxi_Matlab/Eq1.png)
 
 Da die Absorption der beiden Wellenlängen unterschiedlich davon abhängig ist kann man aus dem Verhätlnis von Rot zu Infrarot auf SpO2 schließen. Für den hier verwendeten Sensor gibt es bereits eine Annäherung mit einem Polynom, basierend auf einer Kalibrierung. Mit:
 
-$$ R = \frac{\frac{AC_{Rot}}{DC_{Rot}}}{\frac{AC_{IR}}{DC_{IR}}} $$
+![Eq2](../../assets/img/007_Pulsoxi_Matlab/Eq2.png)
+
+<!-- $$ R = \frac{\frac{AC_{Rot}}{DC_{Rot}}}{\frac{AC_{IR}}{DC_{IR}}} $$
 
 und 
 
-$$SpO2 = aR^{2} + bR + c$$
+$$SpO2 = aR^{2} + bR + c$$ -->
 
 wird dann SpO2 berechnet. Die Werte für die Koeffizienten sind a = 1.59, b = -34.66 und c = 112.69. Hiermit könnt ihr erst R und SpO2 berechnen.
 
