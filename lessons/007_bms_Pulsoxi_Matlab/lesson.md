@@ -105,11 +105,22 @@ wird dann SpO2 berechnet. Die Werte für die Koeffizienten sind a = 1.59, b = -3
 
 ## Berechnung Puls
 
+Um den Puls zu berechnen werden im Grunde die Spitzen des infrarot Signals und dessen Zeitabstände gezählt. In Matlab können wir dazu die `findpeaks` Function verwenden. Außerdem übergeben wir den `MinPeakProminence` Parameter, mit dem wir sicherstellen, dass nur die Spitzen gezählt werden, die tatsächlich durch den Herzschlag verursacht wurden. Die Function `diff()` verwenden wir um die zeitliche Differenz zwischen den Spitzen zu finden. Damit die Vektoren gleich lang bleiben, fügen wir den letzten Wert doppelt ein.
 
+````Matlab
+[pk_IR,loc_IR] = findpeaks(signalIR, zeitVektor,'MinPeakProminence', minProminence);
+bpm = 60./diff(loc_IR);
+bpm(end+1) = bpm(end);
+````
 
+# Plotten der Daten
+
+Um die Daten zu plotten, wird euch die Funktion `plotPoMCI` auf Sakai zur Verfügung gestellt. Übergebt die Signale um euch die Ergebnisse Plotten zu lassen. Das Ergebnis des letzten Plots sollte dann so aussehen:
+
+![Plot Pulsoximeter](../../assets/img/007_Pulsoxi_Matlab/PulsOxi_plot.png)
 
 # Abgabe
-
+Ladet euer Matlab Skript beim passenden Assignment auf Sakai hoch.
 
 
 
