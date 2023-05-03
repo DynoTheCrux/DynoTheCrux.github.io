@@ -78,8 +78,18 @@ Wie oben erwähnt wollen wir die ersten 500 Datenpunkte loswerden. Führe dazu f
 time_d = time(N_disc:end); % Der Doppelpunkt-Operator ist sozusagen ein von-bis
 ````
 
+Ebenso werden hier die Noise-Werte rausgeworfen, indem wir erst die Werte finden und dann den Wert mit dem vorangegangenem ersetzen. Da dies nur für den Puls relevant ist, reicht das ganze für die Rohdaten, DC und AC Signale für eine der LEDs durchzuführen.
 
+````Matlab
+index = find(Signal > threshold);
+Signal(index_disc) = Signal(index_disc-1);
+````
 
+## Berechnung SpO2
+
+Wir wissen, dass wir SpO2 aus dem Verhältnis von oxygeniertem zu nicht oxigeniertem Haemoglobin.
+
+$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
 # Abgabe
 
