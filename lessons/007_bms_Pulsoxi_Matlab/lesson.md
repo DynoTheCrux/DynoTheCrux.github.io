@@ -26,7 +26,7 @@ Zu Beginn werden wir uns darum kümmern, dass die Daten im richtigen Format vorl
 
 ## Daten Importieren
 
-In der Matlab Einführung habt ihr bereits kennengelernt, wie man Daten in Matlab importiert und daraus sich ein Skript generieren lässt. Gehe dazu in ein Directory, indem deine Daten liegen und indem du arbeiten bzw. dein Skript ausführen möchtest. Via *Import Data* öffnest du dann den Datenimport in Matlab. Wähle dann dein File mit den Daten aus. Folgen ist der immer selbe Ablauf zu befolgen:
+In der Matlab Einführung habt ihr bereits kennengelernt, wie man Daten in Matlab importiert und daraus sich ein Skript generieren lässt. Gehe dazu in ein Directory, indem deine Daten liegen und indem du arbeiten bzw. dein Skript ausführen möchtest. Via *Import Data* öffnest du dann den Datenimport in Matlab. Wähle dann dein File mit den Daten aus. Es ist der immer selbe Ablauf zu befolgen:
 - Wähle erst den *Delimiter* aus, daher den Character der eure Daten trennt. Damit sollten zwei Spalten angezeigt werden.
 - Wähle *Collumn Vectors* als Output Type und benenne den ersten als `sens_RED` und den zweiten als `sens_IR`.
 - Als Letztes wähle den Pfeil unter *Import Selection* und dann *Generate Function*. Es öffnet sich ein neues Fenster mit einer autogenerierten Function, die mit `Filename` und `dataLines` die Variablen selbst importiert. Diese Function wollen wir abspeichern und später in unserem Skript aufrufen.
