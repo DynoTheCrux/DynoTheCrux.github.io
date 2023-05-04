@@ -100,7 +100,7 @@ und
 
 $$SpO2 = aR^{2} + bR + c$$ -->
 
-Wird dann SpO2 berechnet. Die Werte für die Koeffizienten sind a = 1.59, b = -34.66 und c = 112.69. Hiermit könnt ihr erst R und SpO2 berechnen.
+Wird dann SpO2 berechnet. Die Werte für die Koeffizienten sind a = 1.59, b = -34.66 und c = 112.69. Hiermit könnt ihr erst R und dann SpO2 berechnen.
 
 > Bei Interesse könnt ihr weitere Details [hier](https://www.analog.com/en/technical-articles/guidelines-for-spo2-measurement--maxim-integrated.html){:target="_blank"} entnehmen.
 
