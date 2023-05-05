@@ -32,7 +32,7 @@ Denkt daran, dass Libraries in C++ immer aus `.h` und `.cpp` File bestehen. Leid
 
 > Den *Libraries* Ordner findet ihr im Installationsverzeichnis, je nachdem welche Version ihr verwendet und wo ihr sie installiert habt. Bei Version 2.0.4 z.B. hier: *C:\Users\YOURNAME\AppData\Local\Arduino15\libraries\MAX30105*. Der *AppData* Ordner muss manchmal erst eingeblendet werden.
 
-Des weiteren, brauchen wir die `Wire.h`, da die Kommunikation mit dem Board via I2C läuft. Diese sollte euch ja bereits bekannt sein. Falls ihr sie nicht schon installiert habt, installiert sie über den manuellen Weg oder den eingebauten Library Manager in der Arduino IDE. Bindet beide Libraries in den Sketch via `#include` ein.
+Des weiteren, brauchen wir die `Wire.h`, da die Kommunikation mit dem Board via I2C läuft. Diese sollte euch ja bereits bekannt sein und ist bereits teil des Arduino Cores und muss daher nicht extra installiert werden. Bindet beide Libraries in den Sketch via `#include` ein.
 
 Timer Library brauchen wir ausnahmsweise keine, da die Samplerate direkt für die Sensor IC konfiguriert wird.
 
