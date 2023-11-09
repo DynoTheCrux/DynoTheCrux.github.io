@@ -102,4 +102,3 @@ class Cat implements Animal {
 ````
 > When you implement an interface, you need to override all of its methods or declare the implementing class as abstract.
 
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExInterfaces#Main.java){:target="_blank"}
