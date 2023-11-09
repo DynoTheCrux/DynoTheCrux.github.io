@@ -75,7 +75,6 @@ class Main {
   }
 }
 ````
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExClasses#Main.java){:target="_blank"}
 
 # Access Modifiers
 
