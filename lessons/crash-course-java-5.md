@@ -24,7 +24,6 @@ class BankAccount {
 ````
 This implementation hides the ``balance`` variable, enabling access to it only through the ``deposit`` method, which validates the amount to be deposited before modifying the variable.
 
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExEncapsulation#Main.java){:target="_blank"}
 
 > In brief, **encapsulation** provides the following benefits:
 > - Control of the way data is accessed or modified
@@ -83,7 +82,6 @@ Animal eats
 
 > Recall the protected access modifier, which makes the members visible only to the subclasses.
 
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExInheritance#Main.java){:target="_blank"}
 
 ## Inheritance and Constructors
 
@@ -156,7 +154,6 @@ Woof
 Meow
 ````
 
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExPolymorphism#Main.java){:target="_blank"}
 
 As the reference variable of type ``Animal`` ``a`` contains a ``Dog`` object, the ``makeSound()`` method of the ``Dog`` class will be called.
 The same applies to the ``b`` variable.
