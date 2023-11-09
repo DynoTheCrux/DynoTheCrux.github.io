@@ -27,7 +27,7 @@ class MyClass {
 ````plaintext
 Hello World!
 ````
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExHelloWorld#Main.java){:target="_blank"}
+You can go ahead and try it yourself in an online Java environment such as [replit](https://replit.com/)
 
 
 In Java, every line of code that can actually run needs to be inside a `class`.
