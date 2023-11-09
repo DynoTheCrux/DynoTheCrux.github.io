@@ -27,7 +27,7 @@ class MyClass {
 ````plaintext
 Hello World!
 ````
-You can go ahead and try it yourself in an online Java environment such as [replit](https://replit.com/)
+You can go ahead and try it yourself in an online Java environment such as [replit](https://replit.com/).
 
 
 In Java, every line of code that can actually run needs to be inside a `class`.
@@ -144,7 +144,6 @@ System.out.println("Let's have " + amount + " " + drinks);
 ````plaintext
 Let's have 4 beers
 ````
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExInit#Main.java){:target="_blank"}
 
 It is important to note that a variable is associated with a type, and **is only capable of storing values of that particular type**. For example, an ``int`` variable can store integer values, such as ``123``; but it cannot store real numbers, such as ``12.34``, or texts, such as "Hello".
 
@@ -214,7 +213,6 @@ System.out.println("23 / 6 is " + div + " with " + rem + " rest.");
 ````plaintext
 23 / 6 is 3 with 5 rest.
 ````
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExModulo#Main.java){:target="_blank"}
 
 ## Increment Operators
 
@@ -281,4 +279,3 @@ System.out.println("My name is " + firstName + " " + lastName);
 ````plaintext
 My name is Arthur Dent
 ````
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExStringConc#Main.java){:target="_blank"}
