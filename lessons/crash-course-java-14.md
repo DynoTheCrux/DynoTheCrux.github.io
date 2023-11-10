@@ -67,7 +67,6 @@ Red
 [Red, Blue, Orange]
 ````
 
-[>Try it yourself<](https://replit.com/@m0stlyharmless/MCIAppExArrayList#Main.java){:target="_blank"}
 
 >Other useful methods include the following:
 >- ``contains()``: Returns true if the list contains the specified element
@@ -159,7 +158,6 @@ public class Main {
 ````plaintext
 42
 ````
-[>Try it yourself<](https://replit.com/@m0stlyharmless/MCIAppExHashMap#Main.java){:target="_blank"}
 
 ### Duplicates
 
@@ -199,7 +197,6 @@ class Main {
 ````plaintext
 [Charlie, Alpha, Bravo]
 ````
-[>Try it yourself<](https://replit.com/@m0stlyharmless/MCIAppExHashSet#Main.java){:target="_blank"}
 
 >Note that the order of the elements is **not retained** in a ``HashSet``.
 
