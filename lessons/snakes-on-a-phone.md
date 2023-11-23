@@ -181,10 +181,6 @@ View of the launched program:
 <img src="../assets/img/002_snake/layout_link_after.png" id="fig:006_layout_link_after" />
 </figure>
 
-Video
-------------------------
-
-[![MCI - App - Workshop: Snakes On A Phone 01](https://img.youtube.com/vi/YB-7QcShmWk/hqdefault.jpg)](https://youtu.be/YB-7QcShmWk "MCI - App - Workshop: Snakes On A Phone 01")
 
 Android Library "rtloop
 ========================
@@ -395,10 +391,7 @@ protected void loopIteration() {
 
 The method `setWidgetText(TextView,String)` is a method from `FixedRateLoopActivity` and was introduced because by a special feature of Android the user interface may be changed only directly from the Activity itself. Changes e.g. from lifecycle methods must therefore take the detour via methods provided by the Activity.
 
-Video
-------------------------
 
-[![MCI - App - Workshop: Snakes On A Phone 02](https://img.youtube.com/vi/3htTAgIGlEs/hqdefault.jpg)](https://youtu.be/3htTAgIGlEs "MCI - App - Workshop: Snakes On A Phone 02")
 
 ### Counter Pause/Resume
 
@@ -509,10 +502,7 @@ public class MainActivity extends FixedRateLoopActivity {
     // ... some more code below
 ```
 
-Video
-------------------------
 
-[![MCI - App - Workshop: Snakes On A Phone 03](https://img.youtube.com/vi/C9Cw9KAY0BE/hqdefault.jpg)](https://youtu.be/C9Cw9KAY0BE "MCI - App - Workshop: Snakes On A Phone 03")
 
 Application
 =========
@@ -651,10 +641,7 @@ public class MainActivity extends FixedRateLoopActivity {
 
 In the emulator the snake can now be steered with the keys "A" and "D" to the left or to the right. With touchscreen a tap on the left side of the field causes a left turn and a tap on the right side causes a right turn.
 
-Video
-------------------------
 
-[![MCI - App - Workshop: Snakes On A Phone 04](https://img.youtube.com/vi/3V3gP6pjXM4/hqdefault.jpg)](https://youtu.be/3V3gP6pjXM4 "MCI - App - Workshop: Snakes On A Phone 04")
 
 Final view
 ====================
