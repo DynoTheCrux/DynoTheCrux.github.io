@@ -74,9 +74,7 @@ The actual layout is **only** defined in code in the XML. The design that we see
 # Workshop: Contact Form Activity
 {: .reading}
 
-Let's start by creating a new AndroidStudio project using the "Empty Activity" template.
-
-![Empty Activity template](../../assets/img/003_ui/empty_activity.png)
+Let's start by creating a new AndroidStudio project using the "Empty Views Activity" template.
 
 This template creates a first activity with a simple UI. Select "app/res/layouts/activity_main.xml" in the project tree:
 
