@@ -44,9 +44,7 @@ After this session, you will
 
 ## New Project
 
-Open Android Studio and create a new project using the "Empty Activity" Template.
-
-![Empty Activity Template](../../assets/img/004_lifecycle/empty_activity.png)
+Open Android Studio and create a new project using the "Empty Views Activity" Template.
 
 Choose an appropriate name and save location, e.g. "LifeCycler" and "C:\Android\Projects\LifeCycler"
 
