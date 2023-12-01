@@ -216,7 +216,7 @@ Create an instance of the adapter by using the `new` keyword and the constructor
 
 ````java
   // in onCreate, below connecting the recycler view
-  adapter = new RecyclerViewAdapter(list, getApplication());
+  adapter = new RecyclerViewAdapter(list, getApplicationContext());
   recyclerView.setAdapter(adapter);
   recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 ````
