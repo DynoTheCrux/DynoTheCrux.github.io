@@ -235,127 +235,20 @@ private void setData(String message, String time)
 
 The underlying purpose of our app is to show **how lifecycle methods work**. The next step is therefore to add those methods to our activity. All lifecycle methods are defined in the class `Activity` which is a **super class** of our `MainActivity`. As we want to add our own code to these methods, we **override** them in our class.
 
-> Add following methods to your `MainActivity` class
+> Add following methods to your `MainActivity` class: onStart, onResume, onPause, onStop and onDestroy.
 
-````java
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-````
 
 The `@Override` is just a marker (annotation) which tells us that this method is intended to be overridden. It could be omitted without any ill effects. However, as a developer you are able to see **immediately** which methods are overridden from super classes and which are defined in your won class. This is very valuable information to have at a glance, so we like to keep those `@Override` annotations around.
 
 One more thing to note is the call to ``super`` in all of those methods. It is important to keep this in all lifecycle methods. If we were to omit the `super` call, then super classes could not react to lifecycle events any longer, because according to the laws of java inheritance, only our lifecycle method gets called by the system. Therefore, it is imperative to include the call to the appropriate `super` method so that the code in the super classes also gets executed. Weird stuff can happen otherwise.
 
 ### Adding list items on lifecycle events
-
-Let's go ahead and add a new item to our list whenever one of the lifecycle events occurs. First, we create a new method to prepend the current timestamp to a text in a `String` parameter and append the result to the list.
-
-````java
-    private void addListItem(String name) {
-        // create formatted timestamp HH:mm:ss.SSS of current time
-        String timeNow = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSS"));
-        // combine timestamp and parameter
-        listData.add(String.format("[%s] %s", timeNow, name));
-
-        // notify the adapter that the underlying data has changed
-        listAdapterEvents.notifyDataSetChanged();
-    }
-````
-
-Once we created `addListItem(String)`, we can add it to each of the lifecycle methods. Additionally, we add an entry to our Log.
-
-````java
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        // Log event and add to list
-        Log.d("OnLifeCycle", "onStart()");
-        addListItem("onStart()");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // Log event and add to list
-        Log.d("OnLifeCycle", "onResume()");
-        addListItem("onResume()");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        // Log event and add to list
-        Log.d("OnLifeCycle", "onPause()");
-        addListItem("onPause()");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        // Log event and add to list
-        Log.d("OnLifeCycle", "onStop()");
-        addListItem("onStop()");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        // Log event and add to list
-        Log.d("OnLifeCycle", "onDestroy()");
-        addListItem("onDestroy()");
-    }
-````
-
-Also, don't forget to also add it to ``onCreate``.
-````java
-@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        [...]
-
-        // Log event and add to list
-        Log.d("OnLifeCycle", "onCreate()");
-        addListItem("onCreate()");
-    }
-````
+In each of the lifecycle methods, call the `setData` method. The message variable should be the name of the lifecycle (e.g. "onCreate" or "created"), and the time can be set by calling `Calendar.getInstance().getTime().toString()`. 
 
 > Run the program and notice the lifecycle events happening when you put the app in the background repeatedly.
 
-![App showing lifecycle events](../../assets/img/004_lifecycle/app_lifecycle.png)
-
 Notice the events happening always in a specific order. Also notice the ``onPause`` and ``onStop`` events happening right after one another. However, when putting the app in the background, we see only `onPause` on the screenshot. Even though those two events are happening back to back, `onPause` is the last event happening while the UI is still responsive while `onStop` happens when the UI is no longer updated, hence we don't see the event on the screenshot, even if we see it in the log file.
 
-![Log showing lifecycle events](../../assets/img/004_lifecycle/app_lifecycle_log.png)
-
-[>Program Code for this step<](../../assets/source/004_lifecycle/MainActivity_2.java){:target="_blank"}
 
 ## FloatingActionButton
 
@@ -363,18 +256,10 @@ As a last step, we will add a ``FloatingActionButton`` to finally *destroy* the 
 
 > Go to the layout editor by opening the layout file "activity_main.xml".
 > 
-> Add a ``FloatingActionButton`` as the last child of the ``ConstraintLayout`` (*be careful not to drop the ``FloatingActionButton`` as child of the ``ListView``*). If asked, choose any image you like.
-> Set an appropriate `id` (e.g. `fabDestroy`).
+> Add a ``FloatingActionButton`` as the last child of the ``ConstraintLayout`` (*be careful not to drop the ``FloatingActionButton`` as child of the ``RecyclerView``*). If asked, choose any image you like.
+> Set an appropriate `id` (e.g. `fab_Destroy`).
 >
 > Set the constraints of the ``FloatingActionButton`` be be in the bottom right by dragging it's handles.
-
-![Constraints for FloatingActionButton](../../assets/img/004_lifecycle/layout_dnd_fab.gif)
-
-> Increase the offset of the constraints so that the button does not hug the sides.
-
-![Constraints for FloatingActionButton](../../assets/img/004_lifecycle/layout_dnd_fab.png)
-
-[>Layout Code for this step<](../../assets/source/004_ui/activity_main_2.xml){:target="_blank"}
 
 ## Click and Destroy
 
@@ -382,22 +267,15 @@ Go back to our code in "MainActivity.java". We need to link the `FloatingActionB
 
 ````java
         // Create local variable and link FAB widget
-        FloatingActionButton fabDestroy = findViewById(R.id.fabDestroy);
+        FloatingActionButton fabDestroy = findViewById(R.id.fab_Destroy);
         // Install click listener
         fabDestroy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.w("OnLifeCycle", "Finish it!!!!!1");
+                Log.d("OnLifeCycle", "Finish it!!!!!1");
                 MainActivity.this.finish(); // exits the activity
             }
         });
 ````
 
 > Run the program again. When you click the button, you will find onDestroy() in the log.
-
-![Final app](../../assets/img/004_lifecycle/app_fin.png)
-
-![Final app log](../../assets/img/004_lifecycle/app_fin_log.png)
-
-
-[>Program Code for the final step<](../../assets/source/004_lifecycle/MainActivity_3.java){:target="_blank"}
