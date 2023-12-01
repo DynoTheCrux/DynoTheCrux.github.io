@@ -161,7 +161,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MessageViewHolder>
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<MessageViewHolder> {
 
-    List<MessageData> list = Collections.emptyList();
+    List<MessageData> list;
     Context context;
 
     RecyclerViewAdapter(List<MessageData> list, Context context)
@@ -198,43 +198,38 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MessageViewHolder>
     {
         return list.size();
     }
-```` 
-
-> In ``onCreate``, create a java `ArrayList<String>` instance as the underlying data storage for the `String`s that we want to display in the `ListView`.
-> 
-> Create a new ``ArrayAdapter`` using our list item layout ``R.layout.simple_list_item`` and the data list.
-
-````java
-        // Create list data storage (String)
-        listData = new ArrayList<>();
-        // Create ArrayAdapter to displays a list of texts (String)
-        listAdapterEvents = new ArrayAdapter<>(this, R.layout.simple_list_item, listData);
 ````
 
-Next, we tell the `ListView` to use our adapter
+## Preparing the MainActivity
+To work with the `RecyclerView` in our `MainActivity` we create a `RecyclerView` variable, `RecyclerViewAdapter` variable variable along with a `List` containing our `MessageData`. 
 
 ````java
-        // Set adapter to be used by list view
-        listViewEvents.setAdapter(listAdapterEvents);
+  // inside the MainActivity class
+  RecyclerViewAdapter adapter;
+  RecyclerView recyclerView;
+  
+  List<MessageData> list = new ArrayList<>();
+
 ````
 
-At this point, we can start adding `String`s to our data list so that they are displayed as items in the `ListView`. A simple `for` loop to add a bunch of `String`s will do for now. For reasons of performance, the actual list widget is not updated everytime we change the underlying data. So we have to tell the system, once we are finished manipulating the data list, so that the graphics can then be updated in one go. The method `notifyDataSetChanged()` of the ``ArrayAdapter`` is called for this. 
+> Create an instance of the adapter by using the `new` keyword and the constructor. In the constructor we set the _Application Context_ because we want to work with the adapter over the whole set of lifecycles of the activity. 
 
 ````java
-        // Fill data list with dummy events
-        for(int i = 0; i < 10; i++) {
-            listData.add(String.format("Event #%d", i));
-        }
-
-        // notify the adapter that the underlying data has changed
-        listAdapterEvents.notifyDataSetChanged();
+  // in onCreate, below connecting the recycler view
+  adapter = new RecyclerViewAdapter(list, getApplication());
+  recyclerView.setAdapter(adapter);
+  recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 ````
 
-> Run the app to verify that everything is working so far.
+> Next we create a function inside our `MainActivity` class to set the new information and notify the adapter on the changed data.
 
-![App with generated events](../../assets/img/004_lifecycle/app_dummy_data.png)
-
-[>Program Code for this step<](../../assets/source/004_lifecycle/MainActivity_1.java){:target="_blank"}
+````java
+private void setData(String message, String time)
+{
+    list.add(new MessageData(message, time));
+    adapter.notifyDataSetChanged();
+}
+````
 
 ## Lifecycle Methods
 
