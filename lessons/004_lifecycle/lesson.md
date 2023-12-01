@@ -38,7 +38,7 @@ This sessions app will demonstrate the basic use of the lifecycle events of an a
 After this session, you will
 - know when lifecycle events occur,
 - know how to use lifecycle methods,
-- know 2 new widgets: ``ListView`` and ``FloatingActionButton``,
+- know 2 new widgets: ``RecyclerView`` and ``FloatingActionButton``,
 - be able to create simple custom UIs for lists
 - use logging and logging levels
 
@@ -56,75 +56,149 @@ We will start by designing the layout of the app. Switch over to the layout edit
 
 > Start by deleting the predefined "Hello World" ``TextView`` from the component tree, but **leave the ``ConstraintLayout``**.
 
-### ListView
+### RecyclerView
 
-The central widget of this demo app will be a `ListView`, which displays a scrollable list of widgets. In the most basic case, which we will use here, the list consists of `TextView`s which contain text. However, it is also possible to have a list of buttons or even a whole composition of widgets (think: list of facebook/reddit posts with text, images, like buttons, etc).
+The central widget of this demo app will be a `RecyclerView`, which displays a scrollable list of widgets. In the most basic case, which we will use here, the list consists of `TextView`s which contain text. However, it is also possible to have a list of buttons or even a whole composition of widgets (think: list of facebook/reddit posts with text, images, like buttons, etc).
 
-> Drag and drop a ``ListView`` (Palette: Legacy) into your component tree as child of the root layout `ConstraintLayout`.
+> Drag and drop a ``RecyclerView`` (Palette: Containers) into your component tree as child of the root layout `ConstraintLayout`.
 >
-> Set an appropriate `id` (e.g. `listViewEvents`) and **add constraints** so that the ``ListView`` spans the whole screen. *Hint: Check previous lectures if you forgot how this is done.*
+> Set an appropriate `id` (e.g. `recyclerViewEvents`) and **add constraints** so that the ``RecyclerView`` spans the whole screen. *Hint: Check previous lectures if you forgot how this is done.*
 
-You will still see a blank, white screen. In order to add a few test entries to the list, we have to set the `entries` attribute.
-
->Click on the narrow button on the right of the attribute value to choose entries from a predefined set. Choose "imProtocols" (it does not really matter which).
-
-Your screen should now look like this:
-
-![Layout ListView with dummy entries](../../assets/img/004_lifecycle/layout_list1.png)
-
-> Test the app by running it on the emulator to see that it works.
+You will see a list with sample entries.
 
 [>Layout Code for this step<](../../assets/source/004_ui/activity_main_1.xml){:target="_blank"}
 
-## Populating the ListView in Code
+## Populating the RecyclerView in Code
 
-Static text entries in a `ListView` are seldom enough. Typically, we want to display items dynamically when they become available during the execution of the app, at **run time**. So we need a way to add/remove items from the list from our application code. To achieve this, we have to first *link* the `ListView` in the layout with a variable of type `ListView` in our code.
+Static text entries in a `RecyclerView` are seldom enough. Typically, we want to display items dynamically when they become available during the execution of the app, at **run time**. So we need a way to add/remove items from the list from our application code. To achieve this, we have to first *link* the `RecyclerView` in the layout with a variable of type `RecyclerView` in our code.
 
 > Open "MainActivity.java"
 
-Here we have ou first encounter with a **lifecycle method**, ``onCreate``. This method is called by the system **when the activity is created**, long before the layout is shown to the user. This is also the spot where the layout is created by the `setContentView(layout)` method. The `onCreate` lifecycle method is therefore the perfect place to populate our ``ListView``.
+Here we have you first encounter with a **lifecycle method**, ``onCreate``. This method is called by the system **when the activity is created**, long before the layout is shown to the user. This is also the spot where the layout is created by the `setContentView(layout)` method. The `onCreate` lifecycle method is therefore the perfect place to populate our ``RecyclerView``.
 
-> Inside the `onCreate` method, create a new local variable `listViewEvents` of type `ListView`. The *linking* of this variable to the widget in the layout is done with the method `findByViewId(id)`. We make use of the `R` object which provides access to resources such as **layouts** and widget **ids**. *Hint: If you use the auto-complete feature when using previously unused types, the necessary import-statement will be added automatically.*
+> Inside the `onCreate` method, create a new local variable `recyclerView` of type `RecyclerView`. The *linking* of this variable to the widget in the layout is done with the method `findByViewId(id)`. We make use of the `R` object which provides access to resources such as **layouts** and widget **ids**. *Hint: If you use the auto-complete feature when using previously unused types, the necessary import-statement will be added automatically.*
+
 
 ````java
+
+RecyclerView recyclerView;
+
 protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // set activity content to layout defined in 'activity_main.xml'
         setContentView(R.layout.activity_main);
         
         // Create local variable and link ListView widget
-        ListView listViewEvents = findViewById(R.id.listViewEvents);
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerViewEvents);
     }
 ````
 
-As explained above, the `ListView` is not simply a list of texts, but actually a list of widgets. So we need to tell the `ListView` which widgets to use as list items and what their content should be. For this purpose, so called `Adapter` objects are required. Such an adapter object translates (adapts) between the widget (what the user interacts with) and the underlying data (what the program interacts with). Here, we will use an `ArrayAdapter` to create a simple list of text items.
+As explained above, the `RecyclerView` is not simply a list of texts, but actually a list of widgets. So we need to tell the `RecyclerView` which widgets to use as list items and what their content should be. For this purpose, so called `Adapter` objects are required. Such an adapter object translates (adapts) between the widget (what the user interacts with) and the underlying data (what the program interacts with). Here, we will use an `RecyclerViewAdapter` to create a simple list of text items.
 
 ### A Simple Layout for List Items
-Before we can continue with defining our `Adapter`, we need to create the layout for our list items. We want a simple layout containing just a `TextView`.
+Before we can continue with defining our `Adapter`, we need to create the layout for our list items. We want a simple layout containing just `TextView`s.
 
 > Select the folder "res/layout", right-click and choose "New > Layout Resource File"
 
 ![New > Layout Resource File](../../assets/img/004_lifecycle/project_view_create_layout.png)
 
-> Set the name of the new resource file to "simple_list_item" and change the root element to `TextView`.
-
-![simple_list_item](../../assets/img/004_lifecycle/view_new_simple_list_item.png)
-
-> Set the ``id`` attribute to `lblListItem` and add some text so that you can see the styling. Set the attributes `paddingHorizontal` to `20dp` and ``paddingVertical`` to ``15dp``. Increase the ``textSize`` to ``18sp``. Feel free to adjust the styling further.
+> Set the name of the new resource file to "message". Populate the layout file with two `TextView`s next to each other. Add some margins/padding to make sure they do not stick to each other. The `ConstraintLayout` should wrap the content to make sure it is only as big as the elements. Set meaningful IDs to the elements.
 
 [>Layout Code for this step<](../../assets/source/004_lifecycle/simple_list_item.xml){:target="_blank"}
 
 
 ### Creating the Adapter
-> Create the **properties** `listViewAdapter` of type `ArrayAdapter<String>` as well as `listData` of type `ArrayList<String>`.
+
+> Before we create our `Adapter`, we create a so called `ViewHolder`. It is a class that contains the view elements of our message item layout file, keeping the information at one place, information flow unilateral and easily extendable. It extends the superclass from the `RecyclerView` and the constructor we connect our view IDs. Therefore create a new file containing the java class.
 
 ````java
-public class MainActivity extends AppCompatActivity {
 
-    // Properties
-    private ArrayAdapter<String> listAdapterEvents;
-    private ArrayList<String> listData;
+public class RecyclerViewAdapter extends RecyclerView.Adapter<MessageViewHolder> {
+
+    List<MessageData> list;
+    Context context;
+
+    RecyclerViewAdapter(List<MessageData> list, Context context)
+    {
+        this.list = list;
+        this.context = context;
+
+    }
+
+    @NonNull
+    @Override
+    public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+
+        // Inflate the layout
+        View messageView = inflater.inflate(R.layout.message, parent, false);
+
+        MessageViewHolder viewHolder= new MessageViewHolder(messageView);
+        return viewHolder;
+    }
+
+    @Override
+    public void
+    onBindViewHolder(final MessageViewHolder viewHolder,
+                     final int position)
+    {
+        viewHolder.txtMessage.setText(list.get(position).message);
+        viewHolder.txtTime.setText(list.get(position).time);
+
+    }
+
+    @Override
+    public int getItemCount()
+    {
+        return list.size();
+    }
+}
 ````
+
+> Next we can create the `Adapter` class. Create a java file with the class name again. We extend the superclass `RecyclerView.Adapter<MessageViewHolder>` and override some of its methods. In the constructor we make sure that the correct `context` can be set and the right data is connected to the view items. The overriden methods `onCreateViewHolder` and `onBindViewHolder` are called when the view is created or a new item is bound to the view. Therefore we inflate the message layout and set the contents in those methods. The method `getItemCount` is abstract in the superclass and also has to be overridden and returns the size of our list.
+
+````java
+
+public class RecyclerViewAdapter extends RecyclerView.Adapter<MessageViewHolder> {
+
+    List<MessageData> list = Collections.emptyList();
+    Context context;
+
+    RecyclerViewAdapter(List<MessageData> list, Context context)
+    {
+        this.list = list;
+        this.context = context;
+
+    }
+
+    @NonNull
+    @Override
+    public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+
+        // Inflate the layout
+        View messageView = inflater.inflate(R.layout.message, parent, false);
+
+        MessageViewHolder viewHolder= new MessageViewHolder(messageView);
+        return viewHolder;
+    }
+
+    @Override
+    public void
+    onBindViewHolder(final MessageViewHolder viewHolder,
+                     final int position)
+    {
+        viewHolder.txtMessage.setText(list.get(position).message);
+        viewHolder.txtTime.setText(list.get(position).time);
+
+    }
+
+    @Override
+    public int getItemCount()
+    {
+        return list.size();
+    }
+```` 
 
 > In ``onCreate``, create a java `ArrayList<String>` instance as the underlying data storage for the `String`s that we want to display in the `ListView`.
 > 
