@@ -76,7 +76,7 @@ Static text entries in a `RecyclerView` are seldom enough. Typically, we want to
 
 Here we have you first encounter with a **lifecycle method**, ``onCreate``. This method is called by the system **when the activity is created**, long before the layout is shown to the user. This is also the spot where the layout is created by the `setContentView(layout)` method. The `onCreate` lifecycle method is therefore the perfect place to populate our ``RecyclerView``.
 
-> Inside the `onCreate` method, create a new local variable `recyclerView` of type `RecyclerView`. The *linking* of this variable to the widget in the layout is done with the method `findByViewId(id)`. We make use of the `R` object which provides access to resources such as **layouts** and widget **ids**. *Hint: If you use the auto-complete feature when using previously unused types, the necessary import-statement will be added automatically.*
+Inside the `onCreate` method, create a new local variable `recyclerView` of type `RecyclerView`. The *linking* of this variable to the widget in the layout is done with the method `findByViewId(id)`. We make use of the `R` object which provides access to resources such as **layouts** and widget **ids**. *Hint: If you use the auto-complete feature when using previously unused types, the necessary import-statement will be added automatically.*
 
 
 ````java
@@ -109,7 +109,7 @@ Before we can continue with defining our `Adapter`, we need to create the layout
 
 ### Creating the Adapter
 
-> Before we create our `Adapter`, we create a so called `ViewHolder`. It is a class that contains the view elements of our message item layout file, keeping the information at one place, information flow unilateral and easily extendable. It extends the superclass from the `RecyclerView` and the constructor we connect our view IDs. Therefore create a new file containing the java class.
+Before we create our `Adapter`, we create a so called `ViewHolder`. It is a class that contains the view elements of our message item layout file, keeping the information at one place, information flow unilateral and easily extendable. It extends the superclass from the `RecyclerView` and the constructor we connect our view IDs. Therefore create a new file containing the java class.
 
 ````java
 
@@ -155,7 +155,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MessageViewHolder>
 }
 ````
 
-> Next we can create the `Adapter` class. Create a java file with the class name again. We extend the superclass `RecyclerView.Adapter<MessageViewHolder>` and override some of its methods. In the constructor we make sure that the correct `context` can be set and the right data is connected to the view items. The overriden methods `onCreateViewHolder` and `onBindViewHolder` are called when the view is created or a new item is bound to the view. Therefore we inflate the message layout and set the contents in those methods. The method `getItemCount` is abstract in the superclass and also has to be overridden and returns the size of our list.
+Next we can create the `Adapter` class. Create a java file with the class name again. We extend the superclass `RecyclerView.Adapter<MessageViewHolder>` and override some of its methods. In the constructor we make sure that the correct `context` can be set and the right data is connected to the view items. The overriden methods `onCreateViewHolder` and `onBindViewHolder` are called when the view is created or a new item is bound to the view. Therefore we inflate the message layout and set the contents in those methods. The method `getItemCount` is abstract in the superclass and also has to be overridden and returns the size of our list.
 
 ````java
 
@@ -212,7 +212,7 @@ To work with the `RecyclerView` in our `MainActivity` we create a `RecyclerView`
 
 ````
 
-> Create an instance of the adapter by using the `new` keyword and the constructor. In the constructor we set the _Application Context_ because we want to work with the adapter over the whole set of lifecycles of the activity. 
+Create an instance of the adapter by using the `new` keyword and the constructor. In the constructor we set the _Application Context_ because we want to work with the adapter over the whole set of lifecycles of the activity. 
 
 ````java
   // in onCreate, below connecting the recycler view
@@ -221,7 +221,7 @@ To work with the `RecyclerView` in our `MainActivity` we create a `RecyclerView`
   recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 ````
 
-> Next we create a function inside our `MainActivity` class to set the new information and notify the adapter on the changed data.
+Next we create a function inside our `MainActivity` class to set the new information and notify the adapter on the changed data.
 
 ````java
 private void setData(String message, String time)
@@ -236,7 +236,6 @@ private void setData(String message, String time)
 The underlying purpose of our app is to show **how lifecycle methods work**. The next step is therefore to add those methods to our activity. All lifecycle methods are defined in the class `Activity` which is a **super class** of our `MainActivity`. As we want to add our own code to these methods, we **override** them in our class.
 
 > Add following methods to your `MainActivity` class: onStart, onResume, onPause, onStop and onDestroy.
-
 
 The `@Override` is just a marker (annotation) which tells us that this method is intended to be overridden. It could be omitted without any ill effects. However, as a developer you are able to see **immediately** which methods are overridden from super classes and which are defined in your won class. This is very valuable information to have at a glance, so we like to keep those `@Override` annotations around.
 
@@ -254,12 +253,8 @@ Notice the events happening always in a specific order. Also notice the ``onPaus
 
 As a last step, we will add a ``FloatingActionButton`` to finally *destroy* the app. As the name suggests, this widget is a simple button that has a drop shadow underneath so that it looks like floating above the rest of the screen. We will use it to send the `onDestroy` event to the app.
 
-> Go to the layout editor by opening the layout file "activity_main.xml".
-> 
-> Add a ``FloatingActionButton`` as the last child of the ``ConstraintLayout`` (*be careful not to drop the ``FloatingActionButton`` as child of the ``RecyclerView``*). If asked, choose any image you like.
-> Set an appropriate `id` (e.g. `fab_Destroy`).
->
-> Set the constraints of the ``FloatingActionButton`` be be in the bottom right by dragging it's handles.
+Go to the layout editor by opening the layout file "activity_main.xml".
+Add a ``FloatingActionButton`` as the last child of the ``ConstraintLayout`` (*be careful not to drop the ``FloatingActionButton`` as child of the ``RecyclerView``*). If asked, choose any image you like. Set an appropriate `id` (e.g. `fab_Destroy`). Set the constraints of the ``FloatingActionButton`` be be in the bottom right by dragging it's handles.
 
 ## Click and Destroy
 
