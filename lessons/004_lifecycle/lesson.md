@@ -113,44 +113,20 @@ Before we create our `Adapter`, we create a so called `ViewHolder`. It is a clas
 
 ````java
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<MessageViewHolder> {
+public class MessageViewHolder extends RecyclerView.ViewHolder {
 
-    List<MessageData> list;
-    Context context;
+    TextView txtMessage;
+    TextView txtTime;
+    View view;
 
-    RecyclerViewAdapter(List<MessageData> list, Context context)
+
+    MessageViewHolder(View itemView)
     {
-        this.list = list;
-        this.context = context;
+        super(itemView);
+        txtMessage = itemView.findViewById(R.id.txt_Message);
+        txtTime = itemView.findViewById(R.id.txt_Time);
+        view = itemView;
 
-    }
-
-    @NonNull
-    @Override
-    public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-
-        // Inflate the layout
-        View messageView = inflater.inflate(R.layout.message, parent, false);
-
-        MessageViewHolder viewHolder= new MessageViewHolder(messageView);
-        return viewHolder;
-    }
-
-    @Override
-    public void
-    onBindViewHolder(final MessageViewHolder viewHolder,
-                     final int position)
-    {
-        viewHolder.txtMessage.setText(list.get(position).message);
-        viewHolder.txtTime.setText(list.get(position).time);
-
-    }
-
-    @Override
-    public int getItemCount()
-    {
-        return list.size();
     }
 }
 ````
