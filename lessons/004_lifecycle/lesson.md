@@ -130,6 +130,22 @@ public class MessageViewHolder extends RecyclerView.ViewHolder {
     }
 }
 ````
+The data itself will be of object `MessageData`, a class that we create ourselfes. It makes sure that we can extend and change the data that will be shon in our recycler view flexibly.
+
+````java
+public class MessageData {
+
+    String message;
+    String time;
+
+    MessageData(String message, String time)
+    {
+        this.message = message;
+        this.time = time;
+    }
+}
+````
+
 
 Next we can create the `Adapter` class. Create a java file with the class name again. We extend the superclass `RecyclerView.Adapter<MessageViewHolder>` and override some of its methods. In the constructor we make sure that the correct `context` can be set and the right data is connected to the view items. The overriden methods `onCreateViewHolder` and `onBindViewHolder` are called when the view is created or a new item is bound to the view. Therefore we inflate the message layout and set the contents in those methods. The method `getItemCount` is abstract in the superclass and also has to be overridden and returns the size of our list.
 
