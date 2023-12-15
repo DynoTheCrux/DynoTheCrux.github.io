@@ -77,13 +77,13 @@ executor.execute(() -> {
 
 Why does this work? As we know it has to be a `Runnable` (an interface with one method `run()` that has to be overridden) we can reduce the syntax and only write what would be inside the `run()`method. Of course you could also define a `Runnable` on its own and just give it to the executor by the time it needs to be executed.
 
-Implement it in our `onCreate()` function and put the code what you think should run in the background. You can use the `Thread.sleep()` to make the background task a little bit longer and therefore more visible to the user. Now we still shut shutdown and release the processing resources again. Therefore it makes sense to call the `shutdown()` method in the appropriate lifecycle method of the activity.
+Implement it in our `onCreate()` function and put the code what you think should run in the background. You can use the `Thread.sleep()` to make the background task a little bit longer and therefore more visible to the user. Now we still shut shutdown and release the processing resources again. Therefore it makes sense to call the `shutdown()` method in the appropriate lifecycle method of the activity. 
 
 > `shutdown()` will finish any executing tasks. Use `shutdownNow()` if you want to shutdown all background work of the service immediately.
 
-Try to run the code. You will see that the GUI will be loaded and shown to the user even if the tasks in the background were not finished yet. It stays responsive so it is what we wanted right? Still we maybe do not want to see GUI elements if they are not set with the correct image and text yet. Jump to the *Adding a loading screen* section to improve our UI.
+Try to run the code. Do you get a *Fatal Exception*? What went wrong? Could be that you called UI related code (anything with `Views`) in your runnable? make sure you only do that using the method `runOnUIThread()` to make sure it happens on the UI/Main thread! Now you can try again. You will see that the GUI will be loaded and shown to the user even if the tasks in the background are not finished yet. It stays responsive so it is what we wanted right? Still we maybe do not want to see GUI elements if they are not set with the correct image and text yet. Jump to the *Adding a loading screen* section to improve our UI.
 
-### AsyncTask
+### AsyncTask (Deprecated)
 
 The AsyncTask class is using built in lifecycle-methods to simplify its use. We have four methods to our use:
 - doInBackground() -> We **must** override this method as it specifies the tasks to be done in a background thread.
@@ -112,30 +112,17 @@ new AsyncActivityClass().execute(currentWeather);
 ## Adding a loading screen
 
 Sometimes, we have to wait for a task to be done before we can show it to the user **but** still we want to keep the responsiveness of our app to:
-- Show the user that something is happing and it is (probably) intentional and according to plan
+- Show the user that something is happening and it is (probably) intentional and according to plan.
 - Keep the Android Environment from killing our application because it cannot update the UI-Thread.
 
 One way to do this is to implement a loading screen. As we are in the same situation with our ShowActivity we will have a look at how this is done.
 
-First, we will add a `ProgressBar` to the constraintLayout of the `activity_show.xml`. Find it in the palette, add constraints and a fitting id. It will move by default, if you want to change the behaviour you can have a closer look at it\'s attributes in the designer. Furthermore, add an id to the `scrollView` as we want it only to be visible once the task is done.
+First, we will add a `ProgressBar` to the constraintLayout of the `activity_show.xml`. Find it in the palette, add constraints and a fitting id. It will move by default, if you want to change the behaviour you can have a closer look at it\'s attributes in the designer. Furthermore, add an id to the `linearLayout` as we want it only to be visible once the task is done.
 
 Switching back to the `ShowActivity.java` create variables for the progress bar and the scroll view and connect them to the class in the usual fashion.
 >Hint: findViewById()
 
-As we want the progress bar to be visible during the task but not after doInBackground() is finished, we will set it to invisible in the onPostExecute() method of our AsyncTask class. The same process but vice versa is done for the scroll view which includes all the other view elements for this activity.
-````Java
-@Override
-protected void onPreExecute() {
-	super.onPreExecute();
-	scrollV.setVisibility(View.INVISIBLE);
-}
+As we want the progress bar to be visible during the task but not after we will set it to invisible once the background work is finished. On the other hand we set the linear layout and the button to invisible before and to visible afterwards.
+>Hint: `.setVisibility(View.INVISIBLE)`
 
-protected void onPostExecute(IbkActivity ibkActivity) {
-	super.onPostExecute(ibkActivity);
-	prgBarLoading.setVisibility(View.INVISIBLE);
-	scrollV.setVisibility(View.VISIBLE);
-	// rest of the code...
-}
-````
-
-Before you have a test run of the application you can add a *Thread.sleep()* somewhere inside the doInBackground() to make it more visible. **As noted in the lecture** this is used to intentionally make the process worse, please avoid using it in your applications ;).
+Now you can run the app again. If you used `Thread.sleep()` to make things longer a little bit you should now see a loading screen until the work is done. 
