@@ -10,20 +10,20 @@
 ![Final app example](../../assets/img/012_timingAndGraphs/GraphsMain.png)
 
 
-In this workshop wea re going to have a quick look on how we use an external library to implement graphs and plots your project.
+In this workshop we are going to have a quick look on how we use an external library to implement graphs and plots your project.
 
 ## Start a new empty project
 
-Make sure you are using the *empty activitiy* template. First thing you can do is to delete the *Hello World* in the layout file.
+Make sure you are using the *empty views activitiy* template. First thing you can do is to delete the *Hello World* in the layout file.
 
 ## The MPAndroidChart Library
 
-In this workshop we are going to use the *MPAndroidChart* library by Philipp Jahoda. It provides a quite complete range of data visualization possibilities. it is implemented natively in Java.
+In this workshop we are going to use the *MPAndroidChart* library by Philipp Jahoda. It provides a quite big range of data visualization possibilities. It is implemented natively in Java.
 > If you need more information or want to check some example codes, you can find the source and documentation [here](https://github.com/PhilJay/MPAndroidChart){:target="_blank"}.
 
 ## Add the library to your project
 
-Simliarily to the MQTT implementation, we need to implement the library to be added to our current project in the gradle files. As the exact steps can differ dependent on the library which wants to be used, we have to check the documentation of the library to see how we have to do it.
+Similarly to the MQTT implementation, we need to implement the library to be added to our current project in the Gradle files. As the exact steps can differ depending on the library which wants to be used, we have to check the documentation of the library to see how we have to do it.
 
 In the documentation we can find a *Gradle Setup*:
 ````
@@ -35,14 +35,24 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
 ````
-> Do not be confused by the *Maven Setup* in the documentation, this is another build tool similarily to *Gradle*. As we use Gradle, it is not relevant for us here.
+> Do not be confused by the *Maven Setup* in the documentation, this is another build tool similar to *Gradle*. As we use Gradle, it is not relevant for us here.
 
 So, to allow us to work with the library we just have to add the above lines to our *repositories* and *dependencies* block in our gradle files. You can think of the repositories section as some kind of distributor for libraries. *Jitpack* is located at GitHub and holds various libraries as package builds. The block can be found in the `settings.gradle` file. Make sure you add the line in the section which belongs to the dependencies and not plugins.
 
 The second line is found in the `build.gradle` on module level (*Module:YourAppName.app*). It specifies which library of the above repository we want to implement in our project.
 
+Last I checked the documentation (5.1.2024) was still done for older Gradle versions that use *Groovy* as their language. In newer versions *Kotlin* in used. This means that if your Gradle files end with *.kts* your syntax is a bit different:
+
+````
+// In build.gradle.kts (Module :app)
+implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+// In settings.gradle.kts (Project Settings)
+maven { url = uri("https://jitpack.io") }
+````
+
 After you have finished these steps, sync your gradle files and check in the *Build* section in the lower bar of Android Studio if it has been added successfully.
->The first time syncing maybe takes a bit of time because it has to download the library form said repository.
+>The first time syncing maybe takes a bit of time because it has to download the library from said repository.
 
 ## Implement some example graph
 
@@ -55,13 +65,13 @@ Now let\'s implement an example. In the layout file of the activity, add a bar c
 	android:layout_height="" />
 ````
 
-In the `MainActivity.java` connect the view element to an instance of class `BarChart` the usual way. Next create an `ArrayList` which should contain the data for the bar chart. Add **some** mock data of type `BarEntry` to the `ArrayList`. The constructor of BarEntry takes two parameters which are simply the x and y values of the chart later on.
+In the `MainActivity.java` connect the view element to an instance of class `BarChart` the usual way. Next, create an `ArrayList` which should contain the data for the bar chart. Add **some** mock data of type `BarEntry` to the `ArrayList`. The constructor of BarEntry takes two parameters which are simply the x and y values of the chart later on.
 
 ````Java
 myArrayList.add(new BarEntry(x, y));
 ````
-To be able to show the dataset, the ArrayList has to be converted to a `BarDataSet` and finally to `BarData`. Create a **new** BarDataSet object. Besides the ArrayList it will take a String called *Label* which describes the dataset as a second argument. The constructor for `BarData` takes the above instantiated BarDataSet as an argument. To show the data in the chart simply call the *setData(myBarData)* method from the BarChart object you created at the beginning.
->You can now try to make the chart more appealing by changing e.g. the colors with the *myBarDataSet.setColors()* method or animate the data using *myChart.animateY()*.
+To be able to show the dataset, the ArrayList has to be converted to a `BarDataSet` and finally to `BarData`. Create a **new** BarDataSet object. Besides the `ArrayList`, it will take a String called *Label* which describes the dataset as a second argument. The constructor for `BarData` takes the above instantiated BarDataSet as an argument. To show the data in the chart simply call the *setData(myBarData)* method from the BarChart object you created at the beginning.
+>You can now try to make the chart more appealing by changing e.g. the colours with the *myBarDataSet.setColors()* method or animate the data using *myChart.animateY()*.
 
 
 # Workshop: Timing in Android
