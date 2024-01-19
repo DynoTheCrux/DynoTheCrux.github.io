@@ -83,7 +83,7 @@ To be able to show the dataset, the ArrayList has to be converted to a `BarDataS
 
 ## Start a new empty project
 
-Make sure you are using the *empty activitiy* template. First thing you can do is to delete the *Hello World* in the layout file.
+Make sure you are using the *empty views activitiy* template. First thing you can do is to delete the *Hello World* in the layout file.
 
 ## Create the application structure
 
