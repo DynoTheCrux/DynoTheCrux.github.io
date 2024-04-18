@@ -14,7 +14,7 @@ Du hast bereits ein Konzept für das Design der Platte festgelegt.
 
 ![Konzept Kraftmessplatte](../../assets/img/003_bms_AIA/kraftmessplatte.png)
 
-Ebenso sind die Sensoren schon ausgewählt und deren Output bekannt. In Kombination mit einem Spannungsteiler und der Referenzspannung von 5 V des Mikrocontrollers ergibt sich eine Spanne von **0.5 V -> 4,5 V**. Der ADC des Mikrocontrollers ist allerdings auf **0 V -> 5 V** ausgelegt mit einer Auflösung von 10 bit. 
+Ebenso sind die Sensoren schon ausgewählt und deren Output bekannt. In Kombination mit einem Spannungsteiler und der Referenzspannung von 5 V des Mikrocontrollers ergibt sich eine Spanne von **0,7 V -> 3,5 V**. Der ADC des Mikrocontrollers ist allerdings auf **0 V -> 5 V** ausgelegt mit einer Auflösung von 10 bit. 
 
 ## AIA - Analog Interface Amplifier
 
@@ -47,7 +47,7 @@ Plotte den Unterschied in die gleiche Figure indem du `hold on` vor dein nächst
 
 # Abgabe
 
-Das Endergebnis sollte dann etwa so aussehen:
+Das Endergebnis sollte dann etwa (mit anderen Werten) so aussehen:
 
 ![Plot AIA](../../assets/img/003_bms_AIA/plot.png)
 
