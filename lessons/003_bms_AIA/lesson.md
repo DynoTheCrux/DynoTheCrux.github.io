@@ -51,7 +51,7 @@ Das Endergebnis sollte dann etwa (mit anderen Werten) so aussehen:
 
 ![Plot AIA](../../assets/img/003_bms_AIA/plot.png)
 
-Bitte gib zum passenden Assignment dein Matlab Script ab.
+Bitte gib zum passenden Assignment dein Matlab Script und den als Bild exportierten Plot ab.
 
 
 
