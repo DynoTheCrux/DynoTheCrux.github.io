@@ -57,7 +57,7 @@ Der Inhalt der Teilthemen ist bereits oben kurz umrissen. Er sollte so gut es ge
 
 # Abgabe und Ablauf
 
-Der erste Teil der Abgabe beginnt damit, dass ihr die fertige Powerpoint-Presentation einen Tag vor dem letzten Termin beim zugehörigen Sakai-Assignment hochladet. Die Präsentation werden wie kurz in der Vorlesung erwähnt am letzten Termin in einer art Mini-Konferenz vorgetragen und werden sich bereits vorbereitet am PC befinden.
+Der erste Teil der Abgabe beginnt damit, dass ihr die fertige Powerpoint-Presentation vor dem letzten Termin beim zugehörigen Sakai-Assignment hochladet. Die Präsentation werden wie kurz in der Vorlesung erwähnt am letzten Termin in einer art Mini-Konferenz vorgetragen und werden sich bereits vorbereitet am PC befinden.
 
 > Es darf auch davor jederzeit die Presentation geschickt werden, falls jemand Feedback möchte.
 
