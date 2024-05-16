@@ -7,10 +7,10 @@
 # Aufgabenstellung
 
 Für diese Lehrveranstaltung werdet ihr eine Presentation vorbereiten und halten. Der Inhalt dreht sich dabei um ein spezifisches Wearable, welche dabei zur Option stehen wird von den Lehrenden angegeben. Teile der Presentation könnt ihr bereits in der Vorlesung vorbereiten. Die Benotung erfolgt dabei wie folgt:
-- 50 % sind der Gesamteindruck der Presentation
+- 50% sind der Gesamteindruck der Presentation
     - Wie gut ist die Presentation Strukturiert?
     - Sind die Inhalte gut aufeinander abgestimmt?
-- 50 % sind der Endruck der einzelnen Personen und Teilinhalte
+- 50% sind der Endruck der einzelnen Personen und Teilinhalte
     - Wie gut sind die spezifischen Teile vorbereitet und vorgetragen?
 
 So soll die Gruppe aber auch jeder einzelne in der Benotung berücksichtigt werden. Die Grundstruktur der Presentation ist vorgegeben. Jedes Teilthema wird von jeweils einer Person vorbereitet. Es gibt 4 Teilthemen -> es werden somit **Gruppen von 4** gebildet.
@@ -40,8 +40,9 @@ Im nächsten Schritt werdet ihr die Teilthemen eurer Präsentation zuteilen. Die
 - **Intro**: Das Gerät wird vorgestellt. Welches Problem löst es? Warum Qualifiert es sich als Wearable bzw. was ist noch nötig damit es sich als Wearable qualifiziert?
 - **Funktionsweise**: Beschreibe die technischen Hintergründe des Wearable. Such dir dabei ein bestimmtes Feature heraus auf das technisch im Detail eingegangen werden soll. 
 - **Anwendung**: Beschreibe die Anwendung bzw. mögliche Anwendungen für das Wearable. Gehe dabei auf die User-Gruppe und Stakeholder ein.
-- **Ethische Aspekte und Diskussion**: Diskutiere ethische Aspekte die mit dem Wearable einher gehen. Dies wird das Ende der Presentation sein und der Starpunkt für eine Diskussion. Bereite ggf. Fragen vor die eine Diskussion anstoßen.
-
+- **Ethische Aspekte und Diskussion**: Diskutiere ethische Aspekte die mit dem Wearable einher gehen. Dies wird das Ende der Presentation sein und der Starpunkt für eine Diskussion.
+- **Quiz**: Verpflichtender Teil der Präsentation wird ein kurzes Quiz (3-4 Fragen) sein. Verwendet dazu ein passendes Tool (e.g. [Slido](https://www.slido.com/de){:target="_blank"}) welches ihr in eure Folien einbinden und Fragen an euer Publikum stellen könnt.
+  
 Jeder in der Gruppe übernimmt eines der Teilthemen und wird dieses auch vorstellen. Versucht es nach euren eigenen Interessen zu verteilen. In der Präsentation muss ersichtlich sein wer welches Thema vorgetragen hat, damit eine Einzelnote vergeben werden kann. Die Reihenfolge der Themen wird wie angegeben empfohlen, kann aber angepasst werden.
 
 
