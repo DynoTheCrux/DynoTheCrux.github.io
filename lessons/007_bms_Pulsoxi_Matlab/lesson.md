@@ -93,7 +93,7 @@ Wir wissen, dass wir SpO2 aus dem Verhältnis von oxygeniertem zu nicht oxygenie
 
 Da die Absorption der beiden Wellenlängen unterschiedlich davon abhängig ist, kann man aus dem Verhältnis von Rot zu Infrarot auf SpO2 schließen. Für den hier verwendeten Sensor gibt es bereits eine Annäherung mit einem Polynom, basierend auf einer Kalibrierung. Mit:
 
-![Eq2](../../assets/img/007_bms_Pulsoxi_Matlab/Eq2.png | width = 100)
+![Eq2](../../assets/img/007_bms_Pulsoxi_Matlab/Eq2.png =250x250)
 
 
 <!-- $$ R = \frac{\frac{AC_{Rot}}{DC_{Rot}}}{\frac{AC_{IR}}{DC_{IR}}} $$
