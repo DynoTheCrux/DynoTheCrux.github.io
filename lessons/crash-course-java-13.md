@@ -104,7 +104,6 @@ Flags modify the style, the `width` parameter determines the minimum number of c
 
 ### Examples
 
-[>Try it yourself<](https://replit.com/@m0stlyharmless/MCIAppExStringFormat){:target="_blank"}
 
 ````java
 int h = 2;

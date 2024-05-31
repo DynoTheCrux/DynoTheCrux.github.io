@@ -39,7 +39,6 @@ if(v < 42) {
    System.out.println("Computer says 'Hi'");
 }
 ````
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExIf#Main.java){:target="_blank"}
 
 ### if...else Statement
 An ``if`` statement can be followed by an *optional* ``else`` statement, which executes when the condition evaluates to **false**.
@@ -97,7 +96,6 @@ if(age <= 0) {
 ````plaintext
 Welcome!
 ````
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExElseIf#Main.java){:target="_blank"}
 
 ## Logical Operators
 
@@ -156,7 +154,6 @@ while(x > 0) {
 2
 1
 ````
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExWhile#Main.java){:target="_blank"}
 
 ### for Loops
 Another loop structure is the ``for`` loop. A ``for`` loop allows you to efficiently write a loop that needs to execute a specific number of times.
@@ -190,4 +187,3 @@ for(int x = 1; x <=5; x++) {
 
 The variable ``x`` is initialized to the value 1, and the loop body repeatedly prints the value of ``x``, until the condition ``x<=5`` becomes ``false``. On each iteration, the statement ``x++`` increments ``x`` by one.
 
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExFor#Main.java){:target="_blank"}

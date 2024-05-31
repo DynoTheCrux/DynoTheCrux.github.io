@@ -32,7 +32,7 @@ Denkt daran, dass Libraries in C++ immer aus `.h` und `.cpp` File bestehen. Leid
 
 > Den *Libraries* Ordner findet ihr im Installationsverzeichnis, je nachdem welche Version ihr verwendet und wo ihr sie installiert habt. Bei Version 2.0.4 z.B. hier: *C:\Users\YOURNAME\AppData\Local\Arduino15\libraries\MAX30105*. Der *AppData* Ordner muss manchmal erst eingeblendet werden.
 
-Des weiteren, brauchen wir die `Wire.h`, da die Kommunikation mit dem Board via I2C läuft. Diese sollte euch ja bereits bekannt sein. Falls ihr sie nicht schon installiert habt, installiert sie über den manuellen Weg oder den eingebauten Library Manager in der Arduino IDE. Bindet beide Libraries in den Sketch via `#include` ein.
+Des weiteren, brauchen wir die `Wire.h`, da die Kommunikation mit dem Board via I2C läuft. Diese sollte euch ja bereits bekannt sein und ist bereits teil des Arduino Cores und muss daher nicht extra installiert werden. Bindet beide Libraries in den Sketch via `#include` ein.
 
 Timer Library brauchen wir ausnahmsweise keine, da die Samplerate direkt für die Sensor IC konfiguriert wird.
 
@@ -55,7 +55,7 @@ Wird der Sensor am I2C Port erkannt, können wir ihn für die Aufnahme der Senso
 - `byte powerLevel`: Bestimmt, wie hell die LEDs leuchten. Mögliche Werte gehen von 0 bis 255 (ein Byte eben), wobei 0 ausgeschalten und 255 am hellsten wäre. Eine passende Wahl um zu starten wäre etwa die Hälfe mit 125 oder 0x7D als Hex-Nummer.
 - `byte sampleAverage`: Bestimmt, ob der Sensor die Samples Mitteln soll. Wir wollen die Werte im Nachhinein verarbeiten. Wählen wir den Wert von 1 gibt er die Werte 1 zu 1 wie gelesen weiter. Andere Werte wären im Prinzip ein *moving Average* Filter. Zur Verfügung stehen die Werte **1**, 2, 4, 8, 16 und 32.
 - `byte ledMode`: Damit können die einzelnen LEDs an- bzw. ausgeschalten werden. So könnte die grüne LED alleine gewählt werden, um nur den Puls zu erfassen. Wir wollen die Rote und infrarote LED lesen und daher den Modus 2.
-- `int sampleRate`: Wie oben angegeben, wollen wir 100 Hz Samplerate. Allerdings müssen wir hier 400 Hz übergeben, da der Sensor sequenziell **4** Werte sampled (Rot, IR, Grün und Temperatur) -> Daher 400 Hz/4 = 100 Hz. Nebenbei sei erwähnt, dass nur bestimmte Werte zur Verfügung stehen (50, 100, 200, **400**, 800, 1000, 1600, 3200).
+- `int sampleRate`: Wie oben angegeben, wollen wir 100 Hz Samplerate. Nebenbei sei erwähnt, dass nur bestimmte Werte zur Verfügung stehen (50, **100**, 200, 400, 800, 1000, 1600, 3200).
 - `int pulseWidth`: Da der Sensor nur über einen Fototransistor verfügt, aber drei Wellenlängen erkannt werden müssen, wird jeder LED ein Time Slot zugeteilt. Dazu kann die Pulsweite, also die *On-Time* für die LEDs gewählt werden. Das mittlere Setting wäre mit 215 passend, verfügbar sind 69, 118, **215** und 411.
 - `int adcRange`: Der ADC welcher das Signal des Fototransistors digitalisiert, kann in dessen Auflösung konfiguriert werden. Das mittlere Setting wäre mit 13 Bit passend, verfügbar sind 2048, 4096, **8192** und 16384.
 

@@ -31,7 +31,6 @@ In main, x=5
 ````
 >The method from the example above takes the **value** of its parameter, which is why the original variable is not affected and 5 remains as its value.
 
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExCallByValue#Main.java){:target="_blank"}
 
 ## Reference Types
 
@@ -67,7 +66,6 @@ Because ``j`` is a reference type, the method affects the object itself, and is 
 
 > ``String`` and ``List`` are also reference data types.
 
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExCallByReference#Main.java){:target="_blank"}
 
 ## The null Value
 

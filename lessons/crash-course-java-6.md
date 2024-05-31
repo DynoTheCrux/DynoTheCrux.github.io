@@ -66,4 +66,3 @@ Now, our ``max`` method will also work with parameters of type ``double``.
 
 An overloaded method must have a different argument list; the parameters should differ in their **type**, **number**, or **both**.
 
-[>Try it yourself<](https://repl.it/@m0stlyharmless/MCIAppExOverloading#Main.java){:target="_blank"}

@@ -18,9 +18,10 @@ In der letzten Lesson wurde der Code für den Controller programmiert, um eine S
 
 Um das Matlab Skript zu schreiben und auszuprobieren, liegt eine Sequenz als `.txt` auf Sakai.
 
-**Jedoch muss eine der Varianten für die Laborsession installiert sein!**
-
 Zu Beginn werden wir uns darum kümmern, dass die Daten im richtigen Format vorliegen und sie dann in Matlab importieren. An sich könnte man die Daten einfach aus dem Serial Monitor der Arduino IDE rauskopieren und in einem Textfile ablegen. In der Arduino IDE 2.0.x dürfte der Serial Monitor hier noch etwas buggy sein, zumindest konnte ich die Daten nicht mit einem Mal rauskopieren. Alternativen gibt es genügend. Schaut euch kurz [Tera Term](http://www.teraterm.org/){:target="_blank"}, [Better Serial Plotter](https://hackaday.io/project/181686-better-serial-plotter/details){:target="_blank"} oder [Processing](https://processing.org/){:target="_blank"} an. Tera Term ist dabei das simpelste Program, richtig eingestellt nicht anders als der Serial Monitor. Better Serial Plotter erlaubt die Daten auch direkt als `.csv` zu exportieren und sie in Real Time zu plotten. Processing ist eigentlich eine Programmierumgebung, um Daten im Allgemeinen zu visualisieren. Die Arduino IDE 1.x liefert auch einen Serial Monitor bei dem rauskopieren immer funktioniert hat. Sucht euch aus, was ihr verwenden wollt, kommt gerne auf mich zu, falls ihr Tipps / Fragen habt. Ihr müsst vielleicht das Format im Arduino Sketch auch etwas anpassen (Better Serial Plotter verlangt z.B. Werte mit Space " " oder Tab "\t" getrennt. In Processing könnt ihr überhaupt ein eigenes Aufnahmescript schreiben, dass die Daten automatisch in ein Textfile schreibt.
+
+**Was ihr verwendet um eure Daten zu kopieren ist egal, jedoch muss eine der Varianten für die Laborsession installiert sein!**
+
 
 # Implementierung
 
