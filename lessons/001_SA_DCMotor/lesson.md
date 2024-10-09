@@ -20,9 +20,9 @@ Die Dynamik eines DC-Motors lässt sich durch zwei grundlegende Gleichungen besc
 
 Die elektrische Gleichung des DC-Motors lautet:
 
-\[
+$$
 V(t) = L \frac{dI(t)}{dt} + R I(t) + K_e \omega(t)
-\]
+$$
 
 wobei:
 - \( V(t) \): angelegte Spannung [V]
