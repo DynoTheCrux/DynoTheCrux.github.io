@@ -31,7 +31,7 @@ Am besten du plottest die Idealfunktion um das Ergebnis zu prüfen. Erstelle daz
 Wenn dir das Ergebnis plausibel vorkommt, kannst du nun die Widerstände auswählen. Da dies nicht so gut im Dokument aufbereitet ist hier die Formeln die du brauchst:
 ```` Matlab
 Rf = m*Rg-Rg
-R1 = ((Uref*R2*Rf)/(abs(d)*Rg))- R2
+R1 = ((Uref*R2*Rf)/(abs(b)*Rg))- R2
 ````
 
 Berücksichtige, dass nicht alle Werte für Widerstände verfügbar sind, 1 % Genauigkeit sollte ein guter Anhaltspunkt für eine solche Schaltung sein.
