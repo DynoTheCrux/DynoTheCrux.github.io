@@ -16,7 +16,7 @@ Die Dynamik eines DC-Motors lässt sich durch zwei grundlegende Gleichungen besc
 - Die elektrische Gleichung, die das Verhalten des Ankers beschreibt.
 - Die mechanische Gleichung, die das Drehmoment und die Rotationsbewegung beschreibt.
 
-- ![Model](../../assets/img/001_SA_DCMotor/motor.png)
+  ![Model](../../assets/img/001_SA_DCMotor/motor.png)
 
 ### 1.1 Elektrische Gleichung
 
