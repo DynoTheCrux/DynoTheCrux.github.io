@@ -60,14 +60,14 @@ Ziel ist es, eine Übertragungsfunktion der Form $$\frac{\Omega(s)}{V(s)}$$ zu f
 Durch Anwenden der Laplace-Transformation auf die Differentialgleichungen (mit Anfangsbedingungen gleich null) erhalten wir:
 
 1. Elektrische Gleichung:
-  $$
-   V(s) = (L s + R) I(s) + K_e \Omega(s)
-   $$
+$$
+V(s) = (L s + R) I(s) + K_e \Omega(s)
+$$
 
-2. Mechanische Gleichung:
-  $$
-   J s \Omega(s) + B \Omega(s) = K_m I(s)
-   $$
+3. Mechanische Gleichung:
+$$
+J s \Omega(s) + B \Omega(s) = K_m I(s)
+$$
 
 ### 2.2 Ankerstrom $$I(s)$$ eliminieren
 
