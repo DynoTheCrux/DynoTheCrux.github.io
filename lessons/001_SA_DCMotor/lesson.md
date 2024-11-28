@@ -60,11 +60,13 @@ Ziel ist es, eine Übertragungsfunktion der Form $$\frac{\Omega(s)}{V(s)}$$ zu f
 Durch Anwenden der Laplace-Transformation auf die Differentialgleichungen (mit Anfangsbedingungen gleich null) erhalten wir:
 
 1. Elektrische Gleichung:
+   
 $$
 V(s) = (L s + R) I(s) + K_e \Omega(s)
 $$
 
 3. Mechanische Gleichung:
+   
 $$
 J s \Omega(s) + B \Omega(s) = K_m I(s)
 $$
@@ -74,11 +76,13 @@ $$
 Um die Übertragungsfunktion zu finden, eliminieren wir $$I(s)$$ zwischen den beiden Gleichungen:
 
 Aus der elektrischen Gleichung:
+
 $$
 I(s) = \frac{V(s) - K_e \Omega(s)}{L s + R}
 $$
 
 Einsetzen in die mechanische Gleichung:
+
 $$
 J s \Omega(s) + B \Omega(s) = K_m \left( \frac{V(s) - K_e \Omega(s)}{L s + R} \right)
 $$
@@ -86,16 +90,19 @@ $$
 ### 2.3 Übertragungsfunktion formen
 
 Umstellen der Gleichung ergibt:
+
 $$
 (J s + B) \Omega(s) (L s + R) = K_m V(s) - K_m K_e \Omega(s)
 $$
 
 Sortieren nach $$\Omega(s)$$ ergibt:
+
 $$
 \Omega(s) \left[ (J s + B)(L s + R) + K_m K_e \right] = K_m V(s)
 $$
 
 Die Übertragungsfunktion $$\frac{\Omega(s)}{V(s)}$$ ergibt sich zu:
+
 $$
 \frac{\Omega(s)}{V(s)} = \frac{K_m}{(J s + B)(L s + R) + K_m K_e}
 $$
@@ -103,6 +110,7 @@ $$
 ### 2.4 Vereinfachte Form
 
 Wenn die Induktivität $$L$$ im Vergleich zu $$R$$ sehr klein ist ($$L \approx 0$$), kann die Gleichung vereinfacht werden:
+
 $$
 \frac{\Omega(s)}{V(s)} = \frac{K_m}{J R s^2 + (B R + K_m K_e) s}
 $$
@@ -112,6 +120,7 @@ $$
 ### 3.1 Zeitkonstante des Motors
 
 Die Übertragungsfunktion lässt sich weiter in die Form bringen:
+
 $$
 \frac{\Omega(s)}{V(s)} = \frac{\frac{K_m}{R}}{J s + \frac{B R + K_m K_e}{R}}
 $$
