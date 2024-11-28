@@ -43,6 +43,7 @@ $$
 J \frac{d\omega(t)}{dt} + B \omega(t) = K_m I(t)
 $$
 
+
 wobei:
 - $$J$$: Trägheitsmoment des Motors [kg·m²]
 - $$B$$: Viskoser Reibungskoeffizient [N·m·s/rad]
@@ -68,11 +69,11 @@ V(s) = (L s + R) I(s) + K_e \Omega(s)
 $$
 
 3. Mechanische Gleichung: **Finde die Laplace Transformation der Mechanischen Gleichung und beantworte Frage 1.**
-   
+<!--
 $$
 J s \Omega(s) + B \Omega(s) = K_m I(s)
 $$
-
+-->
 ### 2.2 Ankerstrom $$I(s)$$ eliminieren
 
 Um die Übertragungsfunktion zu finden, eliminieren wir $$I(s)$$ zwischen den beiden Gleichungen:
@@ -83,14 +84,16 @@ $$
 I(s) = \frac{V(s) - K_e \Omega(s)}{L s + R}
 $$
 
-Einsetzen in die mechanische Gleichung:
-
+Durch einsetzen in die mechanische Gleichung.
+<!--
 $$
 J s \Omega(s) + B \Omega(s) = K_m \left( \frac{V(s) - K_e \Omega(s)}{L s + R} \right)
 $$
-
+-->
 ### 2.3 Übertragungsfunktion formen
 
+**Finde die Übertragungsfunktion $$T = \frac{\Omega(s)}{V(s)}$$ und beantworte Frage 2.**
+<!--
 Umstellen der Gleichung ergibt:
 
 $$
@@ -108,7 +111,8 @@ Die Übertragungsfunktion $$\frac{\Omega(s)}{V(s)}$$ ergibt sich zu:
 $$
 \frac{\Omega(s)}{V(s)} = \frac{K_m}{(J s + B)(L s + R) + K_m K_e}
 $$
-
+-->
+<!--
 ### 2.4 Vereinfachte Form
 
 Wenn die Induktivität $$L$$ im Vergleich zu $$R$$ sehr klein ist ($$L \approx 0$$), kann die Gleichung vereinfacht werden:
@@ -116,7 +120,7 @@ Wenn die Induktivität $$L$$ im Vergleich zu $$R$$ sehr klein ist ($$L \approx 0
 $$
 \frac{\Omega(s)}{V(s)} = \frac{K_m}{J R s^2 + (B R + K_m K_e) s}
 $$
-
+-->
 Das vollständige System zeigt den Zusammenhang zwischen der Eingangsspannung $$V(s)$$ und der Ausgangsdrehzahl $$\Omega(s)$$.
 
 ## 5. Simulationsparameter
@@ -131,6 +135,13 @@ Hier sind typische Parameter, die zur Simulation eines DC-Motors verwendet werde
 | $$K_m$$ | 0.01 | N·m/A   | Motorkonstante |
 | $$J$$   | 0.01 | kg·m²   | Trägheitsmoment |
 | $$B$$   | 0.1  | N·m·s/rad | Viskoser Reibungskoeffizient |
+
+###  Stationäres System
+Stationär bedeutet in diesem Zusammenhang, dass sich weder die Eingangsspannung noch das Lastmoment ändert. Das Heißt der Wert von $$s = 0$$, da dieser mit der Frequenz und der Dämpfung zusammenhängt. Plotte **Eingangsspannung (X-Achse) zu Drehzahl für die Übertragungsfunktion bei $$s = 0$$ und beantworte Frage 3.**
+
+### Dynamisches System
+Dynamische können wir das System z.B. mithilfe einer Step Response Analysieren. **Plotte die Step Response des Systems und beantworte die Frage 4.**
+
 
 ## 6. Schlussfolgerung
 
