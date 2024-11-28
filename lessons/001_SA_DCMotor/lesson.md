@@ -145,8 +145,3 @@ Hier sind typische Parameter, die zur Simulation eines DC-Motors verwendet werde
 ## 6. Schlussfolgerung
 
 Die resultierende Übertragungsfunktion beschreibt das Verhalten eines DC-Motors unter Berücksichtigung von Reibung und Trägheit. Sie kann für die Analyse des Frequenzverhaltens des Motors oder die Auslegung eines Reglers verwendet werden.
-
-## 7. Quellen
-
-- [Motor Speed - System Modeling (University of Michigan)](https://ctms.engin.umich.edu/CTMS/index.php?example=MotorSpeed&section=SystemModeling)
-- Weitere Literatur zur Regelungstechnik und Modellierung von Elektromotoren
