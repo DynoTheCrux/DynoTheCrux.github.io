@@ -8,7 +8,7 @@
 
 ## Einleitung
 
-Ein Gleichstrommotor (DC-Motor) kann durch eine Differentialgleichung beschrieben werden, die die mechanischen und elektrischen Eigenschaften des Motors berücksichtigt. In dieser Anleitung werden wir die Übertragungsfunktion eines DC-Motors herleiten, die das Verhalten der Drehzahl als Antwort auf eine angelegte Spannung beschreibt.
+Ein Gleichstrommotor (DC-Motor) kann durch eine Differentialgleichung beschrieben werden, die die mechanischen und elektrischen Eigenschaften des Motors berücksichtigt. In dieser Lesson werden wir die Übertragungsfunktion eines DC-Motors herleiten, die das Verhalten der Drehzahl als Antwort auf eine angelegte Spannung beschreibt. Dies ist gültig für einen "Armature Controlled" DC-Motor, daher es wird ein fixes Magnetfeld angelegt und der Rotorspulenstrom verändert.
 
 ## 1. Physikalisches Modell
 
@@ -18,7 +18,7 @@ Die Dynamik eines DC-Motors lässt sich durch zwei grundlegende Gleichungen besc
 
 ### 1.1 Elektrische Gleichung
 
-Die elektrische Gleichung des DC-Motors lautet:
+Auf Basis des obigen Bildes finden wir die elektrische Gleichung des DC Motors. Wir bilden eine Schleife im Uhrzeigersinn. Wobei der Spannungsabfall der Induktivität von der zeitlichen Veränderung des Stromes abhängig ist und der Spannungsabfall über den Wiederstand vom absoluten Wert des Stromes. Die elektrische Gleichung des DC-Motors lautet:
 
 $$
 V(t) = L \frac{dI(t)}{dt} + R I(t) + e(t)
@@ -35,7 +35,7 @@ wobei:
 
 ### 1.2 Mechanische Gleichung
 
-Die mechanische Gleichung des DC-Motors lautet:
+Für die mechanische Gleichung betrachten wir die rechte Seite des Bildes. Wir bilden ein Momentengleichgewicht an der Achse des Motors. Wir berücksichtigen die Trägheit des Rotors, die Reibung in den Lagern und das vom Motor erzeugte Ausgangsmoment. Die mechanische Gleichung des DC-Motors lautet dann:
 
 $$
 J \frac{d\omega(t)}{dt} + B \omega(t) = K_m I(t)
@@ -53,13 +53,13 @@ wobei:
 
 ## 2. Übertragungsfunktion herleiten
 
-Ziel ist es, eine Übertragungsfunktion der Form $$\frac{\Omega(s)}{V(s)}$$ zu finden, wobei $$\Omega(s)$$ die Laplace-Transformierte der Winkelgeschwindigkeit und $$V(s)$$ die Laplace-Transformierte der angelegten Spannung ist.
+Ziel ist es, eine Übertragungsfunktion der Form $$\frac{\Omega(s)}{V(s)}$$ zu finden, wobei $$\Omega(s)$$ die Laplace-Transformierte der Winkelgeschwindigkeit und $$V(s)$$ die Laplace-Transformierte der angelegten Spannung ist. Daher versuchen wir die mechanische und die elektrische Gleichung zu kombinieren.
 
 ### 2.1 Laplace-Transformation
 
 Durch Anwenden der Laplace-Transformation auf die Differentialgleichungen (mit Anfangsbedingungen gleich null) erhalten wir:
 
-1. Elektrische Gleichung:
+1. Elektrische Gleichung: Es wird $$t$$ durch $$s$$ ersetzt und $$\frac{dI(t)}{dt}$$ wird zu $$sI(s)$$.
    
 $$
 V(s) = (L s + R) I(s) + K_e \Omega(s)
