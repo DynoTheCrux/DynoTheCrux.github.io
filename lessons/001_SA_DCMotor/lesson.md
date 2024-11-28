@@ -117,28 +117,9 @@ $$
 \frac{\Omega(s)}{V(s)} = \frac{K_m}{J R s^2 + (B R + K_m K_e) s}
 $$
 
-## 3. Parameter und Zeitkonstanten
 
-### 3.1 Zeitkonstante des Motors
 
-Die Übertragungsfunktion lässt sich weiter in die Form bringen:
-
-$$
-\frac{\Omega(s)}{V(s)} = \frac{\frac{K_m}{R}}{J s + \frac{B R + K_m K_e}{R}}
-$$
-
-- $$\tau_m = \frac{J}{B}$$: Mechanische Zeitkonstante des Motors
-- $$\tau_e = \frac{L}{R}$$: Elektrische Zeitkonstante des Motors (oft vernachlässigt, wenn $$L \approx 0$$)
-
-## 4. Blockdiagramm
-
-Das Blockdiagramm der Übertragungsfunktion des Motors lässt sich wie folgt darstellen:
-
-1. **Elektrisches System**: $$\frac{1}{L s + R}$$
-2. **Mechanisches System**: $$\frac{1}{J s + B}$$
-3. **Kopplung**: $$K_m$$ und $$K_e$$
-
-Das vollständige System zeigt den Zusammenhang zwischen der Eingangsspannung $$V(s)$$ und der Ausgangsdrehzahl $$\Omega(s)$$.
+# Das vollständige System zeigt den Zusammenhang zwischen der Eingangsspannung $$V(s)$$ und der Ausgangsdrehzahl $$\Omega(s)$$.
 
 ## 5. Simulationsparameter
 
