@@ -67,7 +67,7 @@ $$
 V(s) = (L s + R) I(s) + K_e \Omega(s)
 $$
 
-3. Mechanische Gleichung:
+3. Mechanische Gleichung: **Finde die Laplace Transformation der Mechanischen Gleichung und beantworte Frage 1.**
    
 $$
 J s \Omega(s) + B \Omega(s) = K_m I(s)
