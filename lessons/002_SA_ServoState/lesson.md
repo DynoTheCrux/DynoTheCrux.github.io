@@ -39,133 +39,100 @@ Die Verkabelung ist folgendermaßen:
 Die erste Version ist mehr oder weniger 1:1 die Version die uns auch ChatGPT und die meisten Online-Tutorials ausspucken würden. Ihr könnt diese natürlich von dort beziehen oder selbst schreiben:
 - Binde die ``#include <Servo.h>`` in den Code ein.
 - Definiere die Pins des Servos sowie der Buttons gleich wie verkabelt, z.B.: ``#define SERVO_PIN 3``.
+- Schreibe zwei integer Variable für den Start und Stopwinkel des Servos.
 - Im ``void setup()`` brauchen wir folgenden code:
 
+````C++
+void setup() {
+  // Initialize the servo
+  myServo.attach(SERVO_PIN);
+  myServo.write(servoStartAngle); // Set servo to starting position
   
+  // Initialize button pins
+  pinMode(START_PIN, INPUT_PULLUP);
+  pinMode(STOP_PIN, INPUT_PULLUP);
 
-Auf Basis des obigen Bildes finden wir die elektrische Gleichung des DC Motors. Wir bilden eine Schleife im Uhrzeigersinn. Wobei der Spannungsabfall der Induktivität von der zeitlichen Veränderung des Stromes abhängig ist und der Spannungsabfall über den Wiederstand vom absoluten Wert des Stromes. Die elektrische Gleichung des DC-Motors lautet:
+  // Starts the serial communication with baudrate of 9600
+  Serial.begin(9600);
+}
+````
+Der Loop beinhaltet nun die Ansteuerungslogik. In der ersten Version werden ``for`` loops genutzt um eine bewegung von 0-180-0 durchzuführen. Über die Länger der ``delay`` kann außerdem die Geschwindigkeit angepasst werden. Außerdem wird über die zwei Buttons gestartet und gestoppt indem die Funktion ``digitalRead`` den Status abfragt.
 
-$$
-V(t) = L \frac{dI(t)}{dt} + R I(t) + e(t)
-$$
+````C++
+void loop() {
+  // Read button states
+  bool startButtonPressed = digitalRead(START_PIN); // Active LOW
+  bool stopButtonPressed = digitalRead(STOP_PIN);   // Active LOW
 
-wobei:
-- $$V(t)$$: angelegte Spannung [V]
-- $$L$$: Induktivität der Ankerspule [H]
-- $$R$$: Widerstand der Ankerspule [Ω]
-- $$I(t)$$: Ankerstrom [A]
-- $$e(t) = K_e \omega(t)$$: Gegen-EMK (elektromotorische Kraft) [V]
-- $$K_e$$: EMK-Konstante [V/(rad/s)]
-- $$\omega(t)$$: Winkelgeschwindigkeit des Motors [rad/s]
+  if (startButtonPressed  == LOW ) {
+    servoRunning = true;
+    Serial.println("Servo started.");
+  }
+  
+  if (stopButtonPressed  == LOW ) {
+    servoRunning = false;
+    Serial.println("Servo stopped.");
+  }
 
-### 1.2 Mechanische Gleichung
+  // Control servo based on state
+  if (servoRunning) {
+    // Sweep servo back and forth
+    for (int angle = servoStartAngle; angle <= servoStopAngle; angle++) {
+      myServo.write(angle);
+      delay(15); // Adjust for smooth movement
+    }
+    for (int angle = servoStopAngle; angle >= servoStartAngle; angle--) {
+      myServo.write(angle);
+      delay(15); // Adjust for smooth movement
+    }
+  } else {
+    myServo.write(servoStartAngle); // Return servo to the start position
+  }
+}
+````
 
-Für die mechanische Gleichung betrachten wir die rechte Seite des Bildes. Wir bilden ein Momentengleichgewicht an der Achse des Motors. Wir berücksichtigen die Trägheit des Rotors, die Reibung in den Lagern und das vom Motor erzeugte Ausgangsmoment. Die mechanische Gleichung des DC-Motors lautet dann:
+Führe den Code aus und starte bzw. stoppe den Motor. Welche Probleme treten auf und warum? **Beantworte dazu Frage 1.**
 
-$$
-J \frac{d\omega(t)}{dt} + B \omega(t) = K_m I(t)
-$$
+## Zweite Version
 
+Die zweite Version baut auf der ersten Version des codes auf. Allerdings nutzt sie einen sogennanten Interupt, damit der Motor jederzeit gestoppt werden kann. 
+> Wie Interrupts genau funktionieren ist nicht Teil dieser Vorlesung. Wer einen genaueren Blick haben möchte findet hier eine gute erklärung LINK
 
-wobei:
-- $$J$$: Trägheitsmoment des Motors [kg·m²]
-- $$B$$: Viskoser Reibungskoeffizient [N·m·s/rad]
-- $$K_m$$: Motorkonstante [N·m/A]
+Damit der Interrupt für den Stop Button funktioniert muss er mit einem Interuptfähigen Pin (z.B.: 2) des Arduino verkabelt sein. Im ``setup`` braucht es folgende Zeile Code um unseren Interrupt zu konfigurieren. Dabei legen wir den Pin fest und die Funktion die im Falle einer fallenden Flanke am Pin ausgeführt werden soll.
+````C++
+attachInterrupt(digitalPinToInterrupt(STOP_PIN), stopServoISR, FALLING);
+````
+Im ``loop`` brauchen wir die Zeile die den Stop Button ausliest nicht mehr und kann gelöscht oder auskommentiert werden. Was uns noch fehlt ist die ``stopServoISR``. Erstelle eine Funktion ohne Rückgabe und Übergabeparameter mit dem selben Namen **außerhalb** des Programmblocks des ``loop``. In der Funktion soll die Variable ``servoRunning`` auf ``false`` gesetzt werden.
 
-### Annahmen
+Führe den Code erneut aus. Welches Verhalten hat sich verbessert? Welches wahrscheinlich unerwünschte Verhalten zeigt sich nun besonders wenn der Servo gestoppt und erneut gestartet wird? **Beantworte dazu Frage 2.**
 
-- Der Motor ist unbelastet, daher ist das Lastmoment $$T_L \approx 0$$.
-- Es wird ein linearisiertes Modell betrachtet.
+## Dritte Version
 
-## 2. Übertragungsfunktion herleiten
+In der dritten Version implementieren wir eine State Machine um das Verhalten des Servo motors zu controllieren. Es kann wiederum der Code von vorhin als basis genommen werden, allerdings kommt diesmal einiges hinzu. Als erstes legen wir die States fest. Welche und wie viele ist an sich relativ frei wählbar. Meiner Meinung nach sinn machen würde:
+- Ein State wenn der Motor Startet
+- Ein State während er sich im Uhrzeigersinn bewegt
+- Ein State während er sich gegen den Uhrzeigersinn bewegt
+- Ein State wenn der Motor gestoppt wurde.
 
-Ziel ist es, eine Übertragungsfunktion der Form $$\frac{\Omega(s)}{V(s)}$$ zu finden, wobei $$\Omega(s)$$ die Laplace-Transformierte der Winkelgeschwindigkeit und $$V(s)$$ die Laplace-Transformierte der angelegten Spannung ist. Daher versuchen wir die mechanische und die elektrische Gleichung zu kombinieren.
+Wir scheiben die States und legen den ersten ``servoState`` sowie ``lastState`` fest. In C++ können wir dazu zum Beispiel ``enum`´ verwenden:
 
-### 2.1 Laplace-Transformation
+````C++
+enum servoState {
+  START,
+  CW,
+  CCW,
+  STOP
+};
+servoState servoState = STOP;
+int lastState = CW;
+````
 
-Durch Anwenden der Laplace-Transformation auf die Differentialgleichungen (mit Anfangsbedingungen gleich null) erhalten wir:
-
-1. Elektrische Gleichung: Es wird $$t$$ durch $$s$$ ersetzt und $$\frac{dI(t)}{dt}$$ wird zu $$sI(s)$$.
-   
-$$
-V(s) = (L s + R) I(s) + K_e \Omega(s)
-$$
-
-3. Mechanische Gleichung: **Finde die Laplace Transformation der Mechanischen Gleichung und beantworte Frage 1.**
-<!--
-$$
-J s \Omega(s) + B \Omega(s) = K_m I(s)
-$$
--->
-### 2.2 Ankerstrom $$I(s)$$ eliminieren
-
-Um die Übertragungsfunktion zu finden, eliminieren wir $$I(s)$$ zwischen den beiden Gleichungen:
-
-Aus der elektrischen Gleichung:
-
-$$
-I(s) = \frac{V(s) - K_e \Omega(s)}{L s + R}
-$$
-
-Durch einsetzen in die mechanische Gleichung.
-<!--
-$$
-J s \Omega(s) + B \Omega(s) = K_m \left( \frac{V(s) - K_e \Omega(s)}{L s + R} \right)
-$$
--->
-### 2.3 Übertragungsfunktion formen
-
-**Finde die Übertragungsfunktion $$T = \frac{\Omega(s)}{V(s)}$$ und beantworte Frage 2.**
-<!--
-Umstellen der Gleichung ergibt:
-
-$$
-(J s + B) \Omega(s) (L s + R) = K_m V(s) - K_m K_e \Omega(s)
-$$
-
-Sortieren nach $$\Omega(s)$$ ergibt:
-
-$$
-\Omega(s) \left[ (J s + B)(L s + R) + K_m K_e \right] = K_m V(s)
-$$
-
-Die Übertragungsfunktion $$\frac{\Omega(s)}{V(s)}$$ ergibt sich zu:
-
-$$
-\frac{\Omega(s)}{V(s)} = \frac{K_m}{(J s + B)(L s + R) + K_m K_e}
-$$
--->
-<!--
-### 2.4 Vereinfachte Form
-
-Wenn die Induktivität $$L$$ im Vergleich zu $$R$$ sehr klein ist ($$L \approx 0$$), kann die Gleichung vereinfacht werden:
-
-$$
-\frac{\Omega(s)}{V(s)} = \frac{K_m}{J R s^2 + (B R + K_m K_e) s}
-$$
--->
-Das vollständige System zeigt den Zusammenhang zwischen der Eingangsspannung $$V(s)$$ und der Ausgangsdrehzahl $$\Omega(s)$$.
-
-## 5. Simulationsparameter
-
-Hier sind typische Parameter, die zur Simulation eines DC-Motors verwendet werden könnten:
-
-| Parameter | Wert | Einheit | Beschreibung |
-|-----------|------|---------|--------------|
-| $$R$$   | 1.2  | Ω       | Widerstand der Ankerspule |
-| $$L$$   | 0.01 | H       | Induktivität der Ankerspule |
-| $$K_e$$ | 0.01 | V/(rad/s) | EMK-Konstante |
-| $$K_m$$ | 0.01 | N·m/A   | Motorkonstante |
-| $$J$$   | 0.01 | kg·m²   | Trägheitsmoment |
-| $$B$$   | 0.1  | N·m·s/rad | Viskoser Reibungskoeffizient |
-
-###  Stationäres System
-Stationär bedeutet in diesem Zusammenhang, dass sich weder die Eingangsspannung noch das Lastmoment ändert. Das Heißt der Wert von $$s = 0$$, da dieser mit der Frequenz und der Dämpfung zusammenhängt. Plotte **Eingangsspannung (X-Achse) zu Drehzahl für die Übertragungsfunktion bei $$s = 0$$ und beantworte Frage 3.**
-
-### Dynamisches System
-Dynamische können wir das System z.B. mithilfe einer Step Response Analysieren. **Plotte die Step Response des Systems und beantworte die Frage 4.**
+Weiterschreiben: erst state machine struktur mit bild und code, sowie timing erklären. Dann in loop ändern. Bonusaufgabe ist geschwindigkeitssteuerung.
 
 
-## 6. Schlussfolgerung
 
-Die resultierende Übertragungsfunktion beschreibt das Verhalten eines DC-Motors unter Berücksichtigung von Reibung und Trägheit. Sie kann für die Analyse des Frequenzverhaltens des Motors oder die Auslegung eines Reglers verwendet werden.
+
+
+
+
+
