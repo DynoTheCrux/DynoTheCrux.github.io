@@ -13,7 +13,7 @@ In diesem Projekt steuern wir einen Servo-Motor mit einem Arduino. Der Motor wir
 > Der Vollständige Code wird zum Ende des Kurses noch auf Sakai hochgeladen.
 
 
-## 1. Erstelle ein Wokwi Projekt
+## Erstelle ein Wokwi Projekt
 
 Erstelle ein Projekt auf Wokwi mit den folgenden Komponenten:
 - Arduino (z.B. Arduino Uno)
