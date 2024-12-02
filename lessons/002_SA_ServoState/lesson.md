@@ -183,7 +183,7 @@ void stateMachineMotor() {
 ````
 
 
-#Bonusaufgabe: Geschwindigkeitssteuerung mittels Potentiometer
+# Bonusaufgabe: Geschwindigkeitssteuerung mittels Potentiometer
 
 Als Bonus kann noch ein Potentiometer hinzugefügt werden welches die Geschwindikeit des Servos in Echtzeit anpassen kann. Füge dazu eines zu deinem Projekt hinzu und verkabel es entsprechend mit einem der Analogen Eingängen. Lies den Analogen Eingang aus und manipuliere den Wert der `period_servo` im Bereich von 5 bis 60 Millisekunden.
 
