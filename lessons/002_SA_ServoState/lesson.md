@@ -80,11 +80,11 @@ void loop() {
     // Sweep servo back and forth
     for (int angle = servoStartAngle; angle <= servoStopAngle; angle++) {
       myServo.write(angle);
-      delay(15); // Adjust for smooth movement
+      delay(15);
     }
     for (int angle = servoStopAngle; angle >= servoStartAngle; angle--) {
       myServo.write(angle);
-      delay(15); // Adjust for smooth movement
+      delay(15); 
     }
   } else {
     myServo.write(servoStartAngle); // Return servo to the start position
@@ -92,7 +92,7 @@ void loop() {
 }
 ````
 
-Führe den Code aus und starte bzw. stoppe den Motor. Welche Probleme treten auf und warum? **Beantworte dazu Frage 1.**
+Führe den Code aus und starte bzw. stoppe den Motor. Welche Probleme treten auf? **Beantworte dazu Frage 1.**
 
 ## Zweite Version
 
