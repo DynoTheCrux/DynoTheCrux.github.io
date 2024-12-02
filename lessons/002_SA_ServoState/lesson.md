@@ -108,6 +108,9 @@ Führe den Code erneut aus. Welches Verhalten hat sich verbessert? Welches wahrs
 
 ## Dritte Version
 
+  ![Model](../../assets/img/002_SA_ServoState/ServoState.png)
+
+
 In der dritten Version implementieren wir eine State Machine um das Verhalten des Servo motors zu controllieren. Es kann wiederum der Code von vorhin als basis genommen werden, allerdings kommt diesmal einiges hinzu. Als erstes legen wir die States fest. Welche und wie viele ist an sich relativ frei wählbar. Meiner Meinung nach sinn machen würde:
 - Ein State wenn der Motor Startet
 - Ein State während er sich im Uhrzeigersinn bewegt
@@ -127,9 +130,62 @@ servoState servoState = STOP;
 int lastState = CW;
 ````
 
-Weiterschreiben: erst state machine struktur mit bild und code, sowie timing erklären. Dann in loop ändern. Bonusaufgabe ist geschwindigkeitssteuerung.
+Die State Machine an sich implementieren wir als `switch-case`, wobei jeder case einen State einnehmen wird. Die nächste große verbessung zu den Codes davor kommt indem wir die `for` loops loswerden und gegen Timing mit Hilfe von `millis()` ersetzen. Dies ist eine Funktion die die momentane Systemlaufzeit in Millisekunden ausgibt. Ähnlich wie in den Versionen 1 und 2 kann so die Ansterungsperiode des Servos angepasst werden, indem damit der Zeitraum seit dem letzten Impuls gemessen wird. Erstelle dazu die Variable `int period_servo = 15;`,`unsigned long oldMillis = 0;` und `unsigned long absolutMillis = 0;` **Beantworte dazu Frage 3**.
+
+Der Code unserer State Machine sieht dann folgendermaßen aus. Schau dir die States und Struktur an. **Implementiere den CCW State selbständig und rufe `stateMachineMotor()` an der passenden Stelle im Code auf.** passe den `loop()` entsprechend des neuen Programms an. **Führe den finalen Code aus und beantworte Frage 4.**
+
+````C++
+void stateMachineMotor() {
+
+  switch (servoState) {
+    case START:
+      {
+        myServo.attach(SERVO_PIN);
+        unsigned long currentMillis = 0;
+        Serial.println("Set State to lastState");
+        servoState = lastState;
+      }
+      break;
+    case CW:
+      {
+        unsigned long currentMillis = millis();
+        lastState = CW;
+
+        if (currentMillis - oldMillis > period_servo) {
+          oldMillis = currentMillis;
+
+          myServo.write(pos);
 
 
+          if (pos >= servoStopAngle) {
+            Serial.println("Set State to CCW");
+            servoState = CCW;
+          } else if (pos < servoStopAngle) {
+            pos++;
+          }
+        }
+      }
+      break;
+    case CCW:
+      {
+         // implementiere die CCW richtung selbst
+      }
+      break;
+  
+      case STOP:
+      {
+       Serial.println("SERVO IS STOPPED");
+      }
+  }
+}
+
+
+````
+
+
+#Bonusaufgabe: Geschwindigkeitssteuerung mittels Potentiometer
+
+Als Bonus kann noch ein Potentiometer hinzugefügt werden welches die Geschwindikeit des Servos in Echtzeit anpassen kann. Füge dazu eines zu deinem Projekt hinzu und verkabel es entsprechend mit einem der Analogen Eingängen. Lies den Analogen Eingang aus und manipuliere den Wert der `period_servo` im Bereich von 5 bis 60 Millisekunden.
 
 
 
