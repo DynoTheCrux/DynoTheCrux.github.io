@@ -38,7 +38,7 @@ Die Verkabelung ist folgendermaßen:
 ## Erste Version
 
 Die erste Version ist mehr oder weniger 1:1 die Version die uns auch ChatGPT und die meisten Online-Tutorials ausspucken würden. Ihr könnt diese natürlich von dort beziehen oder selbst schreiben:
-- Binde die ``#include <Servo.h>`` in den Code ein.
+- Binde die ``#include <Servo.h>`` in den Code ein. Möglicherweise muss sie auch über den Library Manager hinzugefügt werden.
 - Definiere die Pins des Servos sowie der Buttons gleich wie verkabelt, z.B.: ``#define SERVO_PIN 3``.
 - Schreibe zwei integer Variable für den Start und Stopwinkel des Servos.
 - Im ``void setup()`` brauchen wir folgenden code:
@@ -57,7 +57,7 @@ void setup() {
   Serial.begin(9600);
 }
 ````
-Der Loop beinhaltet nun die Ansteuerungslogik. In der ersten Version werden ``for`` loops genutzt um eine bewegung von 0-180-0 durchzuführen. Über die Länger der ``delay`` kann außerdem die Geschwindigkeit angepasst werden. Außerdem wird über die zwei Buttons gestartet und gestoppt indem die Funktion ``digitalRead`` den Status abfragt.
+Der Loop beinhaltet nun die Ansteuerungslogik. In der ersten Version werden ``for`` loops genutzt um eine bewegung von 0°-180°-0° durchzuführen. Über die Länger der ``delay`` kann außerdem die Geschwindigkeit angepasst werden. Außerdem wird über die zwei Buttons gestartet und gestoppt indem die Funktion ``digitalRead`` den Status abfragt.
 
 ````C++
 void loop() {
@@ -97,7 +97,7 @@ Führe den Code aus und starte bzw. stoppe den Motor. Welche Probleme treten auf
 ## Zweite Version
 
 Die zweite Version baut auf der ersten Version des codes auf. Allerdings nutzt sie einen sogennanten Interupt, damit der Motor jederzeit gestoppt werden kann. 
-> Wie Interrupts genau funktionieren ist nicht Teil dieser Vorlesung. Wer einen genaueren Blick haben möchte findet hier eine gute erklärung LINK
+> Wie Interrupts genau funktionieren ist nicht Teil dieser Vorlesung. Wer einen genaueren Blick haben möchte findet [hier](https://www.digikey.at/en/maker/projects/how-interrupts-are-handled-in-arduinos/d4e8a7b1be204fb3aac071a4b2337a43?utm_adgroup=General&utm_source=google&utm_medium=cpc&utm_campaign=Dynamic%20Search_EN_Supplier&utm_term=&productid=&utm_content=General&utm_id=go_cmp-9415055229_adg-97043106700_ad-707644265010_dsa-19959388920_dev-c_ext-_prd-_sig-EAIaIQobChMIv52ij-7liQMVgKaDBx1FAR3qEAAYAiAAEgKwzvD_BwE&gad_source=5&gclid=EAIaIQobChMIv52ij-7liQMVgKaDBx1FAR3qEAAYAiAAEgKwzvD_BwE){:target="_blank"} eine gute erklärung 
 
 Damit der Interrupt für den Stop Button funktioniert muss er mit einem Interuptfähigen Pin (z.B.: 2) des Arduino verkabelt sein. Im ``setup`` braucht es folgende Zeile Code um unseren Interrupt zu konfigurieren. Dabei legen wir den Pin fest und die Funktion die im Falle einer fallenden Flanke am Pin ausgeführt werden soll.
 ````C++
@@ -118,7 +118,7 @@ In der dritten Version implementieren wir eine State Machine um das Verhalten de
 - Ein State während er sich gegen den Uhrzeigersinn bewegt
 - Ein State wenn der Motor gestoppt wurde.
 
-Wir scheiben die States und legen den ersten ``servoState`` sowie ``lastState`` fest. In C++ können wir dazu zum Beispiel ``enum`´ verwenden:
+Wir scheiben die States und legen den ersten ``servoState`` sowie ``lastState`` fest. In C++ können wir dazu zum Beispiel `enum` verwenden:
 
 ````C++
 enum servoState {
@@ -186,7 +186,7 @@ void stateMachineMotor() {
 
 # Bonusaufgabe: Geschwindigkeitssteuerung mittels Potentiometer
 
-Als Bonus kann noch ein Potentiometer hinzugefügt werden welches die Geschwindikeit des Servos in Echtzeit anpassen kann. Füge dazu eines zu deinem Projekt hinzu und verkabel es entsprechend mit einem der Analogen Eingängen. Lies den Analogen Eingang aus und manipuliere den Wert der `period_servo` im Bereich von 5 bis 60 Millisekunden.
+Als Bonus kann noch ein Potentiometer hinzugefügt werden welches die Geschwindikeit des Servos in Echtzeit anpassen kann. Füge dazu eines zu deinem Projekt hinzu und verkabel es entsprechend mit einem der analogen Eingänge. Lies den analogen Eingang aus und manipuliere den Wert der `period_servo` im Bereich von 5 bis 60 Millisekunden.
 
 
 
