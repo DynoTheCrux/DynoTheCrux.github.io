@@ -10,6 +10,7 @@
 ## Einleitung
 
 In diesem Projekt steuern wir einen Servo-Motor mit einem Arduino. Der Motor wird über zwei Buttons gesteuert: einer zum Starten und einer zum Stoppen der Bewegung. Wir werden mit der simpelsten Variante starten welche gewisse schwächen aufweist und versuchen den Code stetik zu verbessern.
+> Der Vollständige Code wird zum Ende des Kurses noch auf Sakai hochgeladen.
 
 
 ## 1. Erstelle ein Wokwi Projekt
