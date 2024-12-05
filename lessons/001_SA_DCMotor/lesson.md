@@ -22,9 +22,9 @@ Die Dynamik eines DC-Motors lässt sich durch zwei grundlegende Gleichungen besc
 
 Auf Basis des obigen Bildes finden wir die elektrische Gleichung des DC Motors. Wir bilden eine Schleife im Uhrzeigersinn. Wobei der Spannungsabfall der Induktivität von der zeitlichen Veränderung des Stromes abhängig ist und der Spannungsabfall über den Wiederstand vom absoluten Wert des Stromes. Die elektrische Gleichung des DC-Motors lautet:
 
-$$
+\\[
 V(t) = L \frac{dI(t)}{dt} + R I(t) + e(t)
-$$
+\\]
 
 wobei:
 - $$V(t)$$: angelegte Spannung [V]
