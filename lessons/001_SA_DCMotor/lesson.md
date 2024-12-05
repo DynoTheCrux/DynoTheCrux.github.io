@@ -166,6 +166,4 @@ Man erkennt, dass bei 10 V Input sich der Motor dem stationären Fall bei 10 V a
 
 ![Model](../../assets/img/001_SA_DCMotor/GeneralStep.png)
 
-## 6. Schlussfolgerung
-
-Die resultierende Übertragungsfunktion beschreibt das Verhalten eines DC-Motors unter Berücksichtigung von Reibung und Trägheit. Sie kann für die Analyse des Frequenzverhaltens des Motors oder die Auslegung eines Reglers verwendet werden.
+.
