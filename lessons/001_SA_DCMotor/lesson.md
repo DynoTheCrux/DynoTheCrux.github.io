@@ -129,7 +129,7 @@ Hier sind typische Parameter, die zur Simulation eines DC-Motors verwendet werde
 | Parameter | Wert | Einheit | Beschreibung |
 |-----------|------|---------|--------------|
 | $$R$$   | 1.2  | Ω       | Widerstand der Ankerspule |
-| $$L$$   | 0.01 | H       | Induktivität der Ankerspule |
+| $$L$$   | 0.5 | H       | Induktivität der Ankerspule |
 | $$K_e$$ | 0.01 | V/(rad/s) | EMK-Konstante |
 | $$K_m$$ | 0.01 | N·m/A   | Motorkonstante |
 | $$J$$   | 0.01 | kg·m²   | Trägheitsmoment |
@@ -140,27 +140,31 @@ Stationär bedeutet in diesem Zusammenhang, dass sich weder die Eingangsspannung
 
 ````MATLAB
 U_in = 0:0.1:10; % Zum Beispiel bis 10 V
-Omega = U_in*(0.01/(1.2*0.1+0.01*0.01)); % In Transferfuction eingesetzt mit s = 0
+Omega = U_in*(0.01/(1.2*0.1+0.01*0.01)); % In Transferfuction eingesetzt mit s = 0 und auf Omega umgeformt.
 plot(U_in, Omega)
 xlabel("U_{in} /V")
 ylabel("\omega /rad/s")
 ````
 
-Bild einfügen
+![Model](../../assets/img/001_SA_DCMotor/StatischerFall.jpg)
 
 ### Dynamisches System
 Dynamische können wir das System z.B. mithilfe einer Step Response Analysieren. Wird in Matlab ein Transferfunction Objekt erstellt, können dafür bereitgestellte Funktionen wie `step()` verwendet werden. Code und Ergebnis sieht folgendermaßen aus:
 
 
 ````MATLAB
-T = tf(0.01, [0.0001 0.000012 0.1201]) % 
+T = tf(0.01, [(0.01*0.5) (0.01*1.2 + 0.1*0.5) (1.2*0.1+0.01*0.01)]) % Aus der transferfunction. Format: tf(Zähler, [a b c]) wenn as^2 + bs + c
 opt = stepDataOptions;
-opt.StepAmplitude = 10; % 10 V Input
+opt.StepAmplitude = 10; % 10 V Input anstatt unit step
 step(T, opt)
 
 ````
 
-Bild einfügen, parameter checken
+![Model](../../assets/img/001_SA_DCMotor/StepResponseMotor.jpg)
+
+Man erkennt, dass bei 10 V Input sich der Motor dem stationären Fall annähert, allerdings noch Informationen die Zeitabhängig sind erkennbar werden. Aus einem der Foliensätze zu den Parametern bestimmter Systeme bekommt man noch einmal einen Überblick was man nun aus einer Step Response herauslesen kann.
+
+![Model](../../assets/img/001_SA_DCMotor/GeneralStep.png)
 
 ## 6. Schlussfolgerung
 
