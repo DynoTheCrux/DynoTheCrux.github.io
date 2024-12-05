@@ -68,12 +68,12 @@ $$
 V(s) = (L s + R) I(s) + K_e \Omega(s)
 $$
 
-3. Mechanische Gleichung: **Finde die Laplace Transformation der Mechanischen Gleichung und beantworte Frage 1.**
-<!--
+3. Mechanische Gleichung:
+
 $$
 J s \Omega(s) + B \Omega(s) = K_m I(s)
 $$
--->
+
 ### 2.2 Ankerstrom $$I(s)$$ eliminieren
 
 Um die Übertragungsfunktion zu finden, eliminieren wir $$I(s)$$ zwischen den beiden Gleichungen:
@@ -85,15 +85,14 @@ I(s) = \frac{V(s) - K_e \Omega(s)}{L s + R}
 $$
 
 Durch einsetzen in die mechanische Gleichung.
-<!--
+
 $$
 J s \Omega(s) + B \Omega(s) = K_m \left( \frac{V(s) - K_e \Omega(s)}{L s + R} \right)
 $$
--->
+
 ### 2.3 Übertragungsfunktion formen
 
-**Finde die Übertragungsfunktion $$T = \frac{\Omega(s)}{V(s)}$$ und beantworte Frage 2.**
-<!--
+
 Umstellen der Gleichung ergibt:
 
 $$
@@ -111,7 +110,7 @@ Die Übertragungsfunktion $$\frac{\Omega(s)}{V(s)}$$ ergibt sich zu:
 $$
 \frac{\Omega(s)}{V(s)} = \frac{K_m}{(J s + B)(L s + R) + K_m K_e}
 $$
--->
+
 <!--
 ### 2.4 Vereinfachte Form
 
@@ -123,7 +122,7 @@ $$
 -->
 Das vollständige System zeigt den Zusammenhang zwischen der Eingangsspannung $$V(s)$$ und der Ausgangsdrehzahl $$\Omega(s)$$.
 
-## 5. Simulationsparameter
+## 3. Simulationsparameter
 
 Hier sind typische Parameter, die zur Simulation eines DC-Motors verwendet werden könnten:
 
@@ -137,10 +136,27 @@ Hier sind typische Parameter, die zur Simulation eines DC-Motors verwendet werde
 | $$B$$   | 0.1  | N·m·s/rad | Viskoser Reibungskoeffizient |
 
 ###  Stationäres System
-Stationär bedeutet in diesem Zusammenhang, dass sich weder die Eingangsspannung noch das Lastmoment ändert. Das Heißt der Wert von $$s = 0$$, da dieser mit der Frequenz und der Dämpfung zusammenhängt. Plotte **Eingangsspannung (X-Achse) zu Drehzahl für die Übertragungsfunktion bei $$s = 0$$ und beantworte Frage 3.**
+Stationär bedeutet in diesem Zusammenhang, dass sich weder die Eingangsspannung noch das Lastmoment ändert. Das Heißt der Wert von $$s = 0$$, da dieser mit der Frequenz und der Dämpfung zusammenhängt. Die Eingangsspannungs zu Drehzahlkurve kann z.B. in MatLab folgendermaßen geplottet werden. Im realen Fall gäbe es allerdings eine Minimalspannung (ab der sich etwas bewegt) und Maximalspannung (aber welcher der Motor zerstört wird.
+
+````MATLAB
+U_in = 0:0.1:10; % Zum Beispiel bis 10 V
+Omega = U_in*(0.01/(1.2*0.1+0.1*0.1)); % In Transferfuction eingesetzt mit s = 0
+plot(U_in, Omega)
+xlabel("U_{in} /V")
+ylabel("\omega /rad/s")
+````
+
+Bild einfügen
 
 ### Dynamisches System
-Dynamische können wir das System z.B. mithilfe einer Step Response Analysieren. **Plotte die Step Response des Systems und beantworte die Frage 4.**
+Dynamische können wir das System z.B. mithilfe einer Step Response Analysieren. Wird in Matlab ein Transferfunction Objekt erstellt, können dafür bereitgestellte Funktionen wie `step()` verwendet werden. Code und Ergebnis sieht folgendermaßen aus:
+
+
+````MATLAB
+
+
+````
+
 
 
 ## 6. Schlussfolgerung
