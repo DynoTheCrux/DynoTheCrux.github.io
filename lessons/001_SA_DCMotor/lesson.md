@@ -140,7 +140,7 @@ Stationär bedeutet in diesem Zusammenhang, dass sich weder die Eingangsspannung
 
 ````MATLAB
 U_in = 0:0.1:10; % Zum Beispiel bis 10 V
-Omega = U_in*(0.01/(1.2*0.1+0.1*0.1)); % In Transferfuction eingesetzt mit s = 0
+Omega = U_in*(0.01/(1.2*0.1+0.01*0.01)); % In Transferfuction eingesetzt mit s = 0
 plot(U_in, Omega)
 xlabel("U_{in} /V")
 ylabel("\omega /rad/s")
@@ -153,7 +153,10 @@ Dynamische können wir das System z.B. mithilfe einer Step Response Analysieren.
 
 
 ````MATLAB
-
+T = tf(0.01, [0.0001 0.000012 0.1201]) % 
+opt = stepDataOptions;
+opt.StepAmplitude = 10; % 10 V Input
+step(T, opt)
 
 ````
 
