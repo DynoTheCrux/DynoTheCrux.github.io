@@ -162,7 +162,7 @@ step(T, opt)
 
 ![Model](../../assets/img/001_SA_DCMotor/StepResponseMotor.jpg)
 
-Man erkennt, dass bei 10 V Input sich der Motor dem stationären Fall annähert, allerdings noch Informationen die Zeitabhängig sind erkennbar werden. Aus einem der Foliensätze zu den Parametern bestimmter Systeme bekommt man noch einmal einen Überblick was man nun aus einer Step Response herauslesen kann.
+Man erkennt, dass bei 10 V Input sich der Motor dem stationären Fall bei 10 V annähert. Allerdings werden noch Informationen die Zeitabhängig sind erkennbar. Aus einem der Foliensätze zu den Parametern bestimmter Systeme bekommt man noch einmal einen Überblick was man nun aus einer Step Response herauslesen kann.
 
 ![Model](../../assets/img/001_SA_DCMotor/GeneralStep.png)
 
