@@ -152,7 +152,8 @@ Dynamische können wir das System z.B. mithilfe einer Step Response Analysieren.
 
 
 ````MATLAB
-T = tf(0.01, [(0.01*0.5) (0.01*1.2 + 0.1*0.5) (1.2*0.1+0.01*0.01)]) % Aus der transferfunction. Format: tf(Zähler, [a b c]) wenn as^2 + bs + c
+% Aus der transferfunction. Format: tf(Zähler, [a b c]) wenn as^2 + bs + c
+T = tf(0.01, [(0.01*0.5) (0.01*1.2 + 0.1*0.5) (1.2*0.1+0.01*0.01)]) 
 opt = stepDataOptions;
 opt.StepAmplitude = 10; % 10 V Input anstatt unit step
 step(T, opt)
