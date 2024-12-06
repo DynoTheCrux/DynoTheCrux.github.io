@@ -139,7 +139,8 @@ Stationär bedeutet in diesem Zusammenhang, dass sich weder die Eingangsspannung
 
 ````MATLAB
 U_in = 0:0.1:10; % Zum Beispiel bis 10 V
-Omega = U_in*(0.01/(1.2*0.1+0.01*0.01)); % In Transferfuction eingesetzt mit s = 0 und auf Omega umgeformt.
+% In Transferfuction eingesetzt mit s = 0 und auf Omega umgeformt.
+Omega = U_in*(0.01/(1.2*0.1+0.01*0.01)); 
 plot(U_in, Omega)
 xlabel("U_{in} /V")
 ylabel("\omega /rad/s")
