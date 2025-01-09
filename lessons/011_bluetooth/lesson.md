@@ -6,7 +6,7 @@
 
 
 
-# Workshop: Bluetooth Chat using a Android and Arduino
+# Workshop: Bluetooth Chat using an Android Device and Arduino ESP32
 
 This guide explains how to set up and work with the provided Android Studio template to create a smartphone app to chat with your ESP32! It includes the Bluetooth client implementation and integrates it with an ESP32 using JSON serialization. 
 
