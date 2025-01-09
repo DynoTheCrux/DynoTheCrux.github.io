@@ -32,7 +32,7 @@ The project is organized into three main packages:
 4. **MainActivity**
    - Includes the application flow and UI. Implements the `ConnectionListener` to implement Bluetooth methods.
   
-In the next steps you will implement the methods of the `ConnectionListener`. Generally, it is structured in a way to easily use and include Bluetooth serial in your (future) projects. Hence, this lesson is not going into the needed detail to create a custom solution on your own.
+In the next steps you will implement the methods of the `ConnectionListener`. Generally, it is structured in a way to easily use and include Bluetooth serial in your (future) projects. Hence, this lesson is not going into the needed detail to create a custom bleutooth solution on your own.
 
 ---
 
@@ -52,7 +52,7 @@ To handle the Bluetooth connection, implement the listener methods in the `Conne
 
 Integrate the Bluetooth connection and data handling in the `MainActivity`. Therefore your `MainActivity` has to implement the interface `ConnectionListener` using the `implements` keyword.
 
-In cosequence we are forced to implement the follwing methods:
+In consequence we are forced to implement the follwing methods:
 
 ```java
     void onConnected();
@@ -86,7 +86,7 @@ What do we want to do in each? We want to:
 ````
 
 
-4. Show the message if there is a new one. To do that we need to deserialize the JSON message. The methods for de/serialization is already provided in the project and can be used the following:
+4. Show the message if there is a new one. To do that, we need to deserialize the JSON message. The methods for de/serialization is already provided in the project and can be used the following:
 
 ````java
     try {
