@@ -27,7 +27,7 @@ Alle vier Arten können analog mit passiven Boder aktive Bauteilen umgesetzt wer
 Aktive Schaltungen bieten hier auch den Vorteil, dass der *Gain* also die Verstärkung des Signals festgelegt werden kann. Somit werden ungewünschte Signalanteile unterdrückt und relevante noch verstärkt. Unter anderen können bestimmte Grenzfrequenzen damit auch in einen Analog Interface Amplifier (AIA) integriert werden. Im Dokument *DesigningGainAndOffset.pdf* auf Sakai findest du Beispiele wie so eine Schaltung aussehen könnte. 
 
 # Szenario
-Du möchtest ein bestehendes Gerät evaluieren. Das Gerät an sich dient zu Rehabilitationszwecken des Unterarmes. Im speziellen ist es dazu gedacht, Spatizität zu verringern. Diese tritt in den oberen Extremitäten vor allem nach einem Schlaganfall auf. Falls diese nicht therapiert wird, kann dies langwierige Auswirkungen auf die Funktionalität der Muskulatur hervorrufen. Das Gerät ist in Folgender Abbildung zu sehen. Details können [**hier**](https://www.degruyter.com/document/doi/10.1515/cdbme-2022-1089/pdf){:target="_blank"} nachgelesen werden.
+Du möchtest ein bestehendes Gerät evaluieren. Das Gerät an sich dient zu Rehabilitationszwecken des Unterarmes. Im speziellen ist es dazu gedacht, Spastizität zu verringern. Diese tritt in den oberen Extremitäten vor allem nach einem Schlaganfall auf. Falls diese nicht therapiert wird, kann dies langwierige Auswirkungen auf die Funktionalität der Muskulatur hervorrufen. Das Gerät ist in folgender Abbildung zu sehen. Details können [**hier**](https://www.degruyter.com/document/doi/10.1515/cdbme-2022-1089/pdf){:target="_blank"} nachgelesen werden.
 
 ![Gerät](../../assets/img/004_bms_FilterTool/device.png)
 
@@ -38,7 +38,7 @@ Dein Problem ist aber, dass die Ansteuerung der Motoren des Gerätes ein Störsi
 
 ## Analoges Filter Design
 
-Um das Störsignal loszuwerden willst du selbst eine weitere Filterstufe hinzufügen. Es geht dabei um eine bestimmte Frequenz von etwa **600 Hz** erzeugt durch das PWM Signal vom Controller zum Motortreiber. Der Frequenzbereich von sEMG Signalen liegt im Bereich von **0-500 Hz**. Am Breakoutboard wurde bereits ein Hochpass mit einer Grenzfrequenz von 20 Hz integriert um Bewegungsartefakte zu unterdrücken.
+Um das Störsignal loszuwerden willst du selbst eine weitere Filterstufe hinzufügen. Es geht dabei um eine bestimmte Frequenz von etwa **550 Hz** erzeugt durch das PWM Signal vom Controller zum Motortreiber. Der Frequenzbereich von sEMG Signalen liegt im Bereich von **0-400 Hz**. Am Breakoutboard wurde bereits ein Hochpass mit einer Grenzfrequenz von 20 Hz integriert um Bewegungsartefakte zu unterdrücken.
 
 Wähle und dimensioniere einen passenden Filter um das Störsignal mit Sicherheit (< -40 dB) zu unterdrücken. Die sEMG Signale sollten zumindest bis 300 Hz unangetastet bleiben (> -3 dB). Es steht dir frei per Hand zu Rechnen, Matlab, Python oder andere Tools zu verwenden. Empfohlen ist allerdings der [**Filter Wizard**](https://tools.analog.com/en/filterwizard/){:target="_blank"} von Analog Devices.
 

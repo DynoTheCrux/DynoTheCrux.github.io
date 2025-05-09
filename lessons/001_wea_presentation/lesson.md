@@ -7,10 +7,10 @@
 # Aufgabenstellung
 
 Für diese Lehrveranstaltung werdet ihr eine Presentation vorbereiten und halten. Der Inhalt dreht sich dabei um ein spezifisches Wearable, welche dabei zur Option stehen wird von den Lehrenden angegeben. Teile der Presentation könnt ihr bereits in der Vorlesung vorbereiten. Die Benotung erfolgt dabei wie folgt:
-- 50 % sind der Gesamteindruck der Presentation
+- 50% sind der Gesamteindruck der Presentation
     - Wie gut ist die Presentation Strukturiert?
     - Sind die Inhalte gut aufeinander abgestimmt?
-- 50 % sind der Endruck der einzelnen Personen und Teilinhalte
+- 50% sind der Endruck der einzelnen Personen und Teilinhalte
     - Wie gut sind die spezifischen Teile vorbereitet und vorgetragen?
 
 So soll die Gruppe aber auch jeder einzelne in der Benotung berücksichtigt werden. Die Grundstruktur der Presentation ist vorgegeben. Jedes Teilthema wird von jeweils einer Person vorbereitet. Es gibt 4 Teilthemen -> es werden somit **Gruppen von 4** gebildet.
@@ -20,13 +20,13 @@ So soll die Gruppe aber auch jeder einzelne in der Benotung berücksichtigt werd
 # Bildet Gruppen und wählt ein Thema
 
 Im ersten Schritt ist ein Thema auszuwählen. Bildet Gruppen von 4, lest euch die Themen durch und wählt ein geeignetes aus folgender Liste aus:
-- [Kraftmesssohle](https://ethz.ch/en/news-and-events/eth-news/news/2023/03/3d-printed-insoles-measure-sole-pressure-directly-in-the-shoe.html){:target="_blank"}
-- [Parkinson Schuhsohle](https://www.helpsole.com/){:target="_blank"}
-- [Messshirt](https://ethz.ch/en/news-and-events/eth-news/news/2023/03/detecting-exhaustion-with-smart-sportswear.html?utm_source=facebook&utm_medium=ETH+Z%C3%BCrich&utm_content=c69a0ce196964729a851b8cce89e1509-768635709814450&utm_campaign=HK_Grund_Forschung&fbclid=IwAR0gZSPZ6_jSP7h5UIdf1tzqGVPmU2vYh29cguyW7C68IVuP5fLspcPle8g){:target="_blank"}
-<!-- - [Bluddruckmanschette mit Radarsensor](https://www.blumio.com/){:target="_blank"} -->
-- [Temperaturmessung mit Pflaster](https://www.steadysense.at/){:target="_blank"}
-- [Blutdruckmessung am Armgelenk](https://www.omron-healthcare.de/de/blutdruckmessgeraete/heartguide.html#prefn1=device_type&prefv1=Tragbares%20Blutdruckmessger%C3%A4t&start=1){:target="_blank"}
-- [Wearable EKG](https://www.zephyranywhere.com/system){:target="_blank"}
+- Exhaustion T-Shirt
+- Blood Pressure with Radar Sensor
+- Freezing of Gait Wristband
+- Sign Language Recognition Glove
+- Speech Converting Patch
+- Weight Detecting Glove
+- Eyetracking in ICU
 
 Wenn ihr euer Thema gefunden habt, schreibt eine Mail an die Lektoren mit dem Thema und allen Gruppenmitgliedern. Gebt außerdem ein Backup-Thema an welches zum Zug kommt, falls zwei Gruppen das gleiche Thema auswählen.
 > Würden alle 4 Gruppen die selben Themen angeben werden die Lektoren die Themen zufällig verteilen.
@@ -40,8 +40,9 @@ Im nächsten Schritt werdet ihr die Teilthemen eurer Präsentation zuteilen. Die
 - **Intro**: Das Gerät wird vorgestellt. Welches Problem löst es? Warum Qualifiert es sich als Wearable bzw. was ist noch nötig damit es sich als Wearable qualifiziert?
 - **Funktionsweise**: Beschreibe die technischen Hintergründe des Wearable. Such dir dabei ein bestimmtes Feature heraus auf das technisch im Detail eingegangen werden soll. 
 - **Anwendung**: Beschreibe die Anwendung bzw. mögliche Anwendungen für das Wearable. Gehe dabei auf die User-Gruppe und Stakeholder ein.
-- **Ethische Aspekte und Diskussion**: Diskutiere ethische Aspekte die mit dem Wearable einher gehen. Dies wird das Ende der Presentation sein und der Starpunkt für eine Diskussion. Bereite ggf. Fragen vor die eine Diskussion anstoßen.
-
+- **Ethische Aspekte und Diskussion**: Diskutiere ethische Aspekte die mit dem Wearable einher gehen. Dies wird das Ende der Presentation sein und der Starpunkt für eine Diskussion.
+- **Quiz**: Verpflichtender Teil der Präsentation wird ein kurzes Quiz (3-4 Fragen) sein. Verwendet dazu ein passendes Tool (e.g. [Slido](https://www.slido.com/de){:target="_blank"}) welches ihr in eure Folien einbinden und Fragen an euer Publikum stellen könnt.
+  
 Jeder in der Gruppe übernimmt eines der Teilthemen und wird dieses auch vorstellen. Versucht es nach euren eigenen Interessen zu verteilen. In der Präsentation muss ersichtlich sein wer welches Thema vorgetragen hat, damit eine Einzelnote vergeben werden kann. Die Reihenfolge der Themen wird wie angegeben empfohlen, kann aber angepasst werden.
 
 
@@ -56,7 +57,7 @@ Der Inhalt der Teilthemen ist bereits oben kurz umrissen. Er sollte so gut es ge
 
 # Abgabe und Ablauf
 
-Der erste Teil der Abgabe beginnt damit, dass ihr die fertige Powerpoint-Presentation einen Tag vor dem letzten Termin beim zugehörigen Sakai-Assignment hochladet. Die Präsentation werden wie kurz in der Vorlesung erwähnt am letzten Termin in einer art Mini-Konferenz vorgetragen und werden sich bereits vorbereitet am PC befinden.
+Der erste Teil der Abgabe beginnt damit, dass ihr die fertige Powerpoint-Presentation vor dem letzten Termin beim zugehörigen Sakai-Assignment hochladet. Die Präsentation werden wie kurz in der Vorlesung erwähnt am letzten Termin in einer art Mini-Konferenz vorgetragen und werden sich bereits vorbereitet am PC befinden.
 
 > Es darf auch davor jederzeit die Presentation geschickt werden, falls jemand Feedback möchte.
 

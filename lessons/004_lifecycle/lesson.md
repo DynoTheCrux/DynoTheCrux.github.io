@@ -113,47 +113,39 @@ Before we create our `Adapter`, we create a so called `ViewHolder`. It is a clas
 
 ````java
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<MessageViewHolder> {
+public class MessageViewHolder extends RecyclerView.ViewHolder {
 
-    List<MessageData> list;
-    Context context;
+    TextView txtMessage;
+    TextView txtTime;
+    View view;
 
-    RecyclerViewAdapter(List<MessageData> list, Context context)
+
+    MessageViewHolder(View itemView)
     {
-        this.list = list;
-        this.context = context;
+        super(itemView);
+        txtMessage = itemView.findViewById(R.id.txt_Message);
+        txtTime = itemView.findViewById(R.id.txt_Time);
+        view = itemView;
 
-    }
-
-    @NonNull
-    @Override
-    public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-
-        // Inflate the layout
-        View messageView = inflater.inflate(R.layout.message, parent, false);
-
-        MessageViewHolder viewHolder= new MessageViewHolder(messageView);
-        return viewHolder;
-    }
-
-    @Override
-    public void
-    onBindViewHolder(final MessageViewHolder viewHolder,
-                     final int position)
-    {
-        viewHolder.txtMessage.setText(list.get(position).message);
-        viewHolder.txtTime.setText(list.get(position).time);
-
-    }
-
-    @Override
-    public int getItemCount()
-    {
-        return list.size();
     }
 }
 ````
+The data itself will be of object `MessageData`, a class that we create ourselfes. It makes sure that we can extend and change the data that will be shon in our recycler view flexibly.
+
+````java
+public class MessageData {
+
+    String message;
+    String time;
+
+    MessageData(String message, String time)
+    {
+        this.message = message;
+        this.time = time;
+    }
+}
+````
+
 
 Next we can create the `Adapter` class. Create a java file with the class name again. We extend the superclass `RecyclerView.Adapter<MessageViewHolder>` and override some of its methods. In the constructor we make sure that the correct `context` can be set and the right data is connected to the view items. The overriden methods `onCreateViewHolder` and `onBindViewHolder` are called when the view is created or a new item is bound to the view. Therefore we inflate the message layout and set the contents in those methods. The method `getItemCount` is abstract in the superclass and also has to be overridden and returns the size of our list.
 
@@ -216,7 +208,7 @@ Create an instance of the adapter by using the `new` keyword and the constructor
 
 ````java
   // in onCreate, below connecting the recycler view
-  adapter = new RecyclerViewAdapter(list, getApplication());
+  adapter = new RecyclerViewAdapter(list, getApplicationContext());
   recyclerView.setAdapter(adapter);
   recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 ````

@@ -14,7 +14,7 @@ Du hast bereits ein Konzept für das Design der Platte festgelegt.
 
 ![Konzept Kraftmessplatte](../../assets/img/003_bms_AIA/kraftmessplatte.png)
 
-Ebenso sind die Sensoren schon ausgewählt und deren Output bekannt. In Kombination mit einem Spannungsteiler und der Referenzspannung von 5V des Mikrocontrollers ergibt sich eine Spanne von **0.5V -> 4,5 V**. Der ADC des Mikrocontrollers ist allerdings auf **0 V -> 5 V** ausgelegt mit einer Auflösung von 10 bit. 
+Ebenso sind die Sensoren schon ausgewählt und deren Output bekannt. In Kombination mit einem Spannungsteiler und der Referenzspannung von 3,3 V des Mikrocontrollers ergibt sich eine Spanne von **0,3 V -> 2,5 V**. Der ADC des Mikrocontrollers ist allerdings auf **0 V -> 3,3 V** ausgelegt mit einer Auflösung von 12 bit. 
 
 ## AIA - Analog Interface Amplifier
 
@@ -30,8 +30,8 @@ Am besten du plottest die Idealfunktion um das Ergebnis zu prüfen. Erstelle daz
 
 Wenn dir das Ergebnis plausibel vorkommt, kannst du nun die Widerstände auswählen. Da dies nicht so gut im Dokument aufbereitet ist hier die Formeln die du brauchst:
 ```` Matlab
-Rf = k*Rg-Rg
-R1 = ((Uref*R2*Rf)/(abs(d)*Rg))- R2
+Rf = m*Rg-Rg
+R1 = ((Uref*R2*Rf)/(abs(b)*Rg))- R2
 ````
 
 Berücksichtige, dass nicht alle Werte für Widerstände verfügbar sind, 1 % Genauigkeit sollte ein guter Anhaltspunkt für eine solche Schaltung sein.
@@ -47,11 +47,11 @@ Plotte den Unterschied in die gleiche Figure indem du `hold on` vor dein nächst
 
 # Abgabe
 
-Das Endergebnis sollte dann etwa so aussehen:
+Das Endergebnis sollte dann etwa (mit anderen Werten) so aussehen:
 
 ![Plot AIA](../../assets/img/003_bms_AIA/plot.png)
 
-Bitte gib zum passenden Assignment dein Matlab Script ab.
+Bitte gib zum passenden Assignment dein Matlab Script und den als Bild exportierten Plot ab.
 
 
 
