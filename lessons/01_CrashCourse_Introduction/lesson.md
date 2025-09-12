@@ -4,9 +4,6 @@
 * This will become a table of contents (this text will be scrapped).
 {:toc}
 
-# Workshop: Using an external library to show graphs and plots
-{: .reading}
-
 
 # Introduction to Embedded Systems, Microcontrollers, and Programming
 
