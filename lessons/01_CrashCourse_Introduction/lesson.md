@@ -1,4 +1,13 @@
-```markdown
+# Overview
+{: .reading}
+
+* This will become a table of contents (this text will be scrapped).
+{:toc}
+
+# Workshop: Using an external library to show graphs and plots
+{: .reading}
+
+
 # Introduction to Embedded Systems, Microcontrollers, and Programming
 
 This document provides an introduction to embedded systems, microcontrollers, their programming methods, the Arduino Framework, and the fundamentals of compiled programming languages like C++.
@@ -84,4 +93,4 @@ The **Arduino Framework** is an open-source platform designed to simplify the pr
     *   **Cross Compiler**: Compiles code for a different target hardware than the one it's running on (e.g., compiling code for an MCU on a PC). This provides flexibility and independence from specific hardware.
 
 In essence, compiled languages provide direct control over hardware and often result in highly efficient execution, which is crucial for resource-constrained embedded systems.
-```
+
