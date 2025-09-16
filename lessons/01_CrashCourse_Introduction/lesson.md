@@ -7,7 +7,10 @@
 
 # Introduction to Embedded Systems, Microcontrollers, and Programming
 
-This document provides an introduction to embedded systems, microcontrollers, their programming methods, the Arduino Framework, and the fundamentals of compiled programming languages like C++.
+This document provides an introduction to embedded systems, microcontrollers, their programming methods, the Arduino Framework, and the fundamentals of compiled programming languages like C++. You can also watch a generated video as an introduction. A lot of the contents are based on the Arduino Projects book by Arduino LLC.
+
+[Watch Generated Video](https://youtu.be/lX_Fda-65Wk)
+
 
 ## 1. Embedded Systems as a General Concept
 
@@ -34,8 +37,12 @@ Key components of an MCU include:
 *   **Peripherals**: Such as timers, Pulse Width Modulation (PWM) channels, Analog-Digital Converters (ADCs), serial interfaces (USART, SPI, I²C), and external interrupts.
 
 Common architectures for MCUs include:
-*   **Harvard Architecture**: Most MCUs are built using the Harvard architecture, which allows for parallel operation by separating program and data memory, each with its own bus system. This saves processing time compared to the von Neumann architecture.
-*   **ARM Architecture**: This is the most prevalent architecture in embedded systems. It's optimized for efficiency and good performance by reducing the set of usable instructions. The "ARM" acronym stands for "advanced reduced instruction set computer machine". Specific ARM Cortex-M systems are designed for MCUs and are found in platforms like Arduino and ESP32.
+*   **Harvard Architecture**: Most performant systems are built using the Harvard architecture, which allows for parallel operation by separating program and data memory, each with its own bus system. This saves processing time compared to the von Neumann architecture.
+*   *   **Harvard Architecture**: Most performant systems are built using the Harvard architecture, which allows for parallel operation by separating program and data memory, each with its own bus system. This saves processing time compared to the von Neumann architecture.
+
+![Architectures](../../assets/img/CrashCourse/VonNeumannHarvard.png)
+
+**ARM**: This is a variation of MCU's. It's optimized for efficiency and good performance by reducing the set of usable instructions. The "ARM" acronym stands for "advanced reduced instruction set computer machine". Specific ARM Cortex-M systems are designed for MCUs.
 
 Examples of MCUs mentioned include the **ATMEGA328P** (an 8-bit general-purpose MCU often found in Arduino Uno boards) and the more powerful **ESP-WROOM-32** (a dual-core 32-bit LX6 microprocessor suitable for Internet of Things (IoT) applications).
 
@@ -55,23 +62,9 @@ The general steps are:
 *   **Assembler** is often used for highly time-critical algorithms.
 *   **Micropython** is also mentioned as a language suitable for ES, used in some educational contexts.
 
-**Integrated Development Environments (IDEs)** are software applications that facilitate coding. Examples include DAVE (automotive), Code Composer Studio (consumer electronics), Eclipse, CLion, and manufacturer-specific tools. The **Arduino IDE** is specifically designed to make programming microcontrollers as easy as possible.
+**Integrated Development Environments (IDEs)** are software applications that facilitate coding. Examples include DAVE (automotive), Code Composer Studio (consumer electronics), Eclipse, CLion, and manufacturer-specific tools. The **Arduino IDE** is specifically designed to make programming microcontrollers as easy as possible using the Arduino framework/core.
 
-## 4. Basics About the Arduino Framework
-
-The **Arduino Framework** is an open-source platform designed to simplify the programming of microcontrollers, making technology accessible to designers, artists, hobbyists, and students. Arduino boards, such as the **Arduino Uno**, serve as the development boards that house the microcontroller.
-
-**Key aspects of the Arduino Framework:**
-*   **Purpose**: To make it easy to program tiny computers (microcontrollers) that enable objects to be interactive. This is achieved by allowing users to build circuits and interfaces for interaction, and instructing the microcontroller on how to interface with other components.
-*   **Arduino IDE**: This is the software environment where users write programs, known as "sketches," and upload them to the Arduino board.
-*   **Basic Program Structure (Sketch)**: Every Arduino program consists of two fundamental functions:
-    *   `setup()`: This function runs only once when the Arduino is powered on or reset. It is used for initial configurations, such as setting digital pins as inputs or outputs using `pinMode()`.
-    *   `loop()`: After `setup()` completes, the `loop()` function runs continuously. It contains the main logic of the program, such as checking input voltages from sensors and controlling outputs to actuators.
-*   **Interaction with Hardware**: Arduino programs enable microcontrollers to "listen" to sensors (e.g., buttons, temperature sensors, photoresistors) that convert physical energy into electrical signals, and "talk" to actuators (e.g., LEDs, motors, piezo elements) that convert electrical energy back into physical actions like light, heat, or movement.
-*   **Uploading Sketches**: To get a program onto the Arduino board, one selects the correct board and serial port in the Arduino IDE and then clicks the "Upload" button. Successful uploads are indicated by a message in the IDE and blinking TX/RX LEDs on the board.
-*   **Libraries**: Arduino's functionality can be extended using software libraries. These can be built-in (e.g., the `Servo` library for controlling servo motors) or third-party (e.g., `CapacitiveSensor` library for touch sensing). Libraries provide pre-written code that simplifies complex tasks and hardware interactions.
-
-## 5. What is C++ and What Are the Basic Properties of a Compiled Programming Language?
+## 4. What is C++ and What Are the Basic Properties of a Compiled Programming Language?
 
 **C++** is a powerful and performant programming language, widely used in various applications, including hardware-near programming for microcontrollers. The Arduino programming language is based on C/C++.
 
@@ -90,4 +83,29 @@ The **Arduino Framework** is an open-source platform designed to simplify the pr
     *   **Cross Compiler**: Compiles code for a different target hardware than the one it's running on (e.g., compiling code for an MCU on a PC). This provides flexibility and independence from specific hardware.
 
 In essence, compiled languages provide direct control over hardware and often result in highly efficient execution, which is crucial for resource-constrained embedded systems.
+
+
+## 5. Basics About the Arduino Framework
+
+The **Arduino Framework** is an open-source platform designed to simplify the programming of microcontrollers, making technology accessible to designers, artists, hobbyists, and students. Arduino boards, such as the **Arduino Uno**, serve as the development boards that house the microcontroller. It is not important to remember all parts of the build process, however it is important to understand that errors can be found (and solved) in all steps. Image is taken from oer-informatik.de (H. Stein), Licence: CC BY 4.0. 
+
+![CompilingProcess](../../assets/img/CrashCourse/build-prozess.png)
+
+**Key aspects of the Arduino Framework:**
+*   **Purpose**: To make it easy to program tiny computers (microcontrollers) that enable objects to be interactive. This is achieved by allowing users to build circuits and interfaces for interaction, and instructing the microcontroller on how to interface with other components.
+*   **Arduino IDE**: This is the software environment where users write programs, known as "sketches," and upload them to the Arduino board.
+*   **Basic Program Structure (Sketch)**: Every Arduino program consists of two fundamental functions:
+    *   `setup()`: This function runs only once when the Arduino is powered on or reset. It is used for initial configurations, such as setting digital pins as inputs or outputs using `pinMode()`.
+    *   `loop()`: After `setup()` completes, the `loop()` function runs continuously. It contains the main logic of the program, such as checking input voltages from sensors and controlling outputs to actuators.
+*   **Interaction with Hardware**: Arduino programs enable microcontrollers to "listen" to sensors (e.g., buttons, temperature sensors, photoresistors) that convert physical energy into electrical signals, and "talk" to actuators (e.g., LEDs, motors, piezo elements) that convert electrical energy back into physical actions like light, heat, or movement.
+*   **Uploading Sketches**: To get a program onto the Arduino board, one selects the correct board and serial port in the Arduino IDE and then clicks the "Upload" button. Successful uploads are indicated by a message in the IDE and blinking TX/RX LEDs on the board.
+*   **Libraries**: Arduino's functionality can be extended using software libraries. These can be built-in (e.g., the `Servo` library for controlling servo motors) or third-party (e.g., `CapacitiveSensor` library for touch sensing). Libraries provide pre-written code that simplifies complex tasks and hardware interactions.
+
+  ![LoopSetup](../../assets/img/CrashCourse/LoopSetup.png)
+
+
+## 6. Next Steps:
+
+In the next Lesson you will start to write your first programs and learn how to setup a IDE on your own laptop.
+
 
