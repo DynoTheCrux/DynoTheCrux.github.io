@@ -8,7 +8,7 @@
 
 ## 1. Introduction
 
-In this first example, we will discuss the code of this [online example](https://wokwi.com/projects/328451800839488084). It is provided by the embedded emulator **WOKWI**, which can be used nicely for practising and testing code for different controllers and frameworks. In the best case you can try the code first, see what it does and then you can go through it using the lesson side by side. If you have never read any C++, please have a llok at the appendix, otherwise you can skip it.
+In this first example, we will discuss the code of this [online example](https://wokwi.com/projects/328451800839488084). It is provided by the embedded emulator **WOKWI**, which can be used nicely for practising and testing code for different controllers and frameworks. In the best case you can try the code first, see what it does and then you can go through it using the lesson side by side. If you have never read any C++, please have a look at the appendix, otherwise you can skip it.
 
 > Of course we could start by a "please write code to make a LED blink", but even if generative AI or simply googling example code is really helpful for programming this would mean skipping the basics. Something that will trip you up later. Would not recommend.
 
@@ -105,6 +105,16 @@ Of course. Here is the additional section describing the overall structure of th
 
 
 *   `gameOver()` and `playLevelUpSound()`: Provide feedback to the player after a round is completed.
+
+## 6. Next Steps: Üben Üben Üben or Practice Makes Perfect
+
+Of course I urge you to write your own code and practice. There are so many basic tutorial found in the internet that I don't have to repeat this here. In the synchronous sessions we will of course start very basic too, but you can get a headstart if you already try some stuff with WOKWI as we cannot cover everything within the time!
+
+# Setting up the Arduino IDE
+
+For the synchronous sessions, make sure you set up the Arduino IDE on your laptop. The manual and program download can be found [here](https://docs.arduino.cc/software/ide-v2/tutorials/getting-started/ide-v2-downloading-and-installing/). After installing, you can try if everything worked by **verifying** i.e. pressing the checkmark button on some example code. For this step you need to choose a certain controller in the boards manager. For simplicity you can just choose the "Blink" example (File->Examples->Basics->Blink) and verify it for the Arduino UNO (on the top it should state the board). If this works for you, you are ready for the synchronous lectures!
+
+> In Arduino **verifying** is basically compiling and **uploading** programming i.e. flashing the controller. The second is the process of actually putting the code onto the hardware, while the first one is only creating the code to be run by the MCU without actually needing the hardware present.
 
 # Appendix: C++ Variables, Functions, and Data Types
 
