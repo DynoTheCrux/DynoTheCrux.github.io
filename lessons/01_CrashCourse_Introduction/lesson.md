@@ -38,7 +38,7 @@ Key components of an MCU include:
 
 Common architectures for MCUs include:
 *   **Harvard Architecture**: Most performant systems are built using the Harvard architecture, which allows for parallel operation by separating program and data memory, each with its own bus system. This saves processing time compared to the von Neumann architecture.
-*   *   **Harvard Architecture**: Most performant systems are built using the Harvard architecture, which allows for parallel operation by separating program and data memory, each with its own bus system. This saves processing time compared to the von Neumann architecture.
+*   **Von Neumann Architecture**: This architecture has a shared program and data memory, which makes it more hardware efficient. However, it comes with a tradeoff in terms of speed.
 
 ![Architectures](../../assets/img/CrashCourse/VonNeumannHarvard.png)
 
