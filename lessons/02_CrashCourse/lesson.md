@@ -8,7 +8,7 @@
 
 ## 1. Introduction
 
-In this first example, we will discuss the code of this [online example](https://wokwi.com/projects/328451800839488084). It is provided by the embedded emulator **WOKWI**, which can be used nicely for practising and testing code for different controllers and frameworks. In the best case you can try the code first, see what it does and then you can go through it using the lesson side by side. If you have never read any C++, please have a look at the appendix, otherwise you can skip it.
+In this first example, we will discuss the code of this [online example](https://wokwi.com/projects/328451800839488084). It is provided by the embedded emulator **WOKWI**, which can be used nicely for practising and testing code for different controllers and frameworks. In the best case you can try the code first, see what it does and then you can go through it using the lesson side by side. If you have never read any C++, please have a look at the appendix, otherwise you can skip it. **However, make sure you follow the section on installing the Arduino IDE!**
 
 > Of course we could start by a "please write code to make a LED blink", but even if generative AI or simply googling example code is really helpful for programming this would mean skipping the basics. Something that will trip you up later. Would not recommend.
 
