@@ -48,5 +48,3 @@ Reflect on your reading experience:
 
 ---
 
----
-
