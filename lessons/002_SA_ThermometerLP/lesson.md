@@ -11,6 +11,6 @@ Nachdem wir unser erstes System erster Ordnung jetzt gemeinsam Modelliert haben,
 
 $$
 
-\frac{dT(t){dt} = k(T_{u}(t) - T(t))
+\frac{dT(t)}{dt} = k(T_{u}(t) - T(t))
 
 $$
