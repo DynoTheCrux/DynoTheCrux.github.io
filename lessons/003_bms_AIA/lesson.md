@@ -10,23 +10,23 @@ Für die Bewegungsanalyse werden oft sogenannte Kraftmessplatten verwendet. Im s
 # Szenario
 In einem kleinen Projekt für dein Studium willst du eine Kraftmessplatte entwickeln die mit 4 kraftabhängigen Widerständen (FSR) ausgestattet sind. An jeder Ecke angebracht, kann so das Gleichgewicht analysiert werden, je nachdem wie die Kraft auf die 4 verschiedenen Sensoren verteilt wird. 
 
-Du hast bereits ein Konzept für das Design der Platte festgelegt.
+Du hast bereits ein grobes Konzept für das Design der Platte festgelegt.
 
 ![Konzept Kraftmessplatte](../../assets/img/003_bms_AIA/kraftmessplatte.png)
 
-Ebenso sind die Sensoren schon ausgewählt und deren Output bekannt. In Kombination mit einem Spannungsteiler und der Referenzspannung von 3,3 V des Mikrocontrollers ergibt sich eine Spanne von **0,3 V -> 2,5 V**. Der ADC des Mikrocontrollers ist allerdings auf **0 V -> 3,3 V** ausgelegt mit einer Auflösung von 12 bit. 
+Ebenso sind die Sensoren schon ausgewählt und deren Output bekannt. In Kombination mit einem Spannungsteiler und der Referenzspannung von 3,3 V des Mikrocontrollers ergibt sich eine Spanne von **0,4 V -> 2,3 V**. Der ADC des Mikrocontrollers ist allerdings auf **0 V -> 3,3 V** ausgelegt mit einer Auflösung von 10 bit. 
 
 ## AIA - Analog Interface Amplifier
 
-Um das maximum aus deinen Sensoren und Controller herauszuholen, hattest du die Idee einen Analog Interface Amplifier (AIA) zu designen. Am besten wäre wenn du dazu ein Matlab Script schreibst in das du ganz einfach deine Anfangswerte eintippen kannst. Dann kannst du später Werte ganz einfach anpassen und es auch für spätere Projekte verwenden. Für die Berechnung ziehe das Dokument *opAmpDesignTechniques.pdf* auf Sakai zu rate. Dort findest du den passenden Fall für dein Design und die entsprechende Berechnung dazu. Finde heraus ob du Case 1,2,3 oder 4 benötigst.
+Um das maximum aus deinen Sensoren und Controller herauszuholen, hattest du die Idee einen Analog Interface Amplifier (AIA) zu designen. Am besten wäre wenn du dazu ein Matlab oder Python Script schreibst in das du ganz einfach deine Anfangswerte eintippen kannst. Dann kannst du später Werte ganz einfach anpassen und es auch für spätere Projekte verwenden. Für die Berechnung ziehe das Dokument *opAmpDesignTechniques.pdf* auf Sakai zu rate. Dort findest du den passenden Fall für dein Design und die entsprechende Berechnung dazu. Finde heraus ob du Case 1,2,3 oder 4 benötigst.
 
-Die Übertragungsfunktion is linear mit dem Gain *m* und Offset *b*, erster Schritt ist diese zu ermitteln. Da wir jeweils zwei Werte (Maxima und Minima für Output und Input) zur Verfügung haben sollte sich diese werte durch zwei Gleichungen leicht lösen lassen.
+Die Funktion ist eine Gerade mit dem Gain *m* und Offset *b*. Erster Schritt ist diese zu ermitteln. Da wir jeweils zwei Werte (Maxima und Minima für Output und Input) zur Verfügung haben sollte sich diese werte durch zwei Gleichungen leicht lösen lassen.
 
 > Falls du Matlab verwendest dann schau dir zum eintippen der Anfangswerte vielleicht die Funktion `input` an.
 
-Am besten du plottest die Idealfunktion um das Ergebnis zu prüfen. Erstelle dazu einen Vektor für *Uin* vom minimum bis maximum. Richtig, eigentlich reichen 2 Werte für eine Gerade, aber nimm ruhig ein paar mehr. Verwende entweder `linspace` oder `:` für den Vektor. *Uout* erzeugst du indem du den *Uin* Vektor richtig in die lineare Formel einsetzt. Damit kannst du nun *Uin* zu *Uout* plotten und die Achsen labeln und passend limitieren.
+Am besten du plottest die Idealfunktion um das Ergebnis zu prüfen. Erstelle dazu einen Vektor für *Uin* vom minimum bis maximum. Richtig, eigentlich reichen 2 Werte für eine Gerade, aber nimm ruhig ein paar mehr.  *Uout* erzeugst du indem du den *Uin* Vektor richtig in die lineare Formel einsetzt. Damit kannst du nun *Uin* zu *Uout* plotten und die Achsen labeln und passend limitieren.
 
-> Siehe `xlim`, `ylim`, `xlabel` und `ylabel`.
+>  In Matlab siehe `xlim`, `ylim`, `xlabel` und `ylabel` und `linspace` oder `:` für den Vektor.
 
 Wenn dir das Ergebnis plausibel vorkommt, kannst du nun die Widerstände auswählen. Da dies nicht so gut im Dokument aufbereitet ist hier die Formeln die du brauchst:
 ```` Matlab
@@ -34,16 +34,18 @@ Rf = m*Rg-Rg
 R1 = ((Uref*R2*Rf)/(abs(b)*Rg))- R2
 ````
 
-Berücksichtige, dass nicht alle Werte für Widerstände verfügbar sind, 1 % Genauigkeit sollte ein guter Anhaltspunkt für eine solche Schaltung sein.
+Berücksichtige, dass **nicht alle Werte für Widerstände verfügbar sind**, 1 % Genauigkeit sollte ein guter Anhaltspunkt für eine solche Schaltung sein.
 > Wers nicht kennt Widerstandsreihe E96 googlen.
 
-Die Anfangswerte für *Rg* und *R2* können an sich frei gewählt werden, aber es empfiehlt sich, sich die Größenordnung im Dokument zu verwenden.
+Die Anfangswerte für *Rg* und *R2* können an sich frei gewählt werden, aber es empfiehlt sich, sich die Größenordnung im Dokument zu verwenden. Es müssen erst die idealen Werte für R1 und R2 berechnet werden und dann durch die realen ersetzt werden.
 
-Sind alle Widerstände gewählt, kannst du die Schaltung validieren indem du sie wieder in die Übertragungsfunktion einsetzt. 
+Sind alle Widerstände gewählt, kannst du die Schaltung validieren indem du sie wieder in die Funktion einsetzt. 
 
-> Hinweis: Die Übertragungsfunktion ist Formel 37 im Dokument. Das Symbol \\\\ bedeutet hier so viel wie "parallel zu", daher *R1\\\\R2* -> *R1R2/R1+R2*
+> Hinweis: Die Funktion ist Formel 37 im Dokument. Das Symbol \\\\ bedeutet hier so viel wie "parallel zu", daher *R1\\\\R2* -> *R1R2/R1+R2*
 
-Plotte den Unterschied in die gleiche Figure indem du `hold on` vor dein nächstes `plot` setzt. Mit `plot(Uin, Uout, "--")` kannst du die Linie auf strichliert setzen und mit `legend("Ideal", "Real")` eine Legende hinzufügen.
+Plotte den Unterschied in das gleiche Diagramm.
+
+> In Matlab `hold on` vor dein nächstes `plot`. Mit `plot(Uin, Uout, "--")` kannst du die Linie auf strichliert setzen und mit `legend("Ideal", "Real")` eine Legende hinzufügen.
 
 # Abgabe
 
@@ -51,7 +53,7 @@ Das Endergebnis sollte dann etwa (mit anderen Werten) so aussehen:
 
 ![Plot AIA](../../assets/img/003_bms_AIA/plot.png)
 
-Bitte gib zum passenden Assignment dein Matlab Script und den als Bild exportierten Plot ab.
+Beantworte die untenstehende Frage und sei in der Vorlesung bereit, deine Lösung vorzuzeigen.
 
 
 
