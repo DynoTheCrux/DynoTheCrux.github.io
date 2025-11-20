@@ -10,13 +10,13 @@
 
 **Quantization** is the process of mapping continuous infinite values to a smaller set of discrete finite values.
 
-**Note**: There are various methods for quantizing a signal. One can use the value 0 as a valid value, interpret the most significant bit (MSB) as a sign bit, or use two's complement representation.
+> There are various methods for quantizing a signal. One can use the value 0 as a valid value, interpret the most significant bit (MSB) as a sign bit, or use two's complement representation.
 
 **Quantization Error**: The error that occurs during quantization (the conversion of an analog signal into a digital signal). Since digital signals can only represent discrete values, a continuous analog signal is mapped to a digital value that is closest to the analog value. This mapping process results in an error, which is referred to as the quantization error.
 
 ## Task 1: Signal Creation
 
-Generate a discrete sinusoidal signal witht the following properties:
+Create a script using the programming tool of your choice. Generate a discrete sinusoidal signal witht the following properties:
 - Frequency of 5 Hz.
 - Length of 1 s
 - Amplitude of 1
