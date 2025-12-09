@@ -92,7 +92,7 @@ void loop() {
 }
 ````
 
-Führe den Code aus und starte bzw. stoppe den Motor. Welche Probleme treten auf? **Beantworte dazu Frage 1.**
+Führe den Code aus und starte bzw. stoppe den Motor. Welche Probleme treten auf? 
 
 ## Zweite Version
 
@@ -105,7 +105,7 @@ attachInterrupt(digitalPinToInterrupt(STOP_PIN), stopServoISR, FALLING);
 ````
 Im ``loop`` brauchen wir die Zeile die den Stop Button ausliest nicht mehr und kann gelöscht oder auskommentiert werden. Was uns noch fehlt ist die ``stopServoISR``. Erstelle eine Funktion ohne Rückgabe und Übergabeparameter mit dem selben Namen **außerhalb** des Programmblocks des ``loop``. In der Funktion soll die Variable ``servoRunning`` auf ``false`` gesetzt werden.
 
-Führe den Code erneut aus. Welches Verhalten hat sich verbessert? Welches wahrscheinlich unerwünschte Verhalten zeigt sich nun besonders wenn der Servo gestoppt und erneut gestartet wird? **Beantworte dazu Frage 2.**
+Führe den Code erneut aus. Welches Verhalten hat sich verbessert? Welches wahrscheinlich unerwünschte Verhalten zeigt sich nun besonders wenn der Servo gestoppt und erneut gestartet wird?
 
 ## Dritte Version
 
@@ -131,9 +131,9 @@ servoState servoState = STOP;
 int lastState = CW;
 ````
 
-Im `loop()` erfassen wir den Status der Buttons und setzen im Falle eines gedrückten Buttons den servoStop jeweils auf `STOP` oder `START`. Die State Machine an sich implementieren wir als `switch-case`, wobei jeder case einen State einnehmen wird. Die nächste große verbessung zu den Codes davor kommt indem wir die `for` loops loswerden und gegen Timing mit Hilfe von `millis()` ersetzen. Dies ist eine Funktion die die momentane Systemlaufzeit in Millisekunden ausgibt. Ähnlich wie in den Versionen 1 und 2 kann so die Ansterungsperiode des Servos angepasst werden, indem damit der Zeitraum seit dem letzten Impuls gemessen wird. Erstelle dazu die Variable `int period_servo = 15;`,`unsigned long oldMillis = 0;` und `unsigned long absolutMillis = 0;` **Beantworte dazu Frage 3**.
+Im `loop()` erfassen wir den Status der Buttons und setzen im Falle eines gedrückten Buttons den servoStop jeweils auf `STOP` oder `START`. Die State Machine an sich implementieren wir als `switch-case`, wobei jeder case einen State einnehmen wird. Die nächste große verbessung zu den Codes davor kommt indem wir die `for` loops loswerden und gegen Timing mit Hilfe von `millis()` ersetzen. Dies ist eine Funktion die die momentane Systemlaufzeit in Millisekunden ausgibt. Ähnlich wie in den Versionen 1 und 2 kann so die Ansterungsperiode des Servos angepasst werden, indem damit der Zeitraum seit dem letzten Impuls gemessen wird. Erstelle dazu die Variable `int period_servo = 15;`,`unsigned long oldMillis = 0;` und `unsigned long absolutMillis = 0;`. Durch welche Methode wird das blockieren welches bei `delay()` auftritt verhindert?
 
-Der Code unserer State Machine sieht dann folgendermaßen aus. Schau dir die States und Struktur an. **Implementiere den CCW State selbständig und rufe `stateMachineMotor()` an der passenden Stelle im Code auf.** passe den `loop()` entsprechend des neuen Programms an. **Führe den finalen Code aus und beantworte Frage 4.**
+Der Code unserer State Machine sieht dann folgendermaßen aus. Schau dir die States und Struktur an. **Implementiere den CCW State selbständig und rufe `stateMachineMotor()` an der passenden Stelle im Code auf.** passe den `loop()` entsprechend des neuen Programms an. Führe den finalen Code aus und teste das Verhalten. Bleibt noch ein unerwünschtes Verhalten bestehen?
 
 ````C++
 void stateMachineMotor() {
