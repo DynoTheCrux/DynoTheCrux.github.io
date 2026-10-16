@@ -14,11 +14,11 @@ Du hast bereits ein grobes Konzept für das Design der Platte festgelegt.
 
 ![Konzept Kraftmessplatte](../../assets/img/003_bms_AIA/kraftmessplatte.png)
 
-Ebenso sind die Sensoren schon ausgewählt und deren Output bekannt. In Kombination mit einem Spannungsteiler und der Referenzspannung von 3,3 V des Mikrocontrollers ergibt sich eine Spanne von **0,4 V -> 2,3 V**. Der ADC des Mikrocontrollers ist allerdings auf **0 V -> 3,3 V** ausgelegt mit einer Auflösung von 10 bit. 
+Ebenso sind die Sensoren schon ausgewählt und deren Output bekannt. In Kombination mit einem Spannungsteiler und der Referenzspannung von 3,3 V des Mikrocontrollers ergibt sich eine Spanne von **0,4 V -> 2,3 V**. Der ADC des Mikrocontrollers ist allerdings auf **0 V -> 3,3 V** ausgelegt mit einer Auflösung von 10 bit. Zur Übung kannst du die Signalverarbeitungskette von einem Sensor bis zum ADC aufzeichnen und erstmal überlegen und notieren welche Informationen du über die einzelnen Blöcke hast und was es für die Inputs und Outputs bedeutet. 
 
 ## AIA - Analog Interface Amplifier
 
-Um das maximum aus deinen Sensoren und Controller herauszuholen, hattest du die Idee einen Analog Interface Amplifier (AIA) zu designen. Am besten wäre wenn du dazu ein Matlab oder Python Script schreibst in das du ganz einfach deine Anfangswerte eintippen kannst. Dann kannst du später Werte ganz einfach anpassen und es auch für spätere Projekte verwenden. Für die Berechnung ziehe das Dokument *opAmpDesignTechniques.pdf* auf Sakai zu rate. Dort findest du den passenden Fall für dein Design und die entsprechende Berechnung dazu. Finde heraus ob du Case 1,2,3 oder 4 benötigst.
+Um das maximum aus deinen Sensoren und Controller herauszuholen, hattest du die Idee einen Analog Interface Amplifier (AIA) zu designen. Passe also deine Signalverarbeitungskette so an, dass der AIA inkludiert ist. Warum verbessert es nun die gesamte Genauigkeit deiner Signalverarbeitungskette? Am besten wäre wenn du dazu ein Matlab oder Python Script schreibst in das du ganz einfach deine Anfangswerte eintippen kannst. So wird die Aufgabe Wiederverwertbar. Sie lässt sich aber auch zum größten Teil per Hand lösen. Für die Berechnung ziehe das Dokument *opAmpDesignTechniques.pdf* auf Sakai zu rate. Dort findest du den passenden Fall für dein Design und die entsprechende Berechnung dazu. Finde heraus ob du Case 1,2,3 oder 4 benötigst.
 
 Die Funktion ist eine Gerade mit dem Gain *m* und Offset *b*. Erster Schritt ist diese zu ermitteln. Da wir jeweils zwei Werte (Maxima und Minima für Output und Input) zur Verfügung haben sollte sich diese werte durch zwei Gleichungen leicht lösen lassen.
 
@@ -47,13 +47,12 @@ Plotte den Unterschied in das gleiche Diagramm.
 
 > In Matlab `hold on` vor dein nächstes `plot`. Mit `plot(Uin, Uout, "--")` kannst du die Linie auf strichliert setzen und mit `legend("Ideal", "Real")` eine Legende hinzufügen.
 
-# Abgabe
+# Ergebnis
 
-Das Endergebnis sollte dann etwa (mit anderen Werten) so aussehen:
+Das Endergebnis sollte dann etwa (mit anderen Werten) etwa so aussehen:
 
 ![Plot AIA](../../assets/img/003_bms_AIA/plot.png)
 
-Beantworte die untenstehende Frage und sei in der Vorlesung bereit, deine Lösung vorzuzeigen.
 
 
 
